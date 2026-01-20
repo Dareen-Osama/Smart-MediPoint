@@ -1,0 +1,3003 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart MediPoint - Doctor Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--background);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--Paraghfont);
+            line-height: 1.6;
+            direction: ltr;
+            text-align: left;
+        }
+
+        :root {
+            --background: #F5F5F5;
+            --navcolor: #1D7874;
+            --spanfonts: #2CA58D;
+            --Paraghfont: #14535E;
+            --fontAtNav: #E4E4E4;
+            --urgent-red: #E74C3C;
+            --warning-yellow: #F39C12;
+            --info-blue: #3498DB;
+        }
+
+        /* ==================== DOCTOR HEADER DESIGN ==================== */
+        header {
+            background-color: var(--background);
+        }
+
+        .head {
+            display: flex;
+            flex-direction: column;
+            gap: 0 10px;
+        }
+
+        .headNav {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            background-color: var(--background);
+            padding: 0 2%;
+            border-radius: 10%;
+            align-items: center;
+            min-height: 150px;
+        }
+
+        .headNav div {
+            display: flex;
+            align-items: center;
+        }
+
+        .headNav div a {
+            text-decoration: none;
+            color: var(--Paraghfont);
+        }
+
+        .headNav img {
+            width: 150px;
+            height: 150px;
+        }
+
+        .navBar {
+            border-radius: 25%;
+            margin-top: 5px;
+        }
+
+        nav {
+            background-color: var(--navcolor);
+            padding: 0 5%;
+            height: 80px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 25px;
+            width: 100%;
+            box-shadow: 1px 1px 9px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu {
+            flex: 1;
+        }
+
+        nav ul {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            list-style: none;
+            width: 100%;
+            gap: 5px;
+            padding: 0 10px;
+        }
+
+        nav ul li {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+            position: relative;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--fontAtNav);
+            font-weight: bolder;
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            min-height: 40px;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            border: 2px solid var(--fontAtNav);
+            background-color: var(--fontAtNav);
+            color: var(--navcolor);
+            transform: translateY(-2px);
+        }
+
+        /* Notification Badge */
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: 0;
+            background-color: var(--urgent-red);
+            color: white;
+            font-size: 0.7rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px solid var(--navcolor);
+        }
+
+        /* User Menu - داخل النافبار */
+        .nav-user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: var(--fontAtNav);
+            font-size: 0.9rem;
+        }
+
+        .user-role {
+            font-size: 0.8rem;
+            color: var(--fontAtNav);
+            opacity: 0.9;
+        }
+
+        .logout-btn {
+            text-decoration: none;
+            color: var(--Paraghfont);
+            border: 2px solid var(--fontAtNav);
+            border-radius: 25px;
+            padding: 8px 20px;
+            background-color: var(--fontAtNav);
+            font-weight: bolder;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            text-decoration: none;
+            color: var(--fontAtNav);
+            background-color: transparent;
+            padding: 8px 20px;
+            transform: translateY(-2px);
+        }
+
+        /* ==================== NOTIFICATION PANEL ==================== */
+        .notification-panel {
+            position: fixed;
+            top: 250px;
+            right: 20px;
+            width: 350px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            display: none;
+            overflow: hidden;
+        }
+
+        .notification-panel.active {
+            display: block;
+        }
+
+        .notification-header {
+            background-color: var(--navcolor);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .notification-header h3 {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notification-bell {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--fontAtNav);
+        }
+
+        .notification-body {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .notification-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            transition: background-color 0.3s;
+        }
+
+        .notification-item:hover {
+            background-color: rgba(44, 165, 141, 0.05);
+        }
+
+        .notification-item.urgent {
+            background-color: rgba(231, 76, 60, 0.05);
+            border-left: 4px solid var(--urgent-red);
+        }
+
+        .notification-item.warning {
+            background-color: rgba(243, 156, 18, 0.05);
+            border-left: 4px solid var(--warning-yellow);
+        }
+
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .notification-icon.urgent {
+            background-color: var(--urgent-red);
+        }
+
+        .notification-icon.warning {
+            background-color: var(--warning-yellow);
+        }
+
+        .notification-icon.info {
+            background-color: var(--info-blue);
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-content h4 {
+            margin-bottom: 5px;
+            color: var(--Paraghfont);
+        }
+
+        .notification-content p {
+            font-size: 0.9rem;
+            color: var(--Paraghfont);
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+
+        .notification-time {
+            font-size: 0.8rem;
+            color: #95a5a6;
+        }
+
+        /* ==================== MAIN CONTENT ==================== */
+        .container {
+            width: 90%;
+            margin: 30px auto;
+            max-width: 1200px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+
+        .page-title h2 {
+            color: var(--Paraghfont);
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+            text-align: left;
+        }
+
+        .page-title p {
+            color: var(--Paraghfont);
+            opacity: 0.8;
+            text-align: left;
+        }
+
+        /* Dashboard Cards */
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background-color: var(--fontAtNav);
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 1px 1px 9px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 300px;
+            border: 2px solid var(--navcolor);
+            text-align: left;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            color: var(--Paraghfont);
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--navcolor);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--fontAtNav);
+        }
+
+        /* Patient Queue */
+        .patient-queue {
+            margin-top: 20px;
+        }
+
+        .patient-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: white;
+            border-radius: 15px;
+            border-left: 4px solid var(--spanfonts);
+            transition: transform 0.3s;
+        }
+
+        .patient-item.urgent {
+            border-left: 4px solid var(--urgent-red);
+            background-color: rgba(231, 76, 60, 0.05);
+        }
+
+        .patient-item:hover {
+            transform: translateX(5px);
+        }
+
+        .patient-avatar {
+            width: 45px;
+            height: 45px;
+            background-color: var(--spanfonts);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .patient-info {
+            flex: 1;
+        }
+
+        .patient-info h4 {
+            margin-bottom: 5px;
+            color: var(--Paraghfont);
+        }
+
+        .patient-info p {
+            font-size: 0.9rem;
+            color: var(--Paraghfont);
+            opacity: 0.8;
+        }
+
+        .patient-status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .status-urgent {
+            background-color: var(--urgent-red);
+        }
+
+        .status-waiting {
+            background-color: var(--warning-yellow);
+        }
+
+        .status-consulting {
+            background-color: var(--spanfonts);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 25px;
+            background-color: var(--navcolor);
+            color: var(--fontAtNav);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--fontAtNav);
+            color: var(--navcolor);
+            border: 2px solid var(--navcolor);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--navcolor);
+            color: var(--navcolor);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--navcolor);
+            color: var(--fontAtNav);
+        }
+
+        .btn-small {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+
+        .btn-danger {
+            background-color: var(--urgent-red);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+            color: white;
+            border-color: #c0392b;
+        }
+
+        /* Forms */
+        .form-section {
+            background-color: var(--fontAtNav);
+            border-radius: 25px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 2px solid var(--navcolor);
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--Paraghfont);
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            text-align: left;
+        }
+
+        /* Records Table */
+        .records-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .records-table th, .records-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .records-table th {
+            background-color: var(--navcolor);
+            color: var(--fontAtNav);
+            font-weight: bold;
+        }
+
+        .records-table tr:hover {
+            background-color: rgba(44, 165, 141, 0.05);
+        }
+
+        /* Video Consultation */
+        .video-container {
+            background-color: var(--fontAtNav);
+            border-radius: 25px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 2px solid var(--navcolor);
+            text-align: center;
+        }
+
+        .video-preview {
+            width: 100%;
+            height: 400px;
+            background-color: #2c3e50;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            position: relative;
+        }
+
+        .video-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .control-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            background-color: var(--navcolor);
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .control-btn:hover {
+            transform: scale(1.1);
+            background-color: var(--spanfonts);
+        }
+
+        .control-btn.end-call {
+            background-color: var(--urgent-red);
+        }
+
+        /* Alerts */
+        .alert {
+            background-color: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: left;
+        }
+
+        .alert i {
+            color: #e74c3c;
+            font-size: 1.5rem;
+        }
+
+        .alert strong {
+            color: #c0392b;
+        }
+
+        .alert.warning {
+            background-color: rgba(243, 156, 18, 0.1);
+            border-left: 4px solid #f39c12;
+        }
+
+        .alert.warning i {
+            color: #f39c12;
+        }
+
+        .alert.warning strong {
+            color: #d68910;
+        }
+
+        /* Page Content */
+        .page-content {
+            display: none;
+            text-align: left;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--navcolor);
+            padding: 30px 5%;
+            margin-top: 50px;
+            border-radius: 25px 25px 0 0;
+            text-align: left;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-logo img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .footer-logo h3 {
+            color: white;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--fontAtNav);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .copyright {
+            text-align: center;
+            color: var(--fontAtNav);
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            nav ul li {
+                padding: 5px;
+            }
+            
+            .nav-user-menu {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px;
+            }
+            
+            .user-info {
+                align-items: center;
+            }
+            
+            .notification-panel {
+                position: fixed;
+                top: 200px;
+                right: 10px;
+                left: 10px;
+                width: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .headNav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+                min-height: auto;
+                text-align: center;
+            }
+            
+            .headNav img {
+                width: 100px;
+                height: 100px;
+            }
+            
+            nav {
+                height: auto;
+                padding: 15px 5%;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            nav ul li {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .dashboard {
+                flex-direction: column;
+            }
+            
+            .card {
+                min-width: 100%;
+            }
+            
+            .nav-user-menu {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .video-preview {
+                height: 250px;
+            }
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        .mt-20 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ==================== DOCTOR HEADER DESIGN ==================== -->
+    <header>
+        <div class="head">
+            <div class="headNav">
+                <div><a href="Index.html">
+                        <h1 class="text-left">Smart Medical Point</h1>
+                    </a></div>
+                <img src="media/logo.png" alt="this is logo">
+            </div>
+
+            <div class="navBar">
+                <nav>
+                    <div class="menu">
+                        <ul>
+                            <li>
+                                <a href="#" class="active" data-page="dashboard">
+                                    <i class="fas fa-home"></i> Dashboard
+                                    <span class="notification-badge">3</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-page="patients">
+                                    <i class="fas fa-users"></i> Patients
+                                    <span class="notification-badge">5</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-page="consultation">
+                                    <i class="fas fa-video"></i> Consultation
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-page="appointments">
+                                    <i class="fas fa-calendar-check"></i> Appointments
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-page="reports">
+                                    <i class="fas fa-file-medical"></i> Reports
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="notification-bell" id="notificationBell">
+                                    <i class="fas fa-bell"></i>
+                                    <span class="notification-badge">7</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- User Menu داخل النافبار -->
+                    <div class="nav-user-menu">
+                        <div class="user-info">
+                            <div class="user-name">Dr. Ahmed Abu Dabbous</div>
+                            <div class="user-role">General Practitioner</div>
+                        </div>
+                        <a href="Index.html" class="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Notification Panel -->
+    <div class="notification-panel" id="notificationPanel">
+        <div class="notification-header">
+            <h3><i class="fas fa-bell"></i> Notifications</h3>
+            <button class="btn btn-small" id="markAllRead">Mark All Read</button>
+        </div>
+        <div class="notification-body">
+            <!-- Urgent Notifications -->
+            <div class="notification-item urgent">
+                <div class="notification-icon urgent">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="notification-content">
+                    <h4>Emergency Case - MUAC Critical</h4>
+                    <p>Patient Dareen Sharief has critical MUAC reading: 10.8cm (RED ZONE)</p>
+                    <div class="notification-time">Just now</div>
+                </div>
+            </div>
+            
+            <div class="notification-item urgent">
+                <div class="notification-icon urgent">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <div class="notification-content">
+                    <h4>New Patient Registration</h4>
+                    <p>New patient registered: Mohammed Hassan - Severe malnutrition case</p>
+                    <div class="notification-time">10 minutes ago</div>
+                </div>
+            </div>
+            
+            <!-- Warning Notifications -->
+            <div class="notification-item warning">
+                <div class="notification-icon warning">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="notification-content">
+                    <h4>Appointment Reminder</h4>
+                    <p>Upcoming consultation with Sara Mansour in 15 minutes</p>
+                    <div class="notification-time">25 minutes ago</div>
+                </div>
+            </div>
+            
+            <div class="notification-item">
+                <div class="notification-icon info">
+                    <i class="fas fa-file-medical"></i>
+                </div>
+                <div class="notification-content">
+                    <h4>New Lab Results</h4>
+                    <p>Blood test results available for patient Ali Mahmoud</p>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+            </div>
+            
+            <div class="notification-item">
+                <div class="notification-icon info">
+                    <i class="fas fa-calendar-plus"></i>
+                </div>
+                <div class="notification-content">
+                    <h4>New Appointment Booked</h4>
+                    <p>Patient Youssef Adel booked appointment for tomorrow 11:00 AM</p>
+                    <div class="notification-time">2 hours ago</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Dashboard Page -->
+            <div id="dashboard-page" class="page-content active">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h2>Doctor Dashboard</h2>
+                        <p>Welcome back, Dr. Ahmed. Here's your daily overview.</p>
+                    </div>
+                    <button class="btn" id="startConsultationBtn">
+                        <i class="fas fa-video"></i> Start Consultation
+                    </button>
+                </div>
+
+                <!-- Emergency Alerts -->
+                <div class="alert">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <div>
+                        <strong>URGENT:</strong> Patient Dareen Sharief has critical MUAC reading (10.8cm). 
+                        <a href="#" style="color: var(--urgent-red); font-weight: bold; margin-left: 10px;">
+                            <i class="fas fa-user-injured"></i> Review Case Now
+                        </a>
+                    </div>
+                </div>
+
+                <div class="alert warning">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong>Upcoming:</strong> Consultation with Sara Mansour starts in 15 minutes.
+                        <a href="#" style="color: var(--warning-yellow); font-weight: bold; margin-left: 10px;">
+                            <i class="fas fa-video"></i> Prepare Session
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Dashboard Cards -->
+                <div class="dashboard">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Today's Queue</h3>
+                            <div class="card-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                        <div class="patient-queue">
+                            <div class="patient-item urgent">
+                                <div class="patient-avatar">DS</div>
+                                <div class="patient-info">
+                                    <h4>Dareen Sharief <span class="patient-status status-urgent">URGENT</span></h4>
+                                    <p>Critical MUAC: 10.8cm • 10:00 AM</p>
+                                </div>
+                                <button class="btn btn-danger btn-small">
+                                    <i class="fas fa-user-md"></i> Attend
+                                </button>
+                            </div>
+                            
+                            <div class="patient-item">
+                                <div class="patient-avatar">SM</div>
+                                <div class="patient-info">
+                                    <h4>Sara Mansour <span class="patient-status status-waiting">WAITING</span></h4>
+                                    <p>Follow-up consultation • 10:30 AM</p>
+                                </div>
+                                <button class="btn btn-outline btn-small">
+                                    <i class="fas fa-clock"></i> Wait
+                                </button>
+                            </div>
+                            
+                            <div class="patient-item">
+                                <div class="patient-avatar">YA</div>
+                                <div class="patient-info">
+                                    <h4>Youssef Adel <span class="patient-status status-consulting">IN SESSION</span></h4>
+                                    <p>Nutrition consultation • 09:45 AM</p>
+                                </div>
+                                <button class="btn btn-small">
+                                    <i class="fas fa-video"></i> Join
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-small mt-20" data-page="patients">
+                            <i class="fas fa-eye"></i> View All Patients
+                        </button>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Critical Cases</h3>
+                            <div class="card-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                        </div>
+                        <div class="mb-20">
+                            <h4>Severe Malnutrition Cases</h4>
+                            <ul style="padding-left: 20px; margin-top: 10px;">
+                                <li><strong>Dareen Sharief:</strong> MUAC 10.8cm (Critical)</li>
+                                <li><strong>Mohammed Hassan:</strong> MUAC 11.2cm (Critical)</li>
+                                <li><strong>Fatima Ahmed:</strong> BMI 16.8 (Severe)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Requiring Immediate Attention</h4>
+                            <ul style="padding-left: 20px; margin-top: 10px;">
+                                <li>3 patients with MUAC < 11.5cm</li>
+                                <li>2 patients missed follow-up appointments</li>
+                                <li>1 new emergency registration</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline btn-small mt-20">
+                            <i class="fas fa-flag"></i> Flag Cases
+                        </button>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Today's Schedule</h3>
+                            <div class="card-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                        </div>
+                        <div class="mb-20">
+                            <p><strong>10:00 AM</strong> - Dareen Sharief (Urgent)</p>
+                            <p><strong>10:30 AM</strong> - Sara Mansour (Follow-up)</p>
+                            <p><strong>11:15 AM</strong> - Ali Mahmoud (New Case)</p>
+                            <p><strong>02:00 PM</strong> - Team Meeting</p>
+                            <p><strong>03:30 PM</strong> - Nutritionist Consultation</p>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn btn-outline btn-small" data-page="appointments">
+                                <i class="fas fa-calendar-plus"></i> Add Appointment
+                            </button>
+                            <button class="btn btn-outline btn-small">
+                                <i class="fas fa-sync-alt"></i> Reschedule
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="form-section">
+                    <h3 class="card-title mb-20">Quick Actions</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <button class="btn btn-outline" data-page="consultation">
+                            <i class="fas fa-video"></i> Start Video Call
+                        </button>
+                        <button class="btn btn-outline" data-page="patients">
+                            <i class="fas fa-user-plus"></i> Add Patient
+                        </button>
+                        <button class="btn btn-outline" data-page="reports">
+                            <i class="fas fa-file-medical-alt"></i> Generate Report
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-prescription"></i> Write Prescription
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-notes-medical"></i> Clinical Notes
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patients Page -->
+            <div id="patients-page" class="page-content hidden">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h2>Patient Management</h2>
+                        <p>Manage your patients and their medical records</p>
+                    </div>
+                    <button class="btn" id="addPatientBtn">
+                        <i class="fas fa-user-plus"></i> Add New Patient
+                    </button>
+                </div>
+
+                <!-- Patient List -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Active Patients</h3>
+                        <div class="card-icon">
+                            <i class="fas fa-user-injured"></i>
+                        </div>
+                    </div>
+                    <div class="patient-queue">
+                        <div class="patient-item urgent">
+                            <div class="patient-avatar">DS</div>
+                            <div class="patient-info">
+                                <h4>Dareen Sharief <span class="patient-status status-urgent">CRITICAL</span></h4>
+                                <p>Age: 28 • MUAC: 10.8cm • Last visit: Today</p>
+                                <p style="font-size: 0.85rem; color: var(--urgent-red);">
+                                    <i class="fas fa-exclamation-circle"></i> Requires immediate attention
+                                </p>
+                            </div>
+                            <div style="display: flex; gap: 5px;">
+                                <button class="btn btn-outline btn-small">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                                <button class="btn btn-danger btn-small">
+                                    <i class="fas fa-comment-medical"></i> Message
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="patient-item">
+                            <div class="patient-avatar">SM</div>
+                            <div class="patient-info">
+                                <h4>Sara Mansour <span class="patient-status status-waiting">ACTIVE</span></h4>
+                                <p>Age: 32 • MUAC: 12.8cm • Last visit: 3 days ago</p>
+                                <p style="font-size: 0.85rem; color: var(--spanfonts);">
+                                    <i class="fas fa-check-circle"></i> Recovery progressing
+                                </p>
+                            </div>
+                            <div style="display: flex; gap: 5px;">
+                                <button class="btn btn-outline btn-small">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                                <button class="btn btn-outline btn-small">
+                                    <i class="fas fa-video"></i> Call
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="patient-item">
+                            <div class="patient-avatar">YA</div>
+                            <div class="patient-info">
+                                <h4>Youssef Adel <span class="patient-status status-consulting">STABLE</span></h4>
+                                <p>Age: 45 • MUAC: 13.2cm • Last visit: 1 week ago</p>
+                                <p style="font-size: 0.85rem; color: var(--info-blue);">
+                                    <i class="fas fa-chart-line"></i> Improvement noted
+                                </p>
+                            </div>
+                            <div style="display: flex; gap: 5px;">
+                                <button class="btn btn-outline btn-small">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                                <button class="btn btn-outline btn-small">
+                                    <i class="fas fa-file-prescription"></i> Prescribe
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Patient Statistics -->
+                <div class="dashboard mt-20">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Patient Statistics</h3>
+                            <div class="card-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                        </div>
+                        <div class="mb-20">
+                            <p><strong>Total Patients:</strong> 42</p>
+                            <p><strong>Active Cases:</strong> 18</p>
+                            <p><strong>Critical Cases:</strong> 3</p>
+                            <p><strong>Recovered:</strong> 24</p>
+                            <p><strong>Follow-up Required:</strong> 8</p>
+                        </div>
+                        <button class="btn btn-outline btn-small">
+                            <i class="fas fa-chart-pie"></i> View Analytics
+                        </button>
+                    </div>
+                </div>
+            </div>
+                        <!-- Appointments Page -->
+                        <div id="appointments-page" class="page-content hidden">
+                            <div class="page-header">
+                                <div class="page-title">
+                                    <h2>Appointment Management</h2>
+                                    <p>Schedule and manage patient appointments</p>
+                                </div>
+                                <button class="btn" id="scheduleAppointmentBtn">
+                                    <i class="fas fa-calendar-plus"></i> Schedule New Appointment
+                                </button>
+                            </div>
+            
+                            <!-- Appointment Calendar -->
+                            <div class="card" style="margin-bottom: 30px;">
+                                <div class="card-header">
+                                    <h3 class="card-title">Today's Appointments</h3>
+                                    <div class="card-icon">
+                                        <i class="fas fa-calendar-day"></i>
+                                    </div>
+                                </div>
+                                <div class="patient-queue">
+                                    <div class="patient-item urgent">
+                                        <div class="patient-avatar">DS</div>
+                                        <div class="patient-info">
+                                            <h4>Dareen Sharief <span class="patient-status status-urgent">10:00 AM</span></h4>
+                                            <p>Emergency Consultation • Critical MUAC: 10.8cm</p>
+                                            <p style="font-size: 0.85rem; color: var(--urgent-red);">
+                                                <i class="fas fa-clock"></i> <strong>NOW:</strong> Patient waiting in emergency queue
+                                            </p>
+                                        </div>
+                                        <div style="display: flex; gap: 5px;">
+                                            <button class="btn btn-small start-appointment-btn" data-patient="Dareen Sharief">
+                                                <i class="fas fa-play-circle"></i> Start
+                                            </button>
+                                            <button class="btn btn-outline btn-small reschedule-btn" data-patient="Dareen Sharief">
+                                                <i class="fas fa-clock"></i> Reschedule
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="patient-item">
+                                        <div class="patient-avatar">SM</div>
+                                        <div class="patient-info">
+                                            <h4>Sara Mansour <span class="patient-status status-waiting">10:30 AM</span></h4>
+                                            <p>Follow-up Consultation • MUAC: 12.8cm</p>
+                                            <p style="font-size: 0.85rem; color: var(--warning-yellow);">
+                                                <i class="fas fa-hourglass-half"></i> <strong>In 15 minutes</strong>
+                                            </p>
+                                        </div>
+                                        <div style="display: flex; gap: 5px;">
+                                            <button class="btn btn-small start-appointment-btn" data-patient="Sara Mansour">
+                                                <i class="fas fa-video"></i> Prepare
+                                            </button>
+                                            <button class="btn btn-outline btn-small" onclick="sendReminder('Sara Mansour')">
+                                                <i class="fas fa-bell"></i> Remind
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="patient-item">
+                                        <div class="patient-avatar">AM</div>
+                                        <div class="patient-info">
+                                            <h4>Ali Mahmoud <span class="patient-status status-consulting">11:15 AM</span></h4>
+                                            <p>New Patient • Initial Assessment</p>
+                                            <p style="font-size: 0.85rem; color: var(--info-blue);">
+                                                <i class="fas fa-user-plus"></i> New registration
+                                            </p>
+                                        </div>
+                                        <div style="display: flex; gap: 5px;">
+                                            <button class="btn btn-outline btn-small" onclick="viewPatientDetails('Ali Mahmoud')">
+                                                <i class="fas fa-file-medical"></i> Review
+                                            </button>
+                                            <button class="btn btn-outline btn-small reschedule-btn" data-patient="Ali Mahmoud">
+                                                <i class="fas fa-clock"></i> Reschedule
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <!-- Weekly Calendar -->
+                            <div class="form-section">
+                                <h3 class="card-title mb-20">Weekly Schedule</h3>
+                                <div style="overflow-x: auto;">
+                                    <table class="records-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Time</th>
+                                                <th>Monday</th>
+                                                <th>Tuesday</th>
+                                                <th>Wednesday</th>
+                                                <th>Thursday</th>
+                                                <th>Friday</th>
+                                                <th>Saturday</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>9:00 AM</strong></td>
+                                                <td>Team Meeting</td>
+                                                <td>Available</td>
+                                                <td>Youssef A.</td>
+                                                <td>Available</td>
+                                                <td>Training</td>
+                                                <td>Off</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>10:00 AM</strong></td>
+                                                <td>Fatima A.</td>
+                                                <td>Dareen S. (Urgent)</td>
+                                                <td>Available</td>
+                                                <td>Sara M.</td>
+                                                <td>Mohammed H.</td>
+                                                <td>Off</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>11:00 AM</strong></td>
+                                                <td>Available</td>
+                                                <td>Ali M.</td>
+                                                <td>Follow-ups</td>
+                                                <td>Available</td>
+                                                <td>Lunch Break</td>
+                                                <td>Off</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>2:00 PM</strong></td>
+                                                <td>Consultations</td>
+                                                <td>Nutritionist</td>
+                                                <td>Available</td>
+                                                <td>Team Review</td>
+                                                <td>Admin</td>
+                                                <td>Off</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>3:00 PM</strong></td>
+                                                <td>New Patients</td>
+                                                <td>Available</td>
+                                                <td>Emergency Slots</td>
+                                                <td>Follow-ups</td>
+                                                <td>Available</td>
+                                                <td>Off</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                                    <div>
+                                        <button class="btn btn-outline btn-small" onclick="exportSchedule()">
+                                            <i class="fas fa-download"></i> Export Schedule
+                                        </button>
+                                        <button class="btn btn-outline btn-small" onclick="printSchedule()">
+                                            <i class="fas fa-print"></i> Print
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-small" onclick="showPreviousWeek()">
+                                            <i class="fas fa-chevron-left"></i> Previous
+                                        </button>
+                                        <button class="btn btn-small" onclick="showNextWeek()" style="margin-left: 5px;">
+                                            Next <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <!-- Upcoming Appointments -->
+                            <div class="dashboard mt-20">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Tomorrow's Appointments</h3>
+                                        <div class="card-icon">
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div style="padding: 10px 0;">
+                                        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee;">
+                                            <span><strong>9:00 AM</strong></span>
+                                            <span>Team Briefing</span>
+                                            <span class="patient-status status-waiting" style="font-size: 0.8rem;">Meeting</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee;">
+                                            <span><strong>10:30 AM</strong></span>
+                                            <span>Youssef Adel</span>
+                                            <span class="patient-status status-consulting" style="font-size: 0.8rem;">Follow-up</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee;">
+                                            <span><strong>2:00 PM</strong></span>
+                                            <span>New Patient Screening</span>
+                                            <span class="patient-status status-urgent" style="font-size: 0.8rem;">3 patients</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                                            <span><strong>4:00 PM</strong></span>
+                                            <span>Case Review Meeting</span>
+                                            <span class="patient-status status-waiting" style="font-size: 0.8rem;">Team</span>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-outline btn-small mt-20" onclick="viewAllAppointments()">
+                                        <i class="fas fa-list"></i> View All Appointments
+                                    </button>
+                                </div>
+            
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Appointment Statistics</h3>
+                                        <div class="card-icon">
+                                            <i class="fas fa-chart-pie"></i>
+                                        </div>
+                                    </div>
+                                    <div style="padding: 10px 0;">
+                                        <p><strong>Today:</strong> 8 appointments</p>
+                                        <p><strong>Completed:</strong> 3</p>
+                                        <p><strong>Pending:</strong> 3</p>
+                                        <p><strong>Cancelled:</strong> 0</p>
+                                        <p><strong>No-shows:</strong> 2</p>
+                                        <p><strong>Weekly Average:</strong> 32 appointments</p>
+                                    </div>
+                                    <button class="btn btn-outline btn-small mt-20" onclick="viewAnalytics()">
+                                        <i class="fas fa-chart-line"></i> Detailed Analytics
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Reports Page -->
+                        <div id="reports-page" class="page-content hidden">
+                            <div class="page-header">
+                                <div class="page-title">
+                                    <h2>Medical Reports</h2>
+                                    <p>Generate and review patient reports</p>
+                                </div>
+                                <button class="btn" id="generateReportBtn">
+                                    <i class="fas fa-file-medical-alt"></i> Generate New Report
+                                </button>
+                            </div>
+            
+                            <!-- Report Types -->
+                            <div class="dashboard" style="margin-bottom: 30px;">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Clinical Reports</h3>
+                                        <div class="card-icon">
+                                            <i class="fas fa-stethoscope"></i>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 10px; padding: 15px 0;">
+                                        <button class="btn btn-outline btn-small" onclick="generateReport('patient-summary')">
+                                            <i class="fas fa-user"></i> Patient Summary
+                                        </button>
+                                        <button class="btn btn-outline btn-small" onclick="generateReport('progress-report')">
+                                            <i class="fas fa-chart-line"></i> Progress Report
+                                        </button>
+                                        <button class="btn btn-outline btn-small" onclick="generateReport('discharge-summary')">
+                                            <i class="fas fa-sign-out-alt"></i> Discharge Summary
+                                        </button>
+                                        <button class="btn btn-outline btn-small" onclick="generateReport('lab-results')">
+                                            <i class="fas fa-flask"></i> Lab Results
+                                        </button>
+                                        <button class="btn btn-outline btn-small" onclick="generateReport('medication-report')">
+                                            <i class="fas fa-pills"></i> Medication Report
+                                        </button>
+                                    </div>
+                                    <p style="font-size: 0.9rem; color: var(--Paraghfont); opacity: 0.8; margin-top: 10px;">
+                                        <i class="fas fa-info-circle"></i> Select a report type to generate
+                                    </p>
+                                </div>
+            
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Statistical Reports</h3>
+                                        <div class="card-icon">
+                                            <i class="fas fa-chart-bar"></i>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 10px; padding: 15px 0;">
+                                        <button class="btn btn-outline btn-small" onclick="generateReport('monthly-stats')">
+                                            <i class="fas fa-calendar"></i> Monthly Statistics
+                                        </button>
+                                        <button class="btn btn-outline btn-small" onclick="generateReport('patient-demographics')">
+                                            <i class="fas fa-users"></i> Demographics
+                                        </button>
+                                        <button class="btn btn-outline btn-small" onclick="generateReport('treatment-outcomes')">
+                                            <i class="fas fa-heart"></i> Treatment Outcomes
+                                        </button>
+                                        <button class="btn btn-outline btn-small" onclick="generateReport('resource-utilization')">
+                                            <i class="fas fa-calculator"></i> Resource Utilization
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <!-- Recent Reports -->
+                            <div class="form-section">
+                                <h3 class="card-title mb-20">Recent Reports</h3>
+                                <table class="records-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Report ID</th>
+                                            <th>Patient Name</th>
+                                            <th>Report Type</th>
+                                            <th>Generated Date</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#RPT-2025-087</td>
+                                            <td><strong>Dareen Sharief</strong></td>
+                                            <td>Critical Case Report</td>
+                                            <td>Today, 09:45 AM</td>
+                                            <td><span class="patient-status status-urgent" style="font-size: 0.8rem;">URGENT</span></td>
+                                            <td>
+                                                <button class="btn btn-outline btn-small" onclick="viewReport('RPT-2025-087')">
+                                                    <i class="fas fa-eye"></i> View
+                                                </button>
+                                                <button class="btn btn-outline btn-small" onclick="downloadReport('RPT-2025-087')">
+                                                    <i class="fas fa-download"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#RPT-2025-086</td>
+                                            <td>Sara Mansour</td>
+                                            <td>Progress Report</td>
+                                            <td>Yesterday, 2:30 PM</td>
+                                            <td><span class="patient-status status-consulting" style="font-size: 0.8rem;">REVIEWED</span></td>
+                                            <td>
+                                                <button class="btn btn-outline btn-small" onclick="viewReport('RPT-2025-086')">
+                                                    <i class="fas fa-eye"></i> View
+                                                </button>
+                                                <button class="btn btn-outline btn-small" onclick="downloadReport('RPT-2025-086')">
+                                                    <i class="fas fa-download"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#RPT-2025-085</td>
+                                            <td>Youssef Adel</td>
+                                            <td>Monthly Follow-up</td>
+                                            <td>2 days ago</td>
+                                            <td><span class="patient-status status-waiting" style="font-size: 0.8rem;">PENDING SIGN</span></td>
+                                            <td>
+                                                <button class="btn btn-outline btn-small" onclick="viewReport('RPT-2025-085')">
+                                                    <i class="fas fa-eye"></i> View
+                                                </button>
+                                                <button class="btn btn-outline btn-small" onclick="signReport('RPT-2025-085')">
+                                                    <i class="fas fa-signature"></i> Sign
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#RPT-2025-084</td>
+                                            <td>Mohammed Hassan</td>
+                                            <td>Initial Assessment</td>
+                                            <td>3 days ago</td>
+                                            <td><span class="patient-status status-consulting" style="font-size: 0.8rem;">COMPLETED</span></td>
+                                            <td>
+                                                <button class="btn btn-outline btn-small" onclick="viewReport('RPT-2025-084')">
+                                                    <i class="fas fa-eye"></i> View
+                                                </button>
+                                                <button class="btn btn-outline btn-small" onclick="shareReport('RPT-2025-084')">
+                                                    <i class="fas fa-share"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#RPT-2025-083</td>
+                                            <td>Fatima Ahmed</td>
+                                            <td>Lab Results Summary</td>
+                                            <td>5 days ago</td>
+                                            <td><span class="patient-status status-consulting" style="font-size: 0.8rem;">ARCHIVED</span></td>
+                                            <td>
+                                                <button class="btn btn-outline btn-small" onclick="viewReport('RPT-2025-083')">
+                                                    <i class="fas fa-eye"></i> View
+                                                </button>
+                                                <button class="btn btn-outline btn-small" onclick="downloadReport('RPT-2025-083')">
+                                                    <i class="fas fa-download"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                                <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                                    <button class="btn btn-outline btn-small" onclick="filterReports('urgent')">
+                                        <i class="fas fa-filter"></i> Show Urgent Only
+                                    </button>
+                                    <div>
+                                        <button class="btn btn-outline btn-small" onclick="exportAllReports()">
+                                            <i class="fas fa-file-export"></i> Export All
+                                        </button>
+                                        <button class="btn btn-outline btn-small" onclick="printReportList()" style="margin-left: 5px;">
+                                            <i class="fas fa-print"></i> Print List
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <!-- Report Templates -->
+                            <div class="card mt-20">
+                                <div class="card-header">
+                                    <h3 class="card-title">Report Templates</h3>
+                                    <div class="card-icon">
+                                        <i class="fas fa-file-contract"></i>
+                                    </div>
+                                </div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 15px; padding: 20px;">
+                                    <div style="flex: 1; min-width: 200px; background: #f9f9f9; padding: 15px; border-radius: 10px; border: 2px dashed #ddd;">
+                                        <h4 style="margin-top: 0; color: var(--Paraghfont);">Standard Consultation</h4>
+                                        <p style="font-size: 0.9rem;">Pre-filled template for routine consultations</p>
+                                        <button class="btn btn-outline btn-small" onclick="useTemplate('standard-consultation')">
+                                            <i class="fas fa-clone"></i> Use Template
+                                        </button>
+                                    </div>
+                                    <div style="flex: 1; min-width: 200px; background: #f9f9f9; padding: 15px; border-radius: 10px; border: 2px dashed #ddd;">
+                                        <h4 style="margin-top: 0; color: var(--Paraghfont);">Emergency Case</h4>
+                                        <p style="font-size: 0.9rem;">Template for urgent/emergency cases</p>
+                                        <button class="btn btn-outline btn-small" onclick="useTemplate('emergency-case')">
+                                            <i class="fas fa-clone"></i> Use Template
+                                        </button>
+                                    </div>
+                                    <div style="flex: 1; min-width: 200px; background: #f9f9f9; padding: 15px; border-radius: 10px; border: 2px dashed #ddd;">
+                                        <h4 style="margin-top: 0; color: var(--Paraghfont);">Nutrition Assessment</h4>
+                                        <p style="font-size: 0.9rem;">Detailed nutrition and MUAC assessment</p>
+                                        <button class="btn btn-outline btn-small" onclick="useTemplate('nutrition-assessment')">
+                                            <i class="fas fa-clone"></i> Use Template
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+            <!-- Consultation Page -->
+            <div id="consultation-page" class="page-content hidden">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h2>Video Consultation</h2>
+                        <p>Conduct remote consultations with your patients</p>
+                    </div>
+                </div>
+
+                <div class="video-container">
+                    <div class="video-preview">
+                        <div style="text-align: center;">
+                            <i class="fas fa-user-md" style="font-size: 4rem; margin-bottom: 20px;"></i>
+                            <h3>Consultation Room</h3>
+                            <p>Waiting for patient to join...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="video-controls">
+                        <button class="control-btn" title="Microphone">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <button class="control-btn" title="Camera">
+                            <i class="fas fa-video"></i>
+                        </button>
+                        <button class="control-btn" title="Screen Share">
+                            <i class="fas fa-desktop"></i>
+                        </button>
+                        <button class="control-btn end-call" title="End Call">
+                            <i class="fas fa-phone-slash"></i>
+                        </button>
+                        <button class="control-btn" title="Record">
+                            <i class="fas fa-circle"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Patient Information -->
+                <div class="form-section">
+                    <h3 class="card-title mb-20">Current Patient Information</h3>
+                    <div class="form-group">
+                        <label>Patient Name</label>
+                        <input type="text" class="form-control" value="Dareen Sharief" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Consultation Type</label>
+                        <select class="form-control">
+                            <option>Emergency Consultation</option>
+                            <option>Follow-up Visit</option>
+                            <option>Routine Checkup</option>
+                            <option>Nutrition Review</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Clinical Notes</label>
+                        <textarea class="form-control" rows="4" placeholder="Enter clinical notes during consultation..."></textarea>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn">
+                            <i class="fas fa-save"></i> Save Notes
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-prescription"></i> Write Prescription
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="media/logo.png" alt="Smart MediPoint Logo">
+                <h3>Smart Medical Point</h3>
+            </div>
+            <div class="footer-links">
+                <a href="Index.html">Home</a>
+                <a href="#Services">Services</a>
+                <a href="#medicalTeam">Team</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 SmartMediPoint. All Rights Reserved</p>
+            <p>Developed by Computer Engineering Students - The Islamic University of Gaza</p>
+        </div>
+    </footer>
+
+    <script>
+        // Notification Panel Toggle
+        const notificationBell = document.getElementById('notificationBell');
+        const notificationPanel = document.getElementById('notificationPanel');
+        const markAllReadBtn = document.getElementById('markAllRead');
+        
+        if (notificationBell) {
+            notificationBell.addEventListener('click', (e) => {
+                e.preventDefault();
+                notificationPanel.classList.toggle('active');
+            });
+        }
+        
+        if (markAllReadBtn) {
+            markAllReadBtn.addEventListener('click', () => {
+                // Hide all notification badges
+                document.querySelectorAll('.notification-badge').forEach(badge => {
+                    badge.style.display = 'none';
+                });
+                
+                // Close notification panel
+                notificationPanel.classList.remove('active');
+                
+                alert('All notifications marked as read');
+            });
+        }
+        
+        // Close notification panel when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!notificationPanel.contains(e.target) && !notificationBell.contains(e.target)) {
+                notificationPanel.classList.remove('active');
+            }
+        });
+        
+        // Page Navigation
+        const navLinks = document.querySelectorAll('nav a');
+        const pageContents = document.querySelectorAll('.page-content');
+        
+        function showPage(pageId) {
+            // Hide all pages
+            pageContents.forEach(page => {
+                page.classList.add('hidden');
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            const selectedPage = document.getElementById(`${pageId}-page`);
+            if (selectedPage) {
+                selectedPage.classList.remove('hidden');
+                selectedPage.classList.add('active');
+            }
+            
+            // Update active nav link
+            navLinks.forEach(link => {
+                if (link.getAttribute('data-page')) {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-page') === pageId) {
+                        link.classList.add('active');
+                    }
+                }
+            });
+            
+            // Close notification panel
+            notificationPanel.classList.remove('active');
+        }
+        
+        // Add event listeners to nav links
+        navLinks.forEach(link => {
+            if (link.getAttribute('data-page')) {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = link.getAttribute('data-page');
+                    showPage(pageId);
+                });
+            }
+        });
+        
+        // Quick Action Buttons
+        const quickActionBtns = document.querySelectorAll('[data-page]');
+        quickActionBtns.forEach(btn => {
+            if (btn.getAttribute('data-page')) {
+                btn.addEventListener('click', () => {
+                    const pageId = btn.getAttribute('data-page');
+                    showPage(pageId);
+                });
+            }
+        });
+        
+        // Start Consultation Button
+        const startConsultationBtn = document.getElementById('startConsultationBtn');
+        if (startConsultationBtn) {
+            startConsultationBtn.addEventListener('click', () => {
+                showPage('consultation');
+                alert('Starting video consultation... Patient will be notified.');
+            });
+        }
+        
+        // Video Call Controls
+        const controlBtns = document.querySelectorAll('.control-btn');
+        controlBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                
+                // Toggle microphone
+                if (icon.classList.contains('fa-microphone')) {
+                    icon.classList.toggle('fa-microphone');
+                    icon.classList.toggle('fa-microphone-slash');
+                    alert('Microphone ' + (icon.classList.contains('fa-microphone-slash') ? 'muted' : 'unmuted'));
+                }
+                
+                // Toggle camera
+                else if (icon.classList.contains('fa-video')) {
+                    icon.classList.toggle('fa-video');
+                    icon.classList.toggle('fa-video-slash');
+                    alert('Camera ' + (icon.classList.contains('fa-video-slash') ? 'off' : 'on'));
+                }
+                
+                // End call
+                else if (this.classList.contains('end-call')) {
+                    if (confirm('Are you sure you want to end the call?')) {
+                        alert('Call ended');
+                        showPage('dashboard');
+                    }
+                }
+                
+                // Record
+                else if (icon.classList.contains('fa-circle')) {
+                    icon.classList.toggle('fa-circle');
+                    icon.classList.toggle('fa-stop-circle');
+                    alert('Recording ' + (icon.classList.contains('fa-stop-circle') ? 'started' : 'stopped'));
+                }
+            });
+        });
+        
+        // Add Patient Button
+        const addPatientBtn = document.getElementById('addPatientBtn');
+        if (addPatientBtn) {
+            addPatientBtn.addEventListener('click', () => {
+                const patientName = prompt('Enter patient name:');
+                if (patientName) {
+                    alert(`Patient ${patientName} added successfully!`);
+                    
+                    // Add notification for new patient
+                    const notificationBadge = document.querySelector('#notificationBell .notification-badge');
+                    if (notificationBadge) {
+                        let currentCount = parseInt(notificationBadge.textContent) || 0;
+                        notificationBadge.textContent = currentCount + 1;
+                        notificationBadge.style.display = 'flex';
+                    }
+                }
+            });
+        }
+        
+        // Simulate real-time notifications
+      // Simulate real-time notifications (without annoying alerts)
+function simulateNewNotification() {
+    // Only update badge counts without showing alerts
+    const notificationBadges = document.querySelectorAll('.notification-badge');
+    notificationBadges.forEach(badge => {
+        if (badge.style.display !== 'none') {
+            let currentCount = parseInt(badge.textContent) || 0;
+            // Increase count randomly but not every time
+            if (Math.random() > 0.7) { // 30% chance
+                badge.textContent = currentCount + 1;
+            }
+        }
+    });
+}
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Show dashboard by default
+            showPage('dashboard');
+            
+            // Start simulating notifications
+            simulateNewNotification();
+            setInterval(simulateNewNotification, 60000); // Every minute
+            
+            // Show welcome message for doctor
+            setTimeout(() => {
+                console.log('Doctor portal loaded successfully');
+            }, 1000);
+        });
+        // ==================== PATIENT CARD BUTTONS FUNCTIONALITY ====================
+// Handle Message buttons in patient cards
+document.addEventListener('click', function(e) {
+    // Check if message button was clicked
+    if (e.target.closest('.btn-message') || 
+        (e.target.classList.contains('btn') && e.target.textContent.includes('Message')) ||
+        (e.target.parentElement.classList.contains('btn') && e.target.parentElement.textContent.includes('Message'))) {
+        e.preventDefault();
+        
+        // Find the patient card
+        const patientCard = e.target.closest('.patient-item');
+        if (patientCard) {
+            const patientName = patientCard.querySelector('h4').textContent.split(' ')[0] + ' ' + 
+                               patientCard.querySelector('h4').textContent.split(' ')[1];
+            
+            // Create a modal for messaging
+            createMessageModal(patientName, patientCard.querySelector('.patient-avatar').textContent);
+        }
+    }
+    
+    // Check if call button was clicked
+    if (e.target.closest('.btn-call') || 
+        (e.target.classList.contains('btn') && e.target.textContent.includes('Call')) ||
+        (e.target.parentElement.classList.contains('btn') && e.target.parentElement.textContent.includes('Call'))) {
+        e.preventDefault();
+        
+        // Find the patient card
+        const patientCard = e.target.closest('.patient-item');
+        if (patientCard) {
+            const patientName = patientCard.querySelector('h4').textContent.split(' ')[0] + ' ' + 
+                               patientCard.querySelector('h4').textContent.split(' ')[1];
+            
+            // Switch to consultation page and set up call
+            showPage('consultation');
+            
+            // Update patient name in consultation page
+            const patientNameField = document.querySelector('#consultation-page input[type="text"]');
+            if (patientNameField) {
+                patientNameField.value = patientName;
+            }
+            
+            // Show call initiation message
+            setTimeout(() => {
+                alert(`Initiating video call with ${patientName}...\n\nPatient will be notified to join the consultation.`);
+                
+                // Update consultation page message
+                const videoPreview = document.querySelector('.video-preview');
+                if (videoPreview) {
+                    videoPreview.innerHTML = `
+                        <div style="text-align: center; padding: 20px;">
+                            <i class="fas fa-video" style="font-size: 4rem; margin-bottom: 20px; color: var(--spanfonts);"></i>
+                            <h3>Calling ${patientName}</h3>
+                            <p>Waiting for patient to join...</p>
+                            <div style="margin-top: 30px;">
+                                <div class="spinner" style="border: 4px solid #f3f3f3; border-top: 4px solid var(--spanfonts); border-radius: 50%; width: 40px; height: 40px; animation: spin 2s linear infinite; margin: 0 auto;"></div>
+                                <style>
+                                    @keyframes spin {
+                                        0% { transform: rotate(0deg); }
+                                        100% { transform: rotate(360deg); }
+                                    }
+                                </style>
+                            </div>
+                        </div>
+                    `;
+                }
+            }, 300);
+        }
+    }
+    
+    // Check if view button was clicked
+    if (e.target.closest('.btn-view') || 
+        (e.target.classList.contains('btn') && e.target.textContent.includes('View')) ||
+        (e.target.parentElement.classList.contains('btn') && e.target.parentElement.textContent.includes('View'))) {
+        e.preventDefault();
+        
+        const patientCard = e.target.closest('.patient-item');
+        if (patientCard) {
+            const patientName = patientCard.querySelector('h4').textContent.split(' ')[0] + ' ' + 
+                               patientCard.querySelector('h4').textContent.split(' ')[1];
+            alert(`Opening patient profile for ${patientName}...\n\nPatient details would be displayed here.`);
+        }
+    }
+});
+
+// Function to create message modal
+function createMessageModal(patientName, patientInitials) {
+    // Remove existing modal if any
+    const existingModal = document.getElementById('messageModal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+    
+    // Create modal HTML
+    const modalHTML = `
+        <div id="messageModal" style="
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        ">
+            <div style="
+                background-color: white;
+                width: 90%;
+                max-width: 500px;
+                border-radius: 15px;
+                overflow: hidden;
+                box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+            ">
+                <div style="
+                    background-color: var(--navcolor);
+                    color: white;
+                    padding: 20px;
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+                ">
+                    <div style="
+                        width: 50px;
+                        height: 50px;
+                        background-color: var(--spanfonts);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-weight: bold;
+                        font-size: 1.2rem;
+                    ">${patientInitials}</div>
+                    <div>
+                        <h3 style="margin: 0;">Message ${patientName}</h3>
+                        <p style="margin: 5px 0 0 0; opacity: 0.9;">Send a message to your patient</p>
+                    </div>
+                </div>
+                
+                <div style="padding: 20px;">
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; color: var(--Paraghfont); font-weight: bold;">Message Type</label>
+                        <select id="messageType" style="
+                            width: 100%;
+                            padding: 12px;
+                            border: 1px solid #ddd;
+                            border-radius: 10px;
+                            font-size: 1rem;
+                            margin-bottom: 20px;
+                        ">
+                            <option>Appointment Reminder</option>
+                            <option>Medication Instructions</option>
+                            <option>Test Results</option>
+                            <option>Follow-up Instructions</option>
+                            <option>General Message</option>
+                        </select>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; color: var(--Paraghfont); font-weight: bold;">Message</label>
+                        <textarea id="messageContent" rows="5" placeholder="Type your message here..." style="
+                            width: 100%;
+                            padding: 12px;
+                            border: 1px solid #ddd;
+                            border-radius: 10px;
+                            font-size: 1rem;
+                            font-family: inherit;
+                            resize: vertical;
+                        "></textarea>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                        <button id="cancelMessage" style="
+                            padding: 10px 20px;
+                            background-color: #f5f5f5;
+                            color: var(--Paraghfont);
+                            border: none;
+                            border-radius: 25px;
+                            cursor: pointer;
+                            font-weight: bold;
+                        ">Cancel</button>
+                        <button id="sendMessage" style="
+                            padding: 10px 20px;
+                            background-color: var(--spanfonts);
+                            color: white;
+                            border: none;
+                            border-radius: 25px;
+                            cursor: pointer;
+                            font-weight: bold;
+                        ">Send Message</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Add modal to page
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    
+    // Add event listeners for modal buttons
+    document.getElementById('cancelMessage').addEventListener('click', function() {
+        document.getElementById('messageModal').remove();
+    });
+    
+    document.getElementById('sendMessage').addEventListener('click', function() {
+        const messageType = document.getElementById('messageType').value;
+        const messageContent = document.getElementById('messageContent').value;
+        
+        if (messageContent.trim() === '') {
+            alert('Please enter a message before sending.');
+            return;
+        }
+        
+        // In a real app, you would send this to a server
+        alert(`Message sent to ${patientName}!\n\nType: ${messageType}\n\nMessage: ${messageContent}`);
+        
+        // Close modal
+        document.getElementById('messageModal').remove();
+        
+        // Add notification for sent message
+        const notificationBadge = document.querySelector('#notificationBell .notification-badge');
+        if (notificationBadge) {
+            let currentCount = parseInt(notificationBadge.textContent) || 0;
+            notificationBadge.textContent = currentCount + 1;
+            notificationBadge.style.display = 'flex';
+        }
+    });
+    
+    // Close modal when clicking outside
+    document.getElementById('messageModal').addEventListener('click', function(e) {
+        if (e.target.id === 'messageModal') {
+            document.getElementById('messageModal').remove();
+        }
+    });
+}
+
+// Also update your patient card HTML to include proper classes
+// Add this code to modify the patient card buttons
+document.addEventListener('DOMContentLoaded', function() {
+    // Update patient card buttons with proper classes
+    setTimeout(() => {
+        const patientCards = document.querySelectorAll('.patient-item');
+        patientCards.forEach(card => {
+            const buttons = card.querySelectorAll('.btn');
+            buttons.forEach(btn => {
+                const btnText = btn.textContent || btn.innerText;
+                if (btnText.includes('Message')) {
+                    btn.classList.add('btn-message');
+                } else if (btnText.includes('Call')) {
+                    btn.classList.add('btn-call');
+                } else if (btnText.includes('View')) {
+                    btn.classList.add('btn-view');
+                }
+            });
+        });
+    }, 500);
+});
+// ==================== ALERT BUTTONS FUNCTIONALITY ====================
+// Handle "Review Case Now" button in emergency alert
+document.addEventListener('click', function(e) {
+    // Check if "Review Case Now" link was clicked
+    const reviewLink = e.target.closest('a[href="#"]');
+    if (reviewLink && (reviewLink.textContent.includes('Review Case Now') || 
+                      reviewLink.innerHTML.includes('fa-user-injured'))) {
+        e.preventDefault();
+        
+        // Switch to patients page
+        showPage('patients');
+        
+        // Scroll to Dareen's patient card and highlight it
+        setTimeout(() => {
+            const dareenCard = document.querySelector('.patient-item.urgent');
+            if (dareenCard) {
+                // Highlight the card
+                dareenCard.style.boxShadow = '0 0 0 3px var(--urgent-red), 0 5px 15px rgba(0,0,0,0.3)';
+                dareenCard.style.transform = 'scale(1.02)';
+                dareenCard.style.transition = 'all 0.5s ease';
+                
+                // Scroll to the card
+                dareenCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Show critical patient details modal
+                setTimeout(() => {
+                    createCriticalPatientModal('Dareen Sharief', 'DS', '10.8cm');
+                }, 800);
+                
+                // Remove highlight after 5 seconds
+                setTimeout(() => {
+                    dareenCard.style.boxShadow = '';
+                    dareenCard.style.transform = '';
+                }, 5000);
+            } else {
+                alert('Critical patient case loaded. Review Dareen Sharief\'s critical MUAC reading: 10.8cm');
+            }
+        }, 300);
+    }
+    
+    // Check if "Prepare Session" link was clicked
+    if (reviewLink && (reviewLink.textContent.includes('Prepare Session') || 
+                      reviewLink.innerHTML.includes('fa-video'))) {
+        e.preventDefault();
+        
+        // Switch to consultation page
+        showPage('consultation');
+        
+        // Set up consultation for Sara Mansour
+        setTimeout(() => {
+            // Update patient information
+            const patientNameField = document.querySelector('#consultation-page input[type="text"]');
+            const consultationType = document.querySelector('#consultation-page select');
+            const clinicalNotes = document.querySelector('#consultation-page textarea');
+            
+            if (patientNameField) {
+                patientNameField.value = 'Sara Mansour';
+            }
+            
+            if (consultationType) {
+                consultationType.value = 'Follow-up Visit';
+            }
+            
+            if (clinicalNotes) {
+                clinicalNotes.value = 'Patient: Sara Mansour\nFollow-up consultation\nPrevious MUAC: 12.8cm\nProgress: Good recovery, showing improvement\nNotes: Check weight gain, review nutrition plan';
+            }
+            
+            // Update video preview
+            const videoPreview = document.querySelector('.video-preview');
+            if (videoPreview) {
+                videoPreview.innerHTML = `
+                    <div style="text-align: center; padding: 20px;">
+                        <i class="fas fa-user-clock" style="font-size: 4rem; margin-bottom: 20px; color: var(--warning-yellow);"></i>
+                        <h3>Session Prepared for Sara Mansour</h3>
+                        <p>Follow-up Consultation</p>
+                        <div style="margin-top: 30px; background: rgba(243, 156, 18, 0.1); padding: 15px; border-radius: 10px;">
+                            <p><strong>Appointment Time:</strong> 10:30 AM (in 15 minutes)</p>
+                            <p><strong>Previous MUAC:</strong> 12.8cm</p>
+                            <p><strong>Status:</strong> Recovery progressing well</p>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <button id="joinSessionBtn" style="
+                                padding: 12px 25px;
+                                background-color: var(--spanfonts);
+                                color: white;
+                                border: none;
+                                border-radius: 25px;
+                                cursor: pointer;
+                                font-weight: bold;
+                                display: inline-flex;
+                                align-items: center;
+                                gap: 8px;
+                            ">
+                                <i class="fas fa-video"></i> Join Session Now
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                // Add event listener to the new join session button
+                setTimeout(() => {
+                    const joinSessionBtn = document.getElementById('joinSessionBtn');
+                    if (joinSessionBtn) {
+                        joinSessionBtn.addEventListener('click', function() {
+                            alert('Joining video session with Sara Mansour...\n\nSession starting now.');
+                            
+                            // Update video preview to show active session
+                            videoPreview.innerHTML = `
+                                <div style="text-align: center; color: white; padding: 20px;">
+                                    <h3>Live Session with Sara Mansour</h3>
+                                    <p>Follow-up Consultation in progress</p>
+                                    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 30px;">
+                                        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                                            <i class="fas fa-user-md" style="font-size: 3rem;"></i>
+                                            <p>Dr. Ahmed</p>
+                                        </div>
+                                        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                                            <i class="fas fa-user" style="font-size: 3rem;"></i>
+                                            <p>Sara Mansour</p>
+                                        </div>
+                                    </div>
+                                    <p style="margin-top: 30px; font-size: 0.9rem;"><i class="fas fa-clock"></i> Session started at ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</p>
+                                </div>
+                            `;
+                        });
+                    }
+                }, 100);
+            }
+            
+            // Show confirmation message
+            alert('Session prepared for Sara Mansour!\n\nPatient information and notes have been pre-filled.\n\nAppointment starts in 15 minutes (10:30 AM).');
+        }, 300);
+    }
+});
+
+// Function to create critical patient modal
+function createCriticalPatientModal(patientName, patientInitials, muacReading) {
+    // Remove existing modal if any
+    const existingModal = document.getElementById('criticalPatientModal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+    
+    // Create modal HTML
+    const modalHTML = `
+        <div id="criticalPatientModal" style="
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            animation: fadeIn 0.3s;
+        ">
+            <div style="
+                background-color: white;
+                width: 90%;
+                max-width: 600px;
+                border-radius: 15px;
+                overflow: hidden;
+                box-shadow: 0 10px 40px rgba(231, 76, 60, 0.3);
+                border: 3px solid var(--urgent-red);
+                animation: slideUp 0.4s;
+            ">
+                <div style="
+                    background-color: var(--urgent-red);
+                    color: white;
+                    padding: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                ">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="
+                            width: 60px;
+                            height: 60px;
+                            background-color: white;
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: var(--urgent-red);
+                            font-weight: bold;
+                            font-size: 1.5rem;
+                        ">${patientInitials}</div>
+                        <div>
+                            <h2 style="margin: 0; font-size: 1.8rem;">${patientName}</h2>
+                            <p style="margin: 5px 0 0 0; opacity: 0.9; font-size: 1.1rem;">CRITICAL CASE - IMMEDIATE ATTENTION REQUIRED</p>
+                        </div>
+                    </div>
+                    <div style="font-size: 3rem; opacity: 0.8;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                </div>
+                
+                <div style="padding: 25px;">
+                    <div style="
+                        background-color: rgba(231, 76, 60, 0.1);
+                        border-left: 5px solid var(--urgent-red);
+                        padding: 15px;
+                        border-radius: 0 10px 10px 0;
+                        margin-bottom: 25px;
+                    ">
+                        <h3 style="color: var(--urgent-red); margin-top: 0;">
+                            <i class="fas fa-heartbeat"></i> CRITICAL VITAL READING
+                        </h3>
+                        <div style="display: flex; align-items: center; gap: 20px; margin-top: 10px;">
+                            <div style="
+                                background-color: var(--urgent-red);
+                                color: white;
+                                padding: 15px 25px;
+                                border-radius: 10px;
+                                text-align: center;
+                                min-width: 150px;
+                            ">
+                                <div style="font-size: 0.9rem; opacity: 0.9;">MUAC READING</div>
+                                <div style="font-size: 2.5rem; font-weight: bold;">${muacReading}</div>
+                                <div style="font-size: 0.9rem; background: rgba(0,0,0,0.2); padding: 3px 10px; border-radius: 15px; margin-top: 5px;">RED ZONE</div>
+                            </div>
+                            <div style="flex: 1;">
+                                <p style="margin: 0 0 10px 0; color: var(--Paraghfont);"><strong>Interpretation:</strong> Severe Acute Malnutrition (SAM)</p>
+                                <p style="margin: 0 0 10px 0; color: var(--Paraghfont);"><strong>Risk Level:</strong> Very High - Immediate intervention required</p>
+                                <p style="margin: 0; color: var(--Paraghfont);"><strong>Action:</strong> Emergency nutritional support needed</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
+                        <div>
+                            <h4 style="color: var(--Paraghfont); margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 8px;">
+                                <i class="fas fa-user-circle"></i> Patient Details
+                            </h4>
+                            <p><strong>Age:</strong> 28 years</p>
+                            <p><strong>Gender:</strong> Female</p>
+                            <p><strong>Last Visit:</strong> Today</p>
+                            <p><strong>Condition:</strong> Severe Malnutrition</p>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--Paraghfont); margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 8px;">
+                                <i class="fas fa-history"></i> Medical History
+                            </h4>
+                            <p><strong>Previous MUAC:</strong> 11.2cm (2 weeks ago)</p>
+                            <p><strong>Weight Loss:</strong> 4.2kg in last month</p>
+                            <p><strong>Medications:</strong> Nutritional supplements</p>
+                            <p><strong>Allergies:</strong> None known</p>
+                        </div>
+                    </div>
+                    
+                    <h4 style="color: var(--Paraghfont); margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 8px;">
+                        <i class="fas fa-stethoscope"></i> Recommended Actions
+                    </h4>
+                    <div style="
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 10px;
+                        margin-top: 15px;
+                    ">
+                        <button class="action-btn" data-action="emergency" style="
+                            padding: 12px 20px;
+                            background-color: var(--urgent-red);
+                            color: white;
+                            border: none;
+                            border-radius: 10px;
+                            cursor: pointer;
+                            font-weight: bold;
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                            flex: 1;
+                            min-width: 180px;
+                        ">
+                            <i class="fas fa-ambulance"></i> Emergency Protocol
+                        </button>
+                        <button class="action-btn" data-action="consultation" style="
+                            padding: 12px 20px;
+                            background-color: var(--warning-yellow);
+                            color: white;
+                            border: none;
+                            border-radius: 10px;
+                            cursor: pointer;
+                            font-weight: bold;
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                            flex: 1;
+                            min-width: 180px;
+                        ">
+                            <i class="fas fa-video"></i> Immediate Consultation
+                        </button>
+                        <button class="action-btn" data-action="prescription" style="
+                            padding: 12px 20px;
+                            background-color: var(--spanfonts);
+                            color: white;
+                            border: none;
+                            border-radius: 10px;
+                            cursor: pointer;
+                            font-weight: bold;
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                            flex: 1;
+                            min-width: 180px;
+                        ">
+                            <i class="fas fa-prescription"></i> Emergency Prescription
+                        </button>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; margin-top: 30px; padding-top: 20px; border-top: 2px solid #eee;">
+                        <button id="closeCriticalModal" style="
+                            padding: 10px 25px;
+                            background-color: #f5f5f5;
+                            color: var(--Paraghfont);
+                            border: none;
+                            border-radius: 25px;
+                            cursor: pointer;
+                            font-weight: bold;
+                        ">Close</button>
+                        <button id="markAsReviewed" style="
+                            padding: 10px 25px;
+                            background-color: var(--navcolor);
+                            color: white;
+                            border: none;
+                            border-radius: 25px;
+                            cursor: pointer;
+                            font-weight: bold;
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                        ">
+                            <i class="fas fa-check-circle"></i> Mark as Reviewed
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            
+            @keyframes slideUp {
+                from { 
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to { 
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        </style>
+    `;
+    
+    // Add modal to page
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    
+    // Add event listeners for modal buttons
+    document.getElementById('closeCriticalModal').addEventListener('click', function() {
+        document.getElementById('criticalPatientModal').remove();
+    });
+    
+    document.getElementById('markAsReviewed').addEventListener('click', function() {
+        alert(`Critical case for ${patientName} marked as reviewed.\n\nAction has been logged in patient record.`);
+        document.getElementById('criticalPatientModal').remove();
+        
+        // Update the alert in dashboard
+        const urgentAlert = document.querySelector('.alert:first-child');
+        if (urgentAlert) {
+            urgentAlert.innerHTML = `
+                <i class="fas fa-check-circle" style="color: var(--spanfonts);"></i>
+                <div>
+                    <strong>REVIEWED:</strong> Patient Dareen Sharief's critical case has been reviewed and action taken.
+                    <a href="#" style="color: var(--spanfonts); font-weight: bold; margin-left: 10px;">
+                        <i class="fas fa-file-medical"></i> View Case Notes
+                    </a>
+                </div>
+            `;
+        }
+    });
+    
+    // Add event listeners for action buttons
+    document.querySelectorAll('.action-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const action = this.getAttribute('data-action');
+            
+            switch(action) {
+                case 'emergency':
+                    alert('Emergency protocol initiated for ' + patientName + '.\n\nEmergency team has been notified. Patient will be prioritized for immediate care.');
+                    break;
+                case 'consultation':
+                    showPage('consultation');
+                    setTimeout(() => {
+                        const patientNameField = document.querySelector('#consultation-page input[type="text"]');
+                        if (patientNameField) patientNameField.value = patientName;
+                        alert('Emergency consultation initiated for ' + patientName + '.\n\nPatient will be connected immediately.');
+                    }, 300);
+                    document.getElementById('criticalPatientModal').remove();
+                    break;
+                case 'prescription':
+                    alert('Opening emergency prescription form for ' + patientName + '.\n\nYou can now prescribe urgent nutritional supplements and medications.');
+                    break;
+            }
+        });
+    });
+    
+    // Close modal when clicking outside
+    document.getElementById('criticalPatientModal').addEventListener('click', function(e) {
+        if (e.target.id === 'criticalPatientModal') {
+            document.getElementById('criticalPatientModal').remove();
+        }
+    });
+}
+// ==================== APPOINTMENTS PAGE FUNCTIONALITY ====================
+// Schedule New Appointment Button
+const scheduleAppointmentBtn = document.getElementById('scheduleAppointmentBtn');
+if (scheduleAppointmentBtn) {
+    scheduleAppointmentBtn.addEventListener('click', function() {
+        createAppointmentModal();
+    });
+}
+
+// Start Appointment buttons
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.start-appointment-btn')) {
+        const patientName = e.target.closest('.start-appointment-btn').getAttribute('data-patient');
+        startAppointment(patientName);
+    }
+    
+    if (e.target.closest('.reschedule-btn')) {
+        const patientName = e.target.closest('.reschedule-btn').getAttribute('data-patient');
+        rescheduleAppointment(patientName);
+    }
+});
+
+// Appointment functions
+function createAppointmentModal() {
+    const modalHTML = `
+        <div id="appointmentModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 2000;">
+            <div style="background-color: white; width: 90%; max-width: 500px; border-radius: 15px; padding: 25px; box-shadow: 0 5px 30px rgba(0,0,0,0.3);">
+                <h3 style="color: var(--Paraghfont); margin-top: 0; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-calendar-plus"></i> Schedule New Appointment
+                </h3>
+                
+                <div style="margin: 20px 0;">
+                    <label style="display: block; margin-bottom: 8px; color: var(--Paraghfont); font-weight: bold;">Patient</label>
+                    <select id="appointmentPatient" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 1rem; margin-bottom: 20px;">
+                        <option value="">Select Patient</option>
+                        <option value="Dareen Sharief">Dareen Sharief (Critical)</option>
+                        <option value="Sara Mansour">Sara Mansour (Follow-up)</option>
+                        <option value="Youssef Adel">Youssef Adel (Stable)</option>
+                        <option value="Ali Mahmoud">Ali Mahmoud (New)</option>
+                        <option value="Mohammed Hassan">Mohammed Hassan (Critical)</option>
+                        <option value="new">New Patient</option>
+                    </select>
+                    
+                    <label style="display: block; margin-bottom: 8px; color: var(--Paraghfont); font-weight: bold;">Date & Time</label>
+                    <input type="datetime-local" id="appointmentDateTime" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 1rem; margin-bottom: 20px;">
+                    
+                    <label style="display: block; margin-bottom: 8px; color: var(--Paraghfont); font-weight: bold;">Type</label>
+                    <select id="appointmentType" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 1rem; margin-bottom: 20px;">
+                        <option>Consultation</option>
+                        <option>Follow-up</option>
+                        <option>Emergency</option>
+                        <option>Nutrition Review</option>
+                        <option>Lab Test</option>
+                        <option>Vaccination</option>
+                    </select>
+                    
+                    <label style="display: block; margin-bottom: 8px; color: var(--Paraghfont); font-weight: bold;">Notes</label>
+                    <textarea id="appointmentNotes" rows="3" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 1rem; margin-bottom: 20px;" placeholder="Additional notes..."></textarea>
+                </div>
+                
+                <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                    <button id="cancelAppointment" style="padding: 10px 20px; background-color: #f5f5f5; color: var(--Paraghfont); border: none; border-radius: 25px; cursor: pointer; font-weight: bold;">Cancel</button>
+                    <button id="saveAppointment" style="padding: 10px 20px; background-color: var(--spanfonts); color: white; border: none; border-radius: 25px; cursor: pointer; font-weight: bold;">Schedule Appointment</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    
+    // Set default date/time to tomorrow 10:00 AM
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(10, 0, 0, 0);
+    const datetimeInput = document.getElementById('appointmentDateTime');
+    datetimeInput.value = tomorrow.toISOString().slice(0, 16);
+    
+    document.getElementById('cancelAppointment').addEventListener('click', function() {
+        document.getElementById('appointmentModal').remove();
+    });
+    
+    document.getElementById('saveAppointment').addEventListener('click', function() {
+        const patient = document.getElementById('appointmentPatient').value;
+        const datetime = document.getElementById('appointmentDateTime').value;
+        const type = document.getElementById('appointmentType').value;
+        const notes = document.getElementById('appointmentNotes').value;
+        
+        if (!patient || !datetime) {
+            alert('Please fill in all required fields');
+            return;
+        }
+        
+        const dateObj = new Date(datetime);
+        const formattedDate = dateObj.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        const formattedTime = dateObj.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        
+        alert(`Appointment scheduled successfully!\n\nPatient: ${patient}\nDate: ${formattedDate}\nTime: ${formattedTime}\nType: ${type}\n\nAppointment has been added to the schedule.`);
+        
+        // Add notification
+        const notificationBadge = document.querySelector('#notificationBell .notification-badge');
+        if (notificationBadge) {
+            let currentCount = parseInt(notificationBadge.textContent) || 0;
+            notificationBadge.textContent = currentCount + 1;
+            notificationBadge.style.display = 'flex';
+        }
+        
+        document.getElementById('appointmentModal').remove();
+    });
+    
+    // Close modal when clicking outside
+    document.getElementById('appointmentModal').addEventListener('click', function(e) {
+        if (e.target.id === 'appointmentModal') {
+            document.getElementById('appointmentModal').remove();
+        }
+    });
+}
+
+function startAppointment(patientName) {
+    alert(`Starting appointment with ${patientName}...\n\nRedirecting to consultation room.`);
+    showPage('consultation');
+    
+    // Update consultation page with patient info
+    setTimeout(() => {
+        const patientNameField = document.querySelector('#consultation-page input[type="text"]');
+        if (patientNameField) {
+            patientNameField.value = patientName;
+        }
+        
+        // Show call status
+        const videoPreview = document.querySelector('.video-preview');
+        if (videoPreview) {
+            videoPreview.innerHTML = `
+                <div style="text-align: center; padding: 20px;">
+                    <i class="fas fa-video" style="font-size: 4rem; margin-bottom: 20px; color: var(--spanfonts);"></i>
+                    <h3>Appointment with ${patientName}</h3>
+                    <p>Starting consultation...</p>
+                </div>
+            `;
+        }
+    }, 300);
+}
+
+function rescheduleAppointment(patientName) {
+    const newDate = prompt(`Reschedule appointment for ${patientName}\n\nEnter new date and time (YYYY-MM-DD HH:MM):`, 
+                          `${new Date().getFullYear()}-${String(new Date().getMonth()+1).padStart(2,'0')}-${String(new Date().getDate()+1).padStart(2,'0')} 10:00`);
+    
+    if (newDate) {
+        alert(`Appointment for ${patientName} rescheduled to ${newDate}\n\nPatient will be notified of the change.`);
+        
+        // Add notification
+        const notificationBadge = document.querySelector('#notificationBell .notification-badge');
+        if (notificationBadge) {
+            let currentCount = parseInt(notificationBadge.textContent) || 0;
+            notificationBadge.textContent = currentCount + 1;
+            notificationBadge.style.display = 'flex';
+        }
+    }
+}
+
+// Appointment page helper functions
+function sendReminder(patientName) {
+    alert(`Reminder sent to ${patientName}\n\nPatient has been notified about their upcoming appointment.`);
+}
+
+function viewPatientDetails(patientName) {
+    alert(`Viewing patient details for ${patientName}...\n\nRedirecting to patient profile.`);
+    showPage('patients');
+}
+
+function exportSchedule() {
+    alert('Schedule exported successfully!\n\nYour weekly schedule has been downloaded as a PDF file.');
+}
+
+function printSchedule() {
+    alert('Opening print preview for schedule...\n\nUse your browser\'s print function to print the schedule.');
+}
+
+function showPreviousWeek() {
+    alert('Showing previous week\'s schedule...');
+}
+
+function showNextWeek() {
+    alert('Showing next week\'s schedule...');
+}
+
+function viewAllAppointments() {
+    alert('Loading all appointments...\n\nThis would show a complete list of all scheduled appointments.');
+}
+
+function viewAnalytics() {
+    alert('Opening appointment analytics dashboard...');
+}
+
+// ==================== REPORTS PAGE FUNCTIONALITY ====================
+// Generate New Report Button
+const generateReportBtn = document.getElementById('generateReportBtn');
+if (generateReportBtn) {
+    generateReportBtn.addEventListener('click', function() {
+        createReportModal();
+    });
+}
+
+// Report functions
+function generateReport(reportType) {
+    const reportTypes = {
+        'patient-summary': 'Patient Summary Report',
+        'progress-report': 'Progress Report',
+        'discharge-summary': 'Discharge Summary',
+        'lab-results': 'Lab Results Report',
+        'medication-report': 'Medication Report',
+        'monthly-stats': 'Monthly Statistics Report',
+        'patient-demographics': 'Patient Demographics Report',
+        'treatment-outcomes': 'Treatment Outcomes Report',
+        'resource-utilization': 'Resource Utilization Report'
+    };
+    
+    const reportName = reportTypes[reportType] || 'Custom Report';
+    alert(`Generating ${reportName}...\n\nThe report is being prepared and will be available shortly.`);
+    
+    // Simulate report generation
+    setTimeout(() => {
+        alert(`${reportName} generated successfully!\n\nThe report has been added to your recent reports list.`);
+        
+        // Add notification
+        const notificationBadge = document.querySelector('#notificationBell .notification-badge');
+        if (notificationBadge) {
+            let currentCount = parseInt(notificationBadge.textContent) || 0;
+            notificationBadge.textContent = currentCount + 1;
+            notificationBadge.style.display = 'flex';
+        }
+    }, 1500);
+}
+
+function viewReport(reportId) {
+    alert(`Opening report ${reportId}...\n\nThe report is being loaded in the viewer.`);
+}
+
+function downloadReport(reportId) {
+    alert(`Downloading report ${reportId}...\n\nThe report is being downloaded as a PDF file.`);
+}
+
+function signReport(reportId) {
+    alert(`Signing report ${reportId}...\n\nPlease use your digital signature to sign this report.`);
+}
+
+function shareReport(reportId) {
+    alert(`Sharing report ${reportId}...\n\nSelect recipients to share this report with.`);
+}
+
+function filterReports(filterType) {
+    alert(`Filtering reports to show ${filterType} only...`);
+}
+
+function exportAllReports() {
+    alert('Exporting all reports...\n\nAll reports are being compressed into a ZIP file for download.');
+}
+
+function printReportList() {
+    alert('Opening print preview for report list...');
+}
+
+function useTemplate(templateName) {
+    const templateNames = {
+        'standard-consultation': 'Standard Consultation Template',
+        'emergency-case': 'Emergency Case Template',
+        'nutrition-assessment': 'Nutrition Assessment Template'
+    };
+    
+    alert(`Using ${templateNames[templateName] || templateName}...\n\nThe template has been loaded. You can now customize it.`);
+}
+
+function createReportModal() {
+    const modalHTML = `
+        <div id="reportModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 2000;">
+            <div style="background-color: white; width: 90%; max-width: 600px; border-radius: 15px; padding: 25px; box-shadow: 0 5px 30px rgba(0,0,0,0.3); max-height: 90vh; overflow-y: auto;">
+                <h3 style="color: var(--Paraghfont); margin-top: 0; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-file-medical-alt"></i> Generate Custom Report
+                </h3>
+                
+                <div style="margin: 20px 0;">
+                    <label style="display: block; margin-bottom: 8px; color: var(--Paraghfont); font-weight: bold;">Report Title</label>
+                    <input type="text" id="reportTitle" placeholder="Enter report title" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 1rem; margin-bottom: 20px;">
+                    
+                    <label style="display: block; margin-bottom: 8px; color: var(--Paraghfont); font-weight: bold;">Select Patient(s)</label>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+                        <label style="display: flex; align-items: center; gap: 5px;">
+                            <input type="checkbox" name="reportPatients" value="Dareen Sharief"> Dareen Sharief
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 5px;">
+                            <input type="checkbox" name="reportPatients" value="Sara Mansour"> Sara Mansour
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 5px;">
+                            <input type="checkbox" name="reportPatients" value="Youssef Adel"> Youssef Adel
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 5px;">
+                            <input type="checkbox" name="reportPatients" value="All Patients"> All Patients
+                        </label>
+                    </div>
+                    
+                    <label style="display: block; margin-bottom: 8px; color: var(--Paraghfont); font-weight: bold;">Date Range</label>
+                    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                        <input type="date" id="reportStartDate" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 10px;">
+                        <span style="align-self: center;">to</span>
+                        <input type="date" id="reportEndDate" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 10px;">
+                    </div>
+                    
+                    <label style="display: block; margin-bottom: 8px; color: var(--Paraghfont); font-weight: bold;">Report Format</label>
+                    <select id="reportFormat" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 1rem; margin-bottom: 20px;">
+                        <option>PDF Document</option>
+                        <option>Excel Spreadsheet</option>
+                        <option>Word Document</option>
+                        <option>HTML Report</option>
+                    </select>
+                    
+                    <label style="display: block; margin-bottom: 8px; color: var(--Paraghfont); font-weight: bold;">Include Sections</label>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+                        <label style="display: flex; align-items: center; gap: 5px;">
+                            <input type="checkbox" name="reportSections" value="patient-info" checked> Patient Information
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 5px;">
+                            <input type="checkbox" name="reportSections" value="vitals" checked> Vital Signs
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 5px;">
+                            <input type="checkbox" name="reportSections" value="medications" checked> Medications
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 5px;">
+                            <input type="checkbox" name="reportSections" value="lab-results"> Lab Results
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 5px;">
+                            <input type="checkbox" name="reportSections" value="progress-notes"> Progress Notes
+                        </label>
+                    </div>
+                </div>
+                
+                <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                    <button id="cancelReport" style="padding: 10px 20px; background-color: #f5f5f5; color: var(--Paraghfont); border: none; border-radius: 25px; cursor: pointer; font-weight: bold;">Cancel</button>
+                    <button id="generateCustomReport" style="padding: 10px 20px; background-color: var(--spanfonts); color: white; border: none; border-radius: 25px; cursor: pointer; font-weight: bold;">Generate Report</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    
+    // Set default dates (last 30 days)
+    const endDate = new Date();
+    const startDate = new Date();
+    startDate.setDate(startDate.getDate() - 30);
+    
+    document.getElementById('reportStartDate').value = startDate.toISOString().slice(0, 10);
+    document.getElementById('reportEndDate').value = endDate.toISOString().slice(0, 10);
+    
+    document.getElementById('cancelReport').addEventListener('click', function() {
+        document.getElementById('reportModal').remove();
+    });
+    
+    document.getElementById('generateCustomReport').addEventListener('click', function() {
+        const title = document.getElementById('reportTitle').value;
+        const format = document.getElementById('reportFormat').value;
+        
+        if (!title) {
+            alert('Please enter a report title');
+            return;
+        }
+        
+        // Get selected patients
+        const selectedPatients = [];
+        document.querySelectorAll('input[name="reportPatients"]:checked').forEach(checkbox => {
+            selectedPatients.push(checkbox.value);
+        });
+        
+        alert(`Custom report "${title}" is being generated...\n\nFormat: ${format}\nPatients: ${selectedPatients.join(', ') || 'None selected'}\n\nThis may take a few moments.`);
+        
+        // Simulate report generation
+        setTimeout(() => {
+            alert(`Report "${title}" generated successfully!\n\nThe report has been added to your recent reports and is ready for download.`);
+            
+            // Add notification
+            const notificationBadge = document.querySelector('#notificationBell .notification-badge');
+            if (notificationBadge) {
+                let currentCount = parseInt(notificationBadge.textContent) || 0;
+                notificationBadge.textContent = currentCount + 1;
+                notificationBadge.style.display = 'flex';
+            }
+        }, 2000);
+        
+        document.getElementById('reportModal').remove();
+    });
+    
+    // Close modal when clicking outside
+    document.getElementById('reportModal').addEventListener('click', function(e) {
+        if (e.target.id === 'reportModal') {
+            document.getElementById('reportModal').remove();
+        }
+    });
+}
+    </script>
+</body>
+</html>

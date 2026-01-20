@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Smart Medical Point Page to heal You from a sickness wth a full services and ways to make you satiesfing  ">
+    <meta name="Author" content="this website for an computers Engineers studen from IUG">
+    <meta name="keyword" content="medical point , Smart medical , medical , smart , medipoint , point ">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+
+    <title>Setting</title>
+    <link rel="icon" href="media/logo.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="head">
+
+            <div class="headNav">
+                <div><a href="Index.html">
+                        <h1>The Smart Medical Point</h1>
+                    </a></div>
+                <img src="media/logo.png" alt="this is logo">
+                <div class="language"> <img src="media/world.png" alt="" style="height: 24px; width: 24px;">
+                    <p>EN-US</p>
+                </div>
+            </div>
+
+            <div class="navBar">
+                <nav>
+                    <div class="menu">
+                        <ul>
+                            <li><a href="adminHomePage.html">Dashbord</a></li>
+                            <li><a href=" adminHomePage.html#report">Reports</a></li>
+                            <li><a href="#">Setting</a></li>
+                        </ul>
+                    </div>
+                    <div class="login"><a href="login.html">Logout</a></div>
+                </nav>
+            </div>
+
+        </div>
+    </header>
+
+    <body>
+        <main>
+            <div class="container">
+                <form action="">
+                    <section id="setting">
+                        <div class="titleofsettingPage">
+                            <img src="media/setting.png" style="width: 32x; height: 32px;">
+                            <h2>Setting</h2>
+                        </div>
+                        <div class="settingButtons">
+                            <div class="profileButton"><a href="#profile">Profile Setting </a></div>
+                            <div class="performance"><a href="#performanceSelect   ">System Performance</a></div>
+                            <div class="security"><a href="#securityStatus">Security</a></div>
+                        </div>
+                        <div id="profile">
+                            <div class="profileLeftSide">
+                                <div class="userEditProfileImg">
+                                    <img src="media/user (1).png" class="profileImg">
+                                    <label for="EditPic"> <img src="media/edit.png" class="editImg">
+                                        <input type="file" id="EditPic" style="display: none;"></label>
+
+                                </div>
+                                <div class="saveChangesProfileImg"> <button type="submit"> Save Changes</button></div>
+
+                            </div>
+                            <div class="profileRightSide UserInfo">
+                                <label for="firstName">First Name</label>
+                                <input type="text" name="First name" id="firstName" required placeholder="First Name">
+                                <label for="middleName">Middle Name</label>
+                                <input type="text" name="Middle Name" id="middleName" required
+                                    placeholder="Middle Name">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" name="Last Name" id="lastName" required placeholder="Last Name">
+                                <label for="email">Email</label>
+                                <input type="email" name="Email" id="email" required placeholder="Email">
+                                <label for="password">Password</label>
+                                <input type="password" name="Password" id="password" required pattern="[A-Za-z]{6,}"
+                                    placeholder="Password">
+
+                            </div>
+                        </div>
+                    </section>
+                    <section id="perfomanceAndSecurity">
+                        <div class="performanceSelect" id="performanceSelect">
+                            <div>
+                                <h4> Language</h4>
+                                <select name="Language">
+                                    <Option value="EN-US" selected> EN-US</Option>
+                                    <Option value="Ar-EG"> Ar-EG</Option>
+                                </select>
+                            </div>
+                            <div>
+                                <h4> Theme</h4>
+                                <select name="Language">
+                                    <Option value="Light" selected> Light</Option>
+                                    <Option value="Dark"> Dark</Option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="securityStatus" id="securityStatus">
+
+                            <div class="toggle">
+                                <h4>Enable 2FA</h4>
+                                <label class="switch">
+                                    <input type="checkbox" id="twoFA">
+                                    <span class="slider"></span>
+                                </label>
+
+                            </div>
+                            <div>
+                                <h4> Last Login: </h4>
+                                <p>13/12/2025 - 6:35 pm</p>
+                            </div>
+                        </div>
+
+                    </section>
+                    <section id="SaveAllChangrsbutton">
+                        <button type="submit">Save</button>
+                    </section>
+                </form>
+            </div>
+        </main>
+        <footer id="footEndPage">
+            <div class="footerhead">
+                <h4>Smart Medical Point</h4>
+                <img src="media/ChatGPT Image Aug 27, 2025, 05_28_13 PM.png" alt="" style="height: 55px; width: 55px;">
+            </div>
+            <div class="communicating">
+                <div class="items">
+                    <a href="adminHomePage.html">Dashbord</a>
+                    <a href="adminHomePage.html#report">Reports</a>
+                    <a href="settingPage.html">Setting</a>
+                </div>
+                <div class="accounts">
+                    <a href="#" target="_blank"><img src="media/whatsapp.png" alt=""></a>
+                    <a href="#" target="_blank"><img src="media/twitter.png" alt=""></a>
+                    <a href="#" target="_blank"><img src="media/facebook.png" alt=""></a>
+                    <a href="#" target="_blank"><img src="media/instagram.png" alt=""></a>
+
+
+                </div>
+            </div>
+            <div class="copyRight">
+                <p>&copy; 2025 SmartMediPoint. All Rights Reserved </p>
+            </div>
+        </footer>
+        <script src="Js/index.js"></script>
+
+    </body>
+
+</html>
