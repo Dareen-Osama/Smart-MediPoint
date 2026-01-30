@@ -3,46 +3,497 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
-    <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>MediPoint - Login System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
+        body {
+            background: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        .page {
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .page::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 60%;
+            background: #1a5855;
+            border-bottom-left-radius: 50%;
+            border-radius: 0% 90% 0% 100% / 36% 0% 100% 64% ;
+            z-index: 1;
+        }
+
+        .container {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            min-height: 100vh;
+            padding: 20px 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* شعار MediPoint في الزاوية اليسرى السفلية */
+        .logo-container {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            padding-left: 20px;
+        }
+        .logo img {
+            width: 100px;
+            height: 100px;
+        }
+
+        
+        /* بطاقات النماذج */
+        .form-card {
+            background-color: #F5F5F5;
+            width: 500px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+            margin-top: -60px;
+            transition: all 0.3s ease;
+        }
+
+        .form-card h2 {
+            color: #1d7874;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 32px;
+        }
+
+        .form-card label {
+            color: #1d7874;
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .input-box {
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            display: block;
+            height: 50px;
+            box-sizing: border-box;
+            position: relative;
+            background: white;
+        }
+
+        .input-box i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #1a5855;
+            font-size: 18px;
+        }
+
+        .input-box input {
+            width: 100%;
+            border: none;
+            outline: none;
+            height: 100%;
+            border-radius: 6px;
+            padding: 0 50px 0 15px;
+            font-size: 16px;
+        }
+
+        .checkbox {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 20px 0;
+            color: #2f8f83;
+            flex-direction: row;
+        }
+
+        .checkbox label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+            cursor: pointer;
+            font-size: smaller;
+        }
+
+        .checkbox input {
+            cursor: pointer;
+        }
+
+        .btn {
+            text-align: center;
+            border-radius: 6px;
+            padding: 1%;
+            color: #f2f8f7;
+            height: 50px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 18px;
+            display: block;
+            margin: 20px auto 10px;
+            background-color: #1a5855;
+            border: none;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #144a47;
+        }
+
+        .form-links {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form-links a {
+            color: #2f8f83;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .form-links a:hover {
+            color: #1a5855;
+            text-decoration: underline;
+        }
+
+        .back-btn {
+            color: #2f8f83;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: inline-block;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .back-btn:hover {
+            color: #1a5855;
+        }
+
+        /* رأس الصفحة */
+        .header-text {
+            position: relative;
+            color: #ffffff;
+            z-index: 10;
+            text-align: center;
+            margin-top: 40px;
+            padding: 0 20px;
+        }
+
+        .header-text span {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .header-text h1 {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        /* إخفاء النماذج غير النشطة */
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        /* تذييل الصفحة */
+        .footer {
+            text-align: center;
+            color: #666;
+            padding: 15px;
+            font-size: 14px;
+            position: relative;
+            z-index: 3;
+            margin-top: 20px;
+        }
+
+        /* تصميم الشعار للشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .form-card {
+                width: 90%;
+                padding: 30px 20px;
+            }
+
+            .header-text h1 {
+                font-size: 28px;
+            }
+
+            .header-text span {
+                font-size: 20px;
+            }
+
+            .logo-container {
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 10px;
+                background: rgba(255, 255, 255, 0.9);
+                padding: 8px 15px;
+                border-radius: 30px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+            
+            .logo {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            
+            .logo-text .smart {
+                font-size: 12px;
+            }
+            
+            .logo-text .medipoint {
+                font-size: 16px;
+            }
+        }
+        #show-forgot-password{
+            cursor: pointer;
+            font-size: smaller;
+        }
+        #show-forgot-password:hover{
+           text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <div class="page">
-         <div class="header-text">
-        <span > HELLO</span>
-        <H1>WELCOME BACK!</H1>
+        <div class="header-text">
+            <span>HELLO</span>
+            <h1>WELCOME TO MEDIPOINT</h1>
         </div>
-    <div class="container">
-    <div class="Card">
-        
-         <h2> login Account</h2>
-        <form>
-            <label >Email</label>
-            <div class="input-box">
-                <input  type="email" placeholder="Enter YOUR Email " required>
-                 <i class="fa-regular fa-message"></i>
-            </div>
 
-            <label> Password</label>
-            <div class="input-box">
-                <input type="password" placeholder=" **********" required>
-                 <i  class="fa-solid fa-lock" ></i>
-            </div>
+        <div class="container">
+            <!-- نموذج تسجيل الدخول -->
+            <div class="form-card">
+                <div id="login-section" class="form-section active">
+                    <h2>Login Account</h2>
+                    
+                    <form id="login-form">
+                        <label>Email Address</label>
+                        <div class="input-box">
+                            <input type="email" placeholder="Enter your email" required>
+                            <i class="fa-regular fa-message"></i>
+                        </div>
 
-            <div class="checkbox">
-                <label>
-                <input type="checkbox"> remember password </label>
-            <a href="">Forget password?</a>
-</div>
+                        <label>Password</label>
+                        <div class="input-box">
+                            <input type="password" placeholder="**********" required>
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Remember password
+                            </label>
+                            <a id="show-forgot-password">Forgot password?</a>
+                        </div>
+
+                        <button type="submit" class="btn">Login</button>
+                    </form>
+
+                    <div class="form-links">
+                        <span>Don't have an account?</span>
+                        <a id="show-signup">Sign Up</a>
+                    </div>
+                </div>
+
+                <!-- نموذج نسيت كلمة المرور -->
+                <div id="forgot-section" class="form-section">
+                    <div class="back-btn" id="back-to-login-from-forgot">
+                        <i class="fa-solid fa-arrow-left"></i> Back to Login
+                    </div>
+                    
+                    <h2>Forgot Password</h2>
+                    
+                    <form id="forgot-form">
+                        <label>Email Address</label>
+                        <div class="input-box">
+                            <input type="email" placeholder="Enter your email" required>
+                            <i class="fa-regular fa-message"></i>
+                        </div>
+
+                        <button type="submit" class="btn">Send Reset Link</button>
+                    </form>
+
+                    <div class="form-links">
+                        <a id="show-login-from-forgot">Back to Login</a>
+                    </div>
+                </div>
+
+                <!-- نموذج إنشاء حساب جديد -->
+                <div id="signup-section" class="form-section">
+                    <div class="back-btn" id="back-to-login-from-signup">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </div>
+                    
+                    <h2>Create Account</h2>
+                    
+                    <form id="signup-form">
+                        <label>Full Name</label>
+                        <div class="input-box">
+                            <input type="text" placeholder="Enter your full name" required>
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+
+                        <label>Email Address</label>
+                        <div class="input-box">
+                            <input type="email" placeholder="Enter your email" required>
+                            <i class="fa-regular fa-message"></i>
+                        </div>
+
+                        <label>Password</label>
+                        <div class="input-box">
+                            <input type="password" placeholder="**********" required>
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+
+                        <label>Confirm Password</label>
+                        <div class="input-box">
+                            <input type="password" placeholder="Re-enter your password" required>
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+
+                        <div class="checkbox" style="justify-content: flex-start; font-size: 15px;">
+                            <label>
+                                <input type="checkbox" required> I accept all terms and conditions
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn">Create Account</button>
+                    </form>
+
+                    <div class="form-links">
+                        <span>Already have an account?</span>
+                        <a id="show-login-from-signup">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- شعار MediPoint في الزاوية اليسرى السفلية -->
+        <div class="logo-container">
+            <div class="logo"><img src="media/logo.png" alt=""></div>
+           
+        </div>
+
+        <!-- تذييل الصفحة -->
+        <div class="footer">
+            <p>&copy; 2023 MediPoint System. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // تحديد العناصر
+        const loginSection = document.getElementById('login-section');
+        const forgotSection = document.getElementById('forgot-section');
+        const signupSection = document.getElementById('signup-section');
         
-                <button class="btn"> login </button>
+        // أزرار التبديل
+        const showForgotPassword = document.getElementById('show-forgot-password');
+        const showSignup = document.getElementById('show-signup');
+        const showLoginFromForgot = document.getElementById('show-login-from-forgot');
+        const showLoginFromSignup = document.getElementById('show-login-from-signup');
+        const backToLoginFromForgot = document.getElementById('back-to-login-from-forgot');
+        const backToLoginFromSignup = document.getElementById('back-to-login-from-signup');
+        
+        // دوال التبديل بين النماذج
+        function showLogin() {
+            loginSection.classList.add('active');
+            forgotSection.classList.remove('active');
+            signupSection.classList.remove('active');
+        }
+        
+        function showForgot() {
+            loginSection.classList.remove('active');
+            forgotSection.classList.add('active');
+            signupSection.classList.remove('active');
+        }
+        
+        function showSignupForm() {
+            loginSection.classList.remove('active');
+            forgotSection.classList.remove('active');
+            signupSection.classList.add('active');
+        }
+        
+        // إضافة معالجي الأحداث
+        showForgotPassword.addEventListener('click', showForgot);
+        showSignup.addEventListener('click', showSignupForm);
+        showLoginFromForgot.addEventListener('click', showLogin);
+        showLoginFromSignup.addEventListener('click', showLogin);
+        backToLoginFromForgot.addEventListener('click', showLogin);
+        backToLoginFromSignup.addEventListener('click', showLogin);
+        
+        // معالجة إرسال النماذج
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Login successful!');
+            // هنا يمكنك إضافة منطق إرسال النموذج للخادم
+        });
+        
+        document.getElementById('forgot-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Password reset link has been sent to your email!');
+            showLogin();
+        });
+        
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Account created successfully! Please login.');
+            showLogin();
+        });
+        
+        // تأثيرات تفاعلية بسيطة
+        const inputs = document.querySelectorAll('.input-box input');
+        inputs.forEach(input => {
+            // تأثير عند التركيز على الحقل
+            input.addEventListener('focus', function() {
+                this.parentElement.style.borderColor = '#1a5855';
+                this.parentElement.style.boxShadow = '0 0 0 2px rgba(26, 88, 85, 0.2)';
+            });
             
-
-        </form>
-    </div>
-    </div>
-    </div>
+            // تأثير عند إزالة التركيز من الحقل
+            input.addEventListener('blur', function() {
+                this.parentElement.style.borderColor = '#ccc';
+                this.parentElement.style.boxShadow = 'none';
+            });
+        });
+    </script>
 </body>
 </html>
