@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -124,7 +125,7 @@
             font-weight: bold;
             padding-right: 20px;
         }
-        
+
         .logo img {
             width: 100px;
             height: 100px;
@@ -183,6 +184,20 @@
             padding: 0 50px 0 15px;
             font-size: 16px;
         }
+
+        .input-box select {
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            border-radius: 6px;
+            padding: 0 50px 0 15px;
+            font-size: 16px;
+            background: white;
+            appearance: none;
+            cursor: pointer;
+        }
+
 
         .checkbox {
             display: flex;
@@ -284,7 +299,7 @@
             gap: 15px;
             margin-bottom: 25px;
         }
-        
+
         .user-type-btn {
             flex: 1;
             padding: 12px;
@@ -298,28 +313,28 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .user-type-btn:hover {
             border-color: #1a5855;
             color: #1a5855;
         }
-        
+
         .user-type-btn.active {
             background-color: #1a5855;
             border-color: #1a5855;
             color: white;
         }
-        
+
         .user-type-icon {
             margin-right: 8px;
             font-size: 18px;
         }
-        
+
         /* حقل معرف الطبيب */
         .doctor-id-field {
             display: none;
         }
-        
+
         /* رابط التسجيل بناءً على النوع */
         .signup-type-link {
             font-weight: 600;
@@ -330,7 +345,7 @@
             cursor: pointer;
             font-size: smaller;
         }
-        
+
         #show-forgot-password:hover {
             text-decoration: underline;
         }
@@ -340,8 +355,9 @@
             .page::after {
                 width: 40%;
             }
-            
-            .welcome-section, .form-section-container {
+
+            .welcome-section,
+            .form-section-container {
                 max-width: 50%;
             }
         }
@@ -352,11 +368,11 @@
                 height: 40%;
                 border-radius: 0% 0% 100% 0% / 0% 0% 40% 0%;
             }
-            
+
             .container {
                 flex-direction: column;
             }
-            
+
             .welcome-section {
                 max-width: 100%;
                 padding: 30px 20px;
@@ -365,27 +381,27 @@
                 justify-content: flex-start;
                 padding-top: 60px;
             }
-            
+
             .welcome-content {
                 max-width: 100%;
             }
-            
+
             .form-section-container {
                 max-width: 100%;
                 padding: 20px;
                 min-height: 60vh;
             }
-            
+
             .form-card {
                 width: 100%;
                 max-width: 500px;
                 margin: 0 auto;
             }
-            
+
             .welcome-section h1 {
                 font-size: 36px;
             }
-            
+
             .welcome-section span {
                 font-size: 24px;
             }
@@ -395,15 +411,15 @@
             .welcome-section h1 {
                 font-size: 32px;
             }
-            
+
             .welcome-section span {
                 font-size: 22px;
             }
-            
+
             .form-card {
                 padding: 30px 20px;
             }
-            
+
             .logo-container {
                 left: 50%;
                 transform: translateX(-50%);
@@ -413,7 +429,7 @@
                 border-radius: 30px;
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             }
-            
+
             .logo img {
                 width: 80px;
                 height: 80px;
@@ -424,19 +440,19 @@
             .welcome-section h1 {
                 font-size: 28px;
             }
-            
+
             .welcome-section span {
                 font-size: 20px;
             }
-            
+
             .welcome-section p {
                 font-size: 16px;
             }
-            
+
             .form-card h2 {
                 font-size: 28px;
             }
-            
+
             .user-type-btn {
                 font-size: 14px;
                 padding: 10px;
@@ -444,6 +460,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="page">
         <div class="container">
@@ -452,7 +469,8 @@
                 <div class="welcome-content">
                     <span>HELLO</span>
                     <h1>WELCOME TO MEDIPOINT</h1>
-                    <p>Your all-in-one platform for patient care and nutrition monitoring. Access medical services from anywhere.</p>
+                    <p>Your all-in-one platform for patient care and nutrition monitoring. Access medical services from
+                        anywhere.</p>
                 </div>
             </div>
 
@@ -462,7 +480,7 @@
                     <!-- نموذج تسجيل الدخول -->
                     <div id="login-section" class="form-section active">
                         <h2>Login Account</h2>
-                        
+
                         <!-- تحديد نوع المستخدم -->
                         <div class="user-type-selector">
                             <button type="button" class="user-type-btn active" id="patient-btn">
@@ -472,7 +490,7 @@
                                 <i class="fas fa-user-md user-type-icon"></i> Doctor
                             </button>
                         </div>
-                        
+
                         <form id="login-form">
                             <!-- حقل معرف الطبيب (يظهر فقط عند اختيار Doctor) -->
                             <div class="form-group doctor-id-field" id="doctor-id-field">
@@ -481,8 +499,10 @@
                                     <input type="text" id="doctor-id" placeholder="Enter your doctor ID">
                                     <i class="fas fa-id-card"></i>
                                 </div>
+                               
+
                             </div>
-                            
+
                             <label for="email">Email Address</label>
                             <div class="input-box">
                                 <input type="email" id="email" placeholder="Enter your email" required>
@@ -516,9 +536,9 @@
                         <div class="back-btn" id="back-to-login-from-forgot">
                             <i class="fa-solid fa-arrow-left"></i> Back to Login
                         </div>
-                        
+
                         <h2>Forgot Password</h2>
-                        
+
                         <form id="forgot-form">
                             <label>Email Address</label>
                             <div class="input-box">
@@ -539,9 +559,9 @@
                         <div class="back-btn" id="back-to-login-from-signup">
                             <i class="fa-solid fa-arrow-left"></i> Back to Login
                         </div>
-                        
+
                         <h2>Create Account</h2>
-                        
+
                         <!-- تحديد نوع المستخدم للتسجيل -->
                         <div class="user-type-selector">
                             <button type="button" class="user-type-btn active" id="signup-patient-btn">
@@ -551,17 +571,18 @@
                                 <i class="fas fa-user-md user-type-icon"></i> Doctor
                             </button>
                         </div>
-                        
+
                         <form id="signup-form">
                             <!-- حقل معرف الطبيب للتسجيل -->
                             <div class="form-group doctor-id-field" id="signup-doctor-id-field">
                                 <label for="signup-doctor-id">Doctor ID</label>
                                 <div class="input-box">
-                                    <input type="text" id="signup-doctor-id" required placeholder="Enter your doctor ID if available">
+                                    <input type="text" id="signup-doctor-id" required
+                                        placeholder="Enter your doctor ID if available">
                                     <i class="fas fa-id-card"></i>
                                 </div>
                             </div>
-                            
+
                             <label>Full Name</label>
                             <div class="input-box">
                                 <input type="text" placeholder="Enter your full name" required>
@@ -572,6 +593,25 @@
                             <div class="input-box">
                                 <input type="email" placeholder="Enter your email" required>
                                 <i class="fa-regular fa-message"></i>
+                            </div>
+                            <label for="specialty">Medical Specialty</label>
+                            <div class="input-box">
+                                <select id="specialty" required>
+                                    <option value="">Select specialty</option>
+                                    <option value="general">General Medicine</option>
+                                    <option value="pediatrics">Pediatrics</option>
+                                    <option value="nutrition">Nutrition</option>
+                                    <option value="cardiology">Cardiology</option>
+                                    <option value="dermatology">Dermatology</option>
+                                    <option value="orthopedics">Orthopedics</option>
+                                    <option value="gastroenterology">Gastroenterology</option>
+                                </select>
+                                <i class="fa-solid fa-stethoscope"></i>
+                            </div>
+                            <label>Date of Birth</label>
+                            <div class="input-box">
+                                <input type="date" required lang="en">
+                                <!-- <i class="fa-solid fa-date" style="color:#1a5855"></i> -->
                             </div>
 
                             <label>Password</label>
@@ -611,7 +651,8 @@
 
         <!-- تذييل الصفحة -->
         <div class="footer">
-            <p>&copy; 2023 MediPoint System. All rights reserved.</p>
+            <p style="font-size: smaller;">&copy; 2025 SmartMediPoint. All Rights Reserved || Developed by Computer
+                Engineering Students - IUG</p>
         </div>
     </div>
 
@@ -620,7 +661,7 @@
         const loginSection = document.getElementById('login-section');
         const forgotSection = document.getElementById('forgot-section');
         const signupSection = document.getElementById('signup-section');
-        
+
         // أزرار التبديل
         const showForgotPassword = document.getElementById('show-forgot-password');
         const showSignup = document.getElementById('show-signup');
@@ -628,52 +669,52 @@
         const showLoginFromSignup = document.getElementById('show-login-from-signup');
         const backToLoginFromForgot = document.getElementById('back-to-login-from-forgot');
         const backToLoginFromSignup = document.getElementById('back-to-login-from-signup');
-        
+
         // أزرار اختيار نوع المستخدم (تسجيل الدخول)
         const patientBtn = document.getElementById('patient-btn');
         const doctorBtn = document.getElementById('doctor-btn');
         const doctorIdField = document.getElementById('doctor-id-field');
         const loginButton = document.getElementById('login-button');
-        
+
         // أزرار اختيار نوع المستخدم (التسجيل)
         const signupPatientBtn = document.getElementById('signup-patient-btn');
         const signupDoctorBtn = document.getElementById('signup-doctor-btn');
         const signupDoctorIdField = document.getElementById('signup-doctor-id-field');
         const signupButton = document.getElementById('signup-button');
-        
+
         // المتغيرات لتحديد نوع المستخدم
         let userType = 'patient'; // القيمة الافتراضية
         let signupUserType = 'patient'; // القيمة الافتراضية للتسجيل
-        
+
         // دوال التبديل بين النماذج
         function showLogin() {
             loginSection.classList.add('active');
             forgotSection.classList.remove('active');
             signupSection.classList.remove('active');
         }
-        
+
         function showForgot() {
             loginSection.classList.remove('active');
             forgotSection.classList.add('active');
             signupSection.classList.remove('active');
         }
-        
+
         function showSignupForm() {
             loginSection.classList.remove('active');
             forgotSection.classList.remove('active');
             signupSection.classList.add('active');
         }
-        
+
         // تبديل نوع المستخدم (تسجيل الدخول)
         function setUserType(type) {
             userType = type;
-            
+
             if (type === 'doctor') {
                 patientBtn.classList.remove('active');
                 doctorBtn.classList.add('active');
                 doctorIdField.style.display = 'block';
                 loginButton.textContent = 'Login as Doctor';
-                
+
                 // جعل حقل معرف الطبيب إلزامي
                 document.getElementById('doctor-id').required = true;
             } else {
@@ -681,16 +722,16 @@
                 doctorBtn.classList.remove('active');
                 doctorIdField.style.display = 'none';
                 loginButton.textContent = 'Login as Patient';
-                
+
                 // جعل حقل معرف الطبيب غير إلزامي
                 document.getElementById('doctor-id').required = false;
             }
         }
-        
+
         // تبديل نوع المستخدم (التسجيل)
         function setSignupUserType(type) {
             signupUserType = type;
-            
+
             if (type === 'doctor') {
                 signupPatientBtn.classList.remove('active');
                 signupDoctorBtn.classList.add('active');
@@ -705,7 +746,7 @@
                 document.getElementById('signup-doctor-id').required = false;
             }
         }
-        
+
         // إضافة معالجي الأحداث
         showForgotPassword.addEventListener('click', showForgot);
         showSignup.addEventListener('click', showSignupForm);
@@ -713,28 +754,28 @@
         showLoginFromSignup.addEventListener('click', showLogin);
         backToLoginFromForgot.addEventListener('click', showLogin);
         backToLoginFromSignup.addEventListener('click', showLogin);
-        
+
         // أحداث أزرار اختيار نوع المستخدم (تسجيل الدخول)
         patientBtn.addEventListener('click', () => setUserType('patient'));
         doctorBtn.addEventListener('click', () => setUserType('doctor'));
-        
+
         // أحداث أزرار اختيار نوع المستخدم (التسجيل)
         signupPatientBtn.addEventListener('click', () => setSignupUserType('patient'));
         signupDoctorBtn.addEventListener('click', () => setSignupUserType('doctor'));
-        
+
         // معالجة إرسال نموذج تسجيل الدخول
-        document.getElementById('login-form').addEventListener('submit', function(e) {
+        document.getElementById('login-form').addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const doctorId = userType === 'doctor' ? document.getElementById('doctor-id').value : null;
-            
+
             if (userType === 'doctor' && (!doctorId || doctorId.trim() === '')) {
                 alert('Please enter your Doctor ID');
                 return;
             }
-            
+
             // رسالة نجاح بناءً على نوع المستخدم
             if (userType === 'doctor') {
                 alert(`Doctor login successful!\nEmail: ${email}\nDoctor ID: ${doctorId}`);
@@ -746,53 +787,54 @@
                 // window.location.href = 'patient-dashboard.html';
             }
         });
-        
+
         // معالجة إرسال نموذج نسيت كلمة المرور
-        document.getElementById('forgot-form').addEventListener('submit', function(e) {
+        document.getElementById('forgot-form').addEventListener('submit', function (e) {
             e.preventDefault();
             alert('Password reset link has been sent to your email!');
             showLogin();
         });
-        
+
         // معالجة إرسال نموذج إنشاء حساب جديد
-        document.getElementById('signup-form').addEventListener('submit', function(e) {
+        document.getElementById('signup-form').addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             // التحقق من تطابق كلمتي المرور
             const password = document.querySelector('#signup-form input[type="password"]').value;
             const confirmPassword = document.querySelectorAll('#signup-form input[type="password"]')[1].value;
-            
+
             if (password !== confirmPassword) {
                 alert('Passwords do not match!');
                 return;
             }
-            
+
             const doctorId = signupUserType === 'doctor' ? document.getElementById('signup-doctor-id').value : null;
-            
+
             if (signupUserType === 'doctor') {
                 alert(`Doctor account created successfully!\nYou can now login with your credentials.`);
             } else {
                 alert(`Patient account created successfully!\nPlease login with your credentials.`);
             }
-            
+
             showLogin();
         });
-        
+
         // تأثيرات تفاعلية بسيطة
         const inputs = document.querySelectorAll('.input-box input');
         inputs.forEach(input => {
             // تأثير عند التركيز على الحقل
-            input.addEventListener('focus', function() {
+            input.addEventListener('focus', function () {
                 this.parentElement.style.borderColor = '#1a5855';
                 this.parentElement.style.boxShadow = '0 0 0 2px rgba(26, 88, 85, 0.2)';
             });
-            
+
             // تأثير عند إزالة التركيز من الحقل
-            input.addEventListener('blur', function() {
+            input.addEventListener('blur', function () {
                 this.parentElement.style.borderColor = '#ccc';
                 this.parentElement.style.boxShadow = 'none';
             });
         });
     </script>
 </body>
+
 </html>
