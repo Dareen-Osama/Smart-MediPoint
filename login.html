@@ -198,6 +198,11 @@
             cursor: pointer;
         }
 
+        #doctorSpecialty,
+        .doctor-id-field {
+            display: none;
+        }
+
 
         .checkbox {
             display: flex;
@@ -499,7 +504,7 @@
                                     <input type="text" id="doctor-id" placeholder="Enter your doctor ID">
                                     <i class="fas fa-id-card"></i>
                                 </div>
-                               
+
 
                             </div>
 
@@ -594,24 +599,30 @@
                                 <input type="email" placeholder="Enter your email" required>
                                 <i class="fa-regular fa-message"></i>
                             </div>
-                            <label for="specialty">Medical Specialty</label>
-                            <div class="input-box">
-                                <select id="specialty" required>
-                                    <option value="">Select specialty</option>
-                                    <option value="general">General Medicine</option>
-                                    <option value="pediatrics">Pediatrics</option>
-                                    <option value="nutrition">Nutrition</option>
-                                    <option value="cardiology">Cardiology</option>
-                                    <option value="dermatology">Dermatology</option>
-                                    <option value="orthopedics">Orthopedics</option>
-                                    <option value="gastroenterology">Gastroenterology</option>
-                                </select>
-                                <i class="fa-solid fa-stethoscope"></i>
+                            <div class="form-group" id="doctorSpecialty">
+                                <label for="specialty">Medical Specialty</label>
+                                <div class="input-box">
+                                    <select id="specialty" required>
+                                        <option value="">Select specialty</option>
+                                        <option value="general">General Medicine</option>
+                                        <option value="pediatrics">Pediatrics</option>
+                                        <option value="nutrition">Nutrition</option>
+                                        <option value="cardiology">Cardiology</option>
+                                        <option value="dermatology">Dermatology</option>
+                                        <option value="orthopedics">Orthopedics</option>
+                                        <option value="gastroenterology">Gastroenterology</option>
+                                    </select>
+                                    <i class="fa-solid fa-stethoscope"></i>
+                                </div>
                             </div>
                             <label>Date of Birth</label>
                             <div class="input-box">
-                                <input type="date" required lang="en">
-                                <!-- <i class="fa-solid fa-date" style="color:#1a5855"></i> -->
+                                <input type="date" id="dob" required lang="en">
+                                <label>Date of Birth</label>
+                                <div class="input-box">
+                                    <input type="date" id="dob" required lang="en">
+                                </div>
+                                <p id="age-display" style="margin-top:5px; font-size:14px; color:#1a5855;"></p>
                             </div>
 
                             <label>Password</label>
@@ -732,20 +743,38 @@
         function setSignupUserType(type) {
             signupUserType = type;
 
+            const specialtyBox = document.getElementById('doctorSpecialty');
+            const specialtySelect = document.getElementById('specialty');
+            const doctorIdInput = document.getElementById('signup-doctor-id');
+
             if (type === 'doctor') {
                 signupPatientBtn.classList.remove('active');
                 signupDoctorBtn.classList.add('active');
+
                 signupDoctorIdField.style.display = 'block';
+                specialtyBox.style.display = 'block';
+
+                doctorIdInput.required = true;
+                specialtySelect.required = true;
+
                 signupButton.textContent = 'Create Doctor Account';
-                document.getElementById('signup-doctor-id').required = true;
             } else {
                 signupPatientBtn.classList.add('active');
                 signupDoctorBtn.classList.remove('active');
+
                 signupDoctorIdField.style.display = 'none';
+                specialtyBox.style.display = 'none';
+
+                doctorIdInput.required = false;
+                specialtySelect.required = false;
+
+                doctorIdInput.value = '';
+                specialtySelect.value = '';
+
                 signupButton.textContent = 'Create Patient Account';
-                document.getElementById('signup-doctor-id').required = false;
             }
         }
+
 
         // إضافة معالجي الأحداث
         showForgotPassword.addEventListener('click', showForgot);
@@ -820,7 +849,8 @@
         });
 
         // تأثيرات تفاعلية بسيطة
-        const inputs = document.querySelectorAll('.input-box input');
+        const inputs = document.querySelectorAll('.input-box input, .input-box select');
+
         inputs.forEach(input => {
             // تأثير عند التركيز على الحقل
             input.addEventListener('focus', function () {
@@ -834,6 +864,7 @@
                 this.parentElement.style.boxShadow = 'none';
             });
         });
+
     </script>
 </body>
 
