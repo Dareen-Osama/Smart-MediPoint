@@ -40,19 +40,8 @@
         }
 
         /* ==================== HEADER & NAVIGATION ==================== */
-        header {
-            background-color: var(--background);
-        }
-
-        .head {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
         .headNav {
             display: flex;
-            flex-direction: row;
             justify-content: space-between;
             background-color: var(--background);
             padding: 0 2%;
@@ -65,7 +54,7 @@
             align-items: center;
         }
 
-        .headNav div a {
+        .headNav a {
             text-decoration: none;
             color: var(--Paraghfont);
         }
@@ -73,6 +62,12 @@
         .headNav img {
             width: 120px;
             height: 120px;
+        }
+
+        .language {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .navBar {
@@ -85,7 +80,6 @@
             padding: 0 5%;
             height: 70px;
             display: flex;
-            flex-direction: row;
             justify-content: space-between;
             align-items: center;
             border-radius: 25px;
@@ -99,8 +93,7 @@
 
         nav ul {
             display: flex;
-            flex-direction: row;
-            justify-content: center;
+            justify-content: start;
             list-style: none;
             width: 100%;
             gap: 5px;
@@ -108,10 +101,6 @@
         }
 
         nav ul li {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 10px;
             position: relative;
         }
 
@@ -122,6 +111,7 @@
             padding: 8px 20px;
             display: flex;
             align-items: center;
+
             gap: 8px;
             border-radius: 25px;
             transition: all 0.3s ease;
@@ -213,54 +203,13 @@
         }
 
         /* ==================== DASHBOARD PAGE ==================== */
-        .dashboard {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .card {
-            background-color: var(--fontAtNav);
-            border-radius: 25px;
-            padding: 25px;
-            box-shadow: 1px 1px 9px rgba(0, 0, 0, 0.1);
-            flex: 1;
-            min-width: 250px;
-            border: 2px solid var(--navcolor);
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .card-title {
-            font-size: 1.2rem;
-            color: var(--Paraghfont);
-            font-weight: bold;
-        }
-
-        .card-icon {
-            width: 50px;
-            height: 50px;
-            background-color: var(--navcolor);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--fontAtNav);
-        }
-
         .dashboardItema {
-            width: auto;
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
             border-radius: 25px;
             justify-content: center;
+            margin-bottom: 30px;
         }
 
         .dashboardItema .card {
@@ -272,6 +221,8 @@
             border-radius: 25px;
             border: solid 2px var(--navcolor);
             text-align: center;
+            padding: 20px;
+            background-color: var(--fontAtNav);
         }
 
         .cardHead {
@@ -286,7 +237,7 @@
             text-align: center;
             font-weight: bold;
             margin-top: 10px;
-            font-size: 1.5rem;
+            font-size: 1.1rem;
         }
 
         /* ==================== USER MANAGEMENT PAGE ==================== */
@@ -346,6 +297,10 @@
             background-color: var(--warning-yellow);
         }
 
+        .btn-info {
+            background-color: var(--info-blue);
+        }
+
         .btn-outline {
             background-color: transparent;
             border: 2px solid var(--navcolor);
@@ -396,6 +351,26 @@
             display: inline-block;
         }
 
+        .status-open {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-in-progress {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+
+        .status-resolved {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-closed {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
         .status-active {
             background-color: #d4edda;
             color: #155724;
@@ -411,6 +386,21 @@
             color: #721c24;
         }
 
+        .priority-high {
+            color: var(--urgent-red);
+            font-weight: bold;
+        }
+
+        .priority-medium {
+            color: var(--warning-yellow);
+            font-weight: bold;
+        }
+
+        .priority-low {
+            color: var(--info-blue);
+            font-weight: bold;
+        }
+
         .action-buttons {
             display: flex;
             gap: 5px;
@@ -421,13 +411,15 @@
             background-color: var(--navcolor);
             border-radius: 25px;
             width: 100%;
-            height: 100px;
+            min-height: 100px;
             opacity: 0.8;
             display: flex;
-            flex-direction: row;
             justify-content: space-evenly;
             align-items: center;
             margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 20px;
         }
 
         .reportbutton div {
@@ -437,29 +429,18 @@
             color: var(--fontAtNav);
             text-decoration: none;
             border: 2px solid var(--fontAtNav);
-            padding: 15px;
+            padding: 15px 25px;
             border-radius: 25px;
-            gap: 0 5px;
+            gap: 10px;
             opacity: 1;
-            box-shadow: 2px 1px 8px black;
+            box-shadow: 2px 1px 8px rgba(0, 0, 0, 0.2);
             cursor: pointer;
+            transition: all 0.3s;
         }
 
         .reportbutton div:hover {
             transform: translateY(-3px);
-        }
-
-        .reportbutton img {
-            height: 20px;
-            width: 20px;
-        }
-
-        .reportbutton div a {
-            font-weight: bolder;
-            color: var(--fontAtNav);
-            text-decoration: none;
-            padding-bottom: 20px;
-            text-align: center;
+            box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         /* ==================== CHARTS SECTION ==================== */
@@ -467,19 +448,20 @@
             display: flex;
             flex-wrap: wrap;
             gap: 30px;
-            margin-top: 5%;
+            margin-top: 30px;
             justify-content: center;
         }
 
         .chart-container {
             width: 48%;
-            min-width: 500px;
+            min-width: 300px;
             background-color: var(--fontAtNav);
             border-radius: 25px;
             padding: 25px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             border: 2px solid var(--navcolor);
             margin-bottom: 30px;
+            height: 800px;
         }
 
         .chart-container h3 {
@@ -509,6 +491,123 @@
             background-color: white;
             color: var(--Paraghfont);
             font-weight: 500;
+        }
+
+        /* ==================== SUPPORT PAGE ==================== */
+        .support-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .support-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background-color: var(--fontAtNav);
+            border-radius: 25px;
+            padding: 20px;
+            border: 2px solid var(--navcolor);
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            color: var(--navcolor);
+            margin-bottom: 10px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--Paraghfont);
+        }
+
+        .ticket-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .category-btn {
+            padding: 10px 20px;
+            background-color: var(--fontAtNav);
+            border: 2px solid var(--navcolor);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-btn.active {
+            background-color: var(--navcolor);
+            color: var(--fontAtNav);
+        }
+
+        .category-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .ticket-item {
+            background-color: var(--fontAtNav);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--info-blue);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .ticket-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .ticket-item.high {
+            border-left-color: var(--urgent-red);
+        }
+
+        .ticket-item.medium {
+            border-left-color: var(--warning-yellow);
+        }
+
+        .ticket-item.low {
+            border-left-color: var(--info-blue);
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .ticket-title {
+            font-weight: bold;
+            color: var(--Paraghfont);
+            font-size: 1.1rem;
+        }
+
+        .ticket-meta {
+            display: flex;
+            gap: 15px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .ticket-description {
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .ticket-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
         }
 
         /* ==================== MODALS ==================== */
@@ -580,6 +679,11 @@
             border-radius: 10px;
             font-size: 1rem;
             color: var(--Paraghfont);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
         }
 
         .modal-footer {
@@ -661,6 +765,36 @@
             transform: translateX(26px);
         }
 
+        /* ==================== FAQ SECTION ==================== */
+        .faq-section {
+            margin-top: 30px;
+        }
+
+        .faq-item {
+            background-color: var(--fontAtNav);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 2px solid var(--navcolor);
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: var(--Paraghfont);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            color: #666;
+            line-height: 1.5;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
         /* ==================== FOOTER ==================== */
         footer {
             background-color: var(--navcolor);
@@ -688,6 +822,7 @@
         .items {
             display: flex;
             gap: 20px;
+            flex-wrap: wrap;
         }
 
         .items a {
@@ -718,11 +853,68 @@
             border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
 
+        /* ==================== NOTIFICATION ==================== */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            font-weight: bold;
+            animation: slideIn 0.3s ease-out;
+            display: none;
+        }
+
+        .notification.success {
+            background-color: var(--success-green);
+            color: white;
+        }
+
+        .notification.error {
+            background-color: var(--urgent-red);
+            color: white;
+        }
+
+        .notification.warning {
+            background-color: var(--warning-yellow);
+            color: black;
+        }
+
+        .notification.info {
+            background-color: var(--info-blue);
+            color: white;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
         /* ==================== RESPONSIVE ==================== */
         @media (max-width: 1200px) {
             .chart-container {
                 width: 100%;
-                min-width: 300px;
             }
         }
 
@@ -774,7 +966,6 @@
 
             .reportbutton {
                 flex-direction: column;
-                height: auto;
                 padding: 20px;
                 gap: 15px;
             }
@@ -786,6 +977,24 @@
             .communicating {
                 flex-direction: column;
                 text-align: center;
+            }
+
+            .settings-card {
+                min-width: 100%;
+            }
+
+            .support-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .ticket-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .ticket-meta {
+                flex-wrap: wrap;
             }
         }
 
@@ -817,465 +1026,572 @@
         .text-warning {
             color: var(--warning-yellow);
         }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        @media (max-width: 1200px) {
+            .chart-container {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .chart-container {
+                min-width: 100%;
+                padding: 15px;
+            }
+
+            .chart-wrapper {
+                min-height: 250px;
+                max-height: 350px;
+            }
+        }
     </style>
 </head>
 
 <body>
     <!-- ==================== HEADER ==================== -->
     <header>
-        <div class="head">
-            <div class="headNav">
-                <div><a href="#">
-                        <h1>The Smart Medical Point</h1>
-                    </a></div>
-                <img src="media/logo.png" alt="Logo">
-                <div class="language">
-                    <img src="media/world.png" alt="Language" style="height: 24px; width: 24px;">
-                    <p>EN-US</p>
-                </div>
+        <div class="headNav">
+            <div><a href="#">
+                    <h1>The Smart Medical Point</h1>
+                </a></div>
+            <img src="media/logo.png" alt="Logo">
+            <div class="language">
+                <img src="media/world.png" alt="Language" style="height: 24px; width: 24px;">
+                <p>EN-US</p>
             </div>
+        </div>
 
-            <div class="navBar">
-                <nav>
-                    <div class="menu">
-                        <ul>
-                            <li><a href="#" class="active" data-page="dashboard">
-                                    <i class="fas fa-home"></i> Dashboard
-                                </a></li>
-                            <li><a href="#" data-page="user-management">
-                                    <i class="fas fa-users-cog"></i> User Management
-                                    <span class="notification-badge" id="pendingCount">5</span>
-                                </a></li>
-                            <li><a href="#" data-page="reports">
-                                    <i class="fas fa-chart-bar"></i> Reports
-                                </a></li>
-                            <li><a href="#" data-page="settings">
-                                    <i class="fas fa-cog"></i> Settings
-                                </a></li>
-                        </ul>
-                    </div>
-                    <a href="login.html" class="logout-btn">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </a>
-                </nav>
-            </div>
+        <div class="navBar">
+            <nav>
+                <div class="menu">
+                    <ul>
+                        <li><a href="#" class="active" data-page="dashboard">
+                                <i class="fas fa-home"></i> Dashboard
+                            </a></li>
+                        <li><a href="#" data-page="user-management">
+                                <i class="fas fa-users-cog"></i> User Management
+                                <span class="notification-badge" id="pendingCount">5</span>
+                            </a></li>
+                        <li><a href="#" data-page="reports">
+                                <i class="fas fa-chart-bar"></i> Reports
+                            </a></li>
+                        <li><a href="#" data-page="support">
+                                <i class="fas fa-headset"></i> Support
+                                <span class="notification-badge" id="supportCount">3</span>
+                            </a></li>
+                        <li><a href="#" data-page="settings">
+                                <i class="fas fa-cog"></i> Settings
+                            </a></li>
+                    </ul>
+                </div>
+                <a href="login.html" class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </nav>
         </div>
     </header>
 
     <!-- ==================== MAIN CONTENT ==================== -->
-    <main>
-        <div class="container">
-            <!-- Dashboard Page -->
-            <div id="dashboard-page" class="page-content active">
-                <div class="page-header">
-                    <div class="page-title">
-                        <h2>Admin Dashboard</h2>
-                        <p>Welcome to Smart Medical Point Admin System</p>
-                    </div>
-                    <button class="btn" onclick="showNotification('Dashboard refreshed', 'success')">
-                        <i class="fas fa-sync-alt"></i> Refresh
-                    </button>
+    <main class="container">
+        <!-- Dashboard Page -->
+        <div id="dashboard-page" class="page-content active">
+            <div class="page-header">
+                <div class="page-title">
+                    <h2>Admin Dashboard</h2>
+                    <p>Welcome to Smart Medical Point Admin System</p>
                 </div>
+                <button class="btn" id="refreshDashboard">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
 
-                <!-- Statistics Cards -->
-                <div class="dashboardItema">
-                    <div class="card">
-                        <div class="cardHead">
-                            <i class="fas fa-user" style="font-size: 24px; color: var(--navcolor);"></i>
-                            <h4 id="totalPatients">1,250</h4>
-                        </div>
-                        <div class="cardDescription">
-                            <p>Total Patients</p>
-                        </div>
+            <!-- Statistics Cards -->
+            <div class="dashboardItema">
+                <div class="card">
+                    <div class="cardHead">
+                        <i class="fas fa-user" style="font-size: 24px; color: var(--navcolor);"></i>
+                        <h4 id="totalPatients">1,250</h4>
                     </div>
-                    <div class="card">
-                        <div class="cardHead">
-                            <i class="fas fa-user-md" style="font-size: 24px; color: var(--navcolor);"></i>
-                            <h4 id="totalDoctors">150</h4>
-                        </div>
-                        <div class="cardDescription">
-                            <p>Total Doctors</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="cardHead">
-                            <i class="fas fa-calendar-check" style="font-size: 24px; color: var(--navcolor);"></i>
-                            <h4 id="totalAppointments">35</h4>
-                        </div>
-                        <div class="cardDescription">
-                            <p>Today's Appointments</p>
-                        </div>
-                    </div>
-                    <div class="card" style="border: 2px solid var(--urgent-red);">
-                        <div class="cardHead">
-                            <i class="fas fa-exclamation-triangle"
-                                style="font-size: 24px; color: var(--urgent-red);"></i>
-                            <h4 id="pendingRequests">5</h4>
-                        </div>
-                        <div class="cardDescription">
-                            <p>Pending Requests</p>
-                        </div>
+                    <div class="cardDescription">
+                        <p>Total Patients</p>
                     </div>
                 </div>
-
-                <!-- Charts Section -->
-                <section id="chart" class="mt-20">
-                    <div class="chart-container">
-                        <h3>Patient Distribution by Age</h3>
-                        <div class="chart-controls">
-                            <select id="ageChartType">
-                                <option value="bar">Bar Chart</option>
-                                <option value="pie">Pie Chart</option>
-                            </select>
-                            <button class="btn btn-small" onclick="updateChart()">
-                                <i class="fas fa-sync"></i> Update
-                            </button>
-                        </div>
-                        <canvas id="patientChart" height="300"></canvas>
+                <div class="card">
+                    <div class="cardHead">
+                        <i class="fas fa-user-md" style="font-size: 24px; color: var(--navcolor);"></i>
+                        <h4 id="totalDoctors">150</h4>
                     </div>
-
-                    <div class="chart-container">
-                        <h3>Monthly Registrations</h3>
-                        <div class="chart-controls">
-                            <select id="yearSelect">
-                                <option value="2025">2025</option>
-                                <option value="2024">2024</option>
-                            </select>
-                            <button class="btn btn-small" onclick="exportChartData()">
-                                <i class="fas fa-download"></i> Export
-                            </button>
-                        </div>
-                        <canvas id="monthlyChart" height="300"></canvas>
+                    <div class="cardDescription">
+                        <p>Total Doctors</p>
                     </div>
-                </section>
-
-                <!-- Recent Activity -->
-                <div class="card mt-20">
-                    <div class="card-header">
-                        <h3 class="card-title">Recent Activity</h3>
-                        <div class="card-icon">
-                            <i class="fas fa-history"></i>
-                        </div>
+                </div>
+                <div class="card">
+                    <div class="cardHead">
+                        <i class="fas fa-calendar-check" style="font-size: 24px; color: var(--navcolor);"></i>
+                        <h4 id="totalAppointments">35</h4>
                     </div>
-                    <div id="recentActivity">
-                        <!-- Will be populated by JavaScript -->
+                    <div class="cardDescription">
+                        <p>Today's Appointments</p>
+                    </div>
+                </div>
+                <div class="card" style="border: 2px solid var(--urgent-red);">
+                    <div class="cardHead">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 24px; color: var(--urgent-red);"></i>
+                        <h4 id="pendingRequests">5</h4>
+                    </div>
+                    <div class="cardDescription">
+                        <p>Pending Requests</p>
                     </div>
                 </div>
             </div>
 
-            <!-- User Management Page -->
-            <div id="user-management-page" class="page-content">
-                <div class="page-header">
-                    <div class="page-title">
-                        <h2>User Management</h2>
-                        <p>Manage all system users and pending requests</p>
+            <!-- Charts Section -->
+            <section id="chart" class="mt-20">
+                <div class="chart-container">
+                    <h3>Patient Distribution by Age</h3>
+                    <div class="chart-controls">
+                        <select id="ageChartType">
+                            <option value="bar">Bar Chart</option>
+                            <option value="pie">Pie Chart</option>
+                        </select>
+                        <button class="btn btn-small" id="updateChartBtn">
+                            <i class="fas fa-sync"></i> Update
+                        </button>
                     </div>
-                    <button class="btn" onclick="openAddUserModal()">
-                        <i class="fas fa-user-plus"></i> Add New User
-                    </button>
+                    <canvas id="patientChart" height="300"></canvas>
                 </div>
 
-                <div class="user-management-section">
-                    <!-- Controls -->
-                    <div class="user-management-controls">
-                        <div>
-                            <h3><i class="fas fa-users"></i> System Users</h3>
-                            <p>Total: <span id="userCount">0</span> users</p>
-                        </div>
-                        <div class="controls-buttons">
-                            <button class="btn btn-outline" onclick="showPendingRequests()">
-                                <i class="fas fa-clock"></i> Show Pending
-                            </button>
-                            <button class="btn btn-warning" onclick="exportUsers()">
-                                <i class="fas fa-file-export"></i> Export
-                            </button>
-                        </div>
+                <div class="chart-container">
+                    <h3>Monthly Registrations</h3>
+                    <div class="chart-controls">
+                        <select id="yearSelect">
+                            <option value="2025">2025</option>
+                            <option value="2024">2024</option>
+                        </select>
+                        <button class="btn btn-small" id="exportChartBtn">
+                            <i class="fas fa-download"></i> Export
+                        </button>
                     </div>
+                    <canvas id="monthlyChart" height="300"></canvas>
+                </div>
+            </section>
 
-                    <!-- Search and Filters -->
-                    <div class="table-container">
-                        <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
-                            <input type="text" class="form-control" placeholder="Search users..."
-                                style="flex: 1; min-width: 200px;" id="userSearch">
-                            <select class="form-control" style="width: 150px;" id="roleFilter">
-                                <option value="">All Roles</option>
-                                <option value="admin">Admin</option>
-                                <option value="doctor">Doctor</option>
-                                <option value="patient">Patient</option>
-                                <option value="staff">Staff</option>
-                            </select>
-                            <select class="form-control" style="width: 150px;" id="statusFilter">
-                                <option value="">All Status</option>
-                                <option value="active">Active</option>
-                                <option value="pending">Pending</option>
-                                <option value="inactive">Inactive</option>
-                            </select>
-                        </div>
-
-                        <!-- Users Table -->
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>User</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Status</th>
-                                    <th>Joined</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="usersTable">
-                                <!-- Will be populated by JavaScript -->
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!-- Pending Requests Section -->
-                    <div id="pendingRequestsSection" class="hidden">
-                        <div class="user-management-controls" style="background-color: rgba(255, 193, 7, 0.1);">
-                            <h3><i class="fas fa-user-clock"></i> Pending Registration Requests</h3>
-                            <button class="btn btn-outline" onclick="hidePendingRequests()">
-                                <i class="fas fa-arrow-left"></i> Back to Users
-                            </button>
-                        </div>
-                        <div class="table-container">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Role Requested</th>
-                                        <th>Request Date</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="pendingRequestsTable">
-                                    <!-- Will be populated by JavaScript -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+            <!-- Recent Activity -->
+            <div class="table-container mt-20">
+                <div class="page-header">
+                    <h3>Recent Activity</h3>
+                    <button class="btn btn-small" id="clearActivity">
+                        <i class="fas fa-trash"></i> Clear
+                    </button>
+                </div>
+                <div id="recentActivity">
+                    <!-- Will be populated by JavaScript -->
                 </div>
             </div>
+        </div>
 
-            <!-- Reports Page -->
-            <div id="reports-page" class="page-content">
-                <div class="page-header">
-                    <div class="page-title">
-                        <h2>Reports & Analytics</h2>
-                        <p>Generate and view system reports</p>
-                    </div>
-                    <button class="btn" onclick="generateReport()">
-                        <i class="fas fa-file-alt"></i> Generate Report
-                    </button>
+        <!-- User Management Page -->
+        <div id="user-management-page" class="page-content">
+            <div class="page-header">
+                <div class="page-title">
+                    <h2>User Management</h2>
+                    <p>Manage all system users and pending requests</p>
                 </div>
+                <button class="btn" id="addUserBtn">
+                    <i class="fas fa-user-plus"></i> Add New User
+                </button>
+            </div>
 
-                <div class="reportbutton">
-                    <div onclick="showUserReport()">
-                        <i class="fas fa-users" style="color: var(--fontAtNav); font-size: 20px;"></i>
-                        <a>User Reports</a>
+            <div class="user-management-section">
+                <!-- Controls -->
+                <div class="user-management-controls">
+                    <div>
+                        <h3><i class="fas fa-users"></i> System Users</h3>
+                        <p>Total: <span id="userCount">0</span> users</p>
                     </div>
-                    <div onclick="showMedicalReport()">
-                        <i class="fas fa-file-medical" style="color: var(--fontAtNav); font-size: 20px;"></i>
-                        <a>Medical Reports</a>
-                    </div>
-                    <div onclick="showFinancialReport()">
-                        <i class="fas fa-chart-line" style="color: var(--fontAtNav); font-size: 20px;"></i>
-                        <a>Financial Reports</a>
-                    </div>
-                </div>
-
-                <!-- Reports Content -->
-                <div class="card mt-20">
-                    <div class="card-header">
-                        <h3 class="card-title">Report Generator</h3>
-                        <div class="card-icon">
-                            <i class="fas fa-cogs"></i>
-                        </div>
-                    </div>
-                    <div style="padding: 20px;">
-                        <div class="form-group">
-                            <label>Report Type</label>
-                            <select class="form-control" id="reportType">
-                                <option value="user">User Activity Report</option>
-                                <option value="medical">Medical Statistics</option>
-                                <option value="financial">Financial Summary</option>
-                                <option value="system">System Usage</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Date Range</label>
-                            <div style="display: flex; gap: 10px;">
-                                <input type="date" class="form-control" id="startDate">
-                                <input type="date" class="form-control" id="endDate">
-                            </div>
-                        </div>
-                        <button class="btn btn-success" onclick="generateCustomReport()">
-                            <i class="fas fa-play"></i> Generate Report
+                    <div class="controls-buttons">
+                        <button class="btn btn-outline" id="showPendingBtn">
+                            <i class="fas fa-clock"></i> Show Pending
+                        </button>
+                        <button class="btn btn-warning" id="exportUsersBtn">
+                            <i class="fas fa-file-export"></i> Export
                         </button>
                     </div>
                 </div>
 
-                <!-- Recent Reports -->
-                <div class="card mt-20">
-                    <div class="card-header">
-                        <h3 class="card-title">Recent Reports</h3>
-                        <div class="card-icon">
-                            <i class="fas fa-history"></i>
-                        </div>
+                <!-- Search and Filters -->
+                <div class="table-container">
+                    <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
+                        <input type="text" class="form-control" placeholder="Search users..."
+                            style="flex: 1; min-width: 200px;" id="userSearch">
+                        <select class="form-control" style="width: 150px;" id="roleFilter">
+                            <option value="">All Roles</option>
+                            <option value="admin">Admin</option>
+                            <option value="doctor">Doctor</option>
+                            <option value="patient">Patient</option>
+                            <option value="staff">Staff</option>
+                        </select>
+                        <select class="form-control" style="width: 150px;" id="statusFilter">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="pending">Pending</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
                     </div>
-                    <div style="padding: 20px;">
-                        <table style="width: 100%;">
+
+                    <!-- Users Table -->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Joined</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTable">
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pending Requests Section -->
+                <div id="pendingRequestsSection" class="hidden">
+                    <div class="user-management-controls" style="background-color: rgba(255, 193, 7, 0.1);">
+                        <h3><i class="fas fa-user-clock"></i> Pending Registration Requests</h3>
+                        <button class="btn btn-outline" id="backToUsersBtn">
+                            <i class="fas fa-arrow-left"></i> Back to Users
+                        </button>
+                    </div>
+                    <div class="table-container">
+                        <table>
                             <thead>
                                 <tr>
-                                    <th>Report Name</th>
-                                    <th>Generated</th>
-                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role Requested</th>
+                                    <th>Request Date</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody id="recentReports">
+                            <tbody id="pendingRequestsTable">
                                 <!-- Will be populated by JavaScript -->
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Settings Page -->
-            <div id="settings-page" class="page-content">
+        <!-- Reports Page -->
+        <div id="reports-page" class="page-content">
+            <div class="page-header">
+                <div class="page-title">
+                    <h2>Reports & Analytics</h2>
+                    <p>Generate and view system reports</p>
+                </div>
+                <button class="btn" id="generateReportBtn">
+                    <i class="fas fa-file-alt"></i> Generate Report
+                </button>
+            </div>
+
+            <div class="reportbutton">
+                <div id="userReportBtn">
+                    <i class="fas fa-users" style="color: var(--fontAtNav); font-size: 20px;"></i>
+                    <span>User Reports</span>
+                </div>
+                <div id="medicalReportBtn">
+                    <i class="fas fa-file-medical" style="color: var(--fontAtNav); font-size: 20px;"></i>
+                    <span>Medical Reports</span>
+                </div>
+                <div id="financialReportBtn">
+                    <i class="fas fa-chart-line" style="color: var(--fontAtNav); font-size: 20px;"></i>
+                    <span>Financial Reports</span>
+                </div>
+            </div>
+
+            <!-- Reports Content -->
+            <div class="table-container mt-20">
                 <div class="page-header">
-                    <div class="page-title">
-                        <h2>System Settings</h2>
-                        <p>Configure system preferences and options</p>
+                    <h3>Report Generator</h3>
+                    <div class="card-icon">
+                        <i class="fas fa-cogs"></i>
                     </div>
-                    <button class="btn" onclick="saveSettings()">
-                        <i class="fas fa-save"></i> Save Settings
+                </div>
+                <div style="padding: 20px;">
+                    <div class="form-group">
+                        <label>Report Type</label>
+                        <select class="form-control" id="reportType">
+                            <option value="user">User Activity Report</option>
+                            <option value="medical">Medical Statistics</option>
+                            <option value="financial">Financial Summary</option>
+                            <option value="system">System Usage</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Date Range</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="date" class="form-control" id="startDate">
+                            <input type="date" class="form-control" id="endDate">
+                        </div>
+                    </div>
+                    <button class="btn btn-success" id="generateCustomReportBtn">
+                        <i class="fas fa-play"></i> Generate Report
                     </button>
                 </div>
+            </div>
 
-                <div class="settings-section">
-                    <!-- General Settings -->
-                    <div class="settings-card">
-                        <h3><i class="fas fa-cog"></i> General Settings</h3>
-                        <div class="settings-group">
-                            <h4>System Preferences</h4>
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
-                                <span>Enable Email Notifications</span>
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="emailNotifications" checked>
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
-                                <span>Auto-approve Doctors</span>
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="autoApproveDoctors">
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
-                                <span>Maintenance Mode</span>
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="maintenanceMode">
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
+            <!-- Recent Reports -->
+            <div class="table-container mt-20">
+                <div class="page-header">
+                    <h3>Recent Reports</h3>
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                </div>
+                <div style="padding: 20px;">
+                    <table style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Report Name</th>
+                                <th>Generated</th>
+                                <th>Type</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentReports">
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Support Page -->
+        <div id="support-page" class="page-content">
+            <div class="page-header">
+                <div class="page-title">
+                    <h2>Support Center</h2>
+                    <p>Manage support tickets and help desk operations</p>
+                </div>
+                <button class="btn" id="newTicketBtn">
+                    <i class="fas fa-plus-circle"></i> New Ticket
+                </button>
+            </div>
+
+            <div class="support-section">
+                <!-- Support Statistics -->
+                <div class="support-stats">
+                    <div class="stat-card">
+                        <h3>Open Tickets</h3>
+                        <div class="stat-number" id="openTickets">12</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>In Progress</h3>
+                        <div class="stat-number" id="inProgressTickets">8</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Resolved Today</h3>
+                        <div class="stat-number" id="resolvedToday">5</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Avg Response Time</h3>
+                        <div class="stat-number" id="avgResponseTime">2.5h</div>
+                    </div>
+                </div>
+
+                <!-- Ticket Categories -->
+                <div class="ticket-categories">
+                    <button class="category-btn active" data-category="all">All Tickets</button>
+                    <button class="category-btn" data-category="technical">Technical</button>
+                    <button class="category-btn" data-category="billing">Billing</button>
+                    <button class="category-btn" data-category="account">Account</button>
+                    <button class="category-btn" data-category="feature">Feature Request</button>
+                </div>
+
+                <!-- Search and Filters -->
+                <div class="table-container">
+                    <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
+                        <input type="text" class="form-control" placeholder="Search tickets..."
+                            style="flex: 1; min-width: 200px;" id="ticketSearch">
+                        <select class="form-control" style="width: 150px;" id="statusFilterSupport">
+                            <option value="">All Status</option>
+                            <option value="open">Open</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="resolved">Resolved</option>
+                            <option value="closed">Closed</option>
+                        </select>
+                        <select class="form-control" style="width: 150px;" id="priorityFilter">
+                            <option value="">All Priority</option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+
+                    <!-- Tickets List -->
+                    <div id="ticketsList">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="faq-section">
+                    <div class="page-header">
+                        <h3>Frequently Asked Questions</h3>
+                        <button class="btn btn-outline" id="addFaqBtn">
+                            <i class="fas fa-plus"></i> Add FAQ
+                        </button>
+                    </div>
+                    <div id="faqList">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Page -->
+        <div id="settings-page" class="page-content">
+            <div class="page-header">
+                <div class="page-title">
+                    <h2>System Settings</h2>
+                    <p>Configure system preferences and options</p>
+                </div>
+                <button class="btn" id="saveSettingsBtn">
+                    <i class="fas fa-save"></i> Save Settings
+                </button>
+            </div>
+
+            <div class="settings-section">
+                <!-- General Settings -->
+                <div class="settings-card">
+                    <h3><i class="fas fa-cog"></i> General Settings</h3>
+                    <div class="settings-group">
+                        <h4>System Preferences</h4>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                            <span>Enable Email Notifications</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="emailNotifications" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
                         </div>
-
-                        <div class="settings-group">
-                            <h4>Display Settings</h4>
-                            <div class="form-group">
-                                <label>Theme Color</label>
-                                <input type="color" class="form-control" id="themeColor" value="#1D7874">
-                            </div>
-                            <div class="form-group">
-                                <label>Items Per Page</label>
-                                <select class="form-control" id="itemsPerPage">
-                                    <option value="10">10 items</option>
-                                    <option value="25" selected>25 items</option>
-                                    <option value="50">50 items</option>
-                                    <option value="100">100 items</option>
-                                </select>
-                            </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                            <span>Auto-approve Doctors</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="autoApproveDoctors">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                            <span>Maintenance Mode</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="maintenanceMode">
+                                <span class="toggle-slider"></span>
+                            </label>
                         </div>
                     </div>
 
-                    <!-- Security Settings -->
-                    <div class="settings-card">
-                        <h3><i class="fas fa-shield-alt"></i> Security Settings</h3>
-                        <div class="settings-group">
-                            <h4>Password Policy</h4>
-                            <div class="form-group">
-                                <label>Minimum Password Length</label>
-                                <input type="number" class="form-control" id="minPasswordLength" value="8" min="6"
-                                    max="20">
-                            </div>
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
-                                <span>Require Special Characters</span>
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="requireSpecialChars" checked>
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
-                                <span>Two-Factor Authentication</span>
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="twoFactorAuth">
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
+                    <div class="settings-group">
+                        <h4>Display Settings</h4>
+                        <div class="form-group">
+                            <label>Theme Color</label>
+                            <input type="color" class="form-control" id="themeColor" value="#1D7874">
                         </div>
+                        <div class="form-group">
+                            <label>Items Per Page</label>
+                            <select class="form-control" id="itemsPerPage">
+                                <option value="10">10 items</option>
+                                <option value="25" selected>25 items</option>
+                                <option value="50">50 items</option>
+                                <option value="100">100 items</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
 
-                        <div class="settings-group">
-                            <h4>Session Settings</h4>
-                            <div class="form-group">
-                                <label>Session Timeout (minutes)</label>
-                                <input type="number" class="form-control" id="sessionTimeout" value="30" min="5"
-                                    max="120">
-                            </div>
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
-                                <span>Single Session Per User</span>
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="singleSession">
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
+                <!-- Security Settings -->
+                <div class="settings-card">
+                    <h3><i class="fas fa-shield-alt"></i> Security Settings</h3>
+                    <div class="settings-group">
+                        <h4>Password Policy</h4>
+                        <div class="form-group">
+                            <label>Minimum Password Length</label>
+                            <input type="number" class="form-control" id="minPasswordLength" value="8" min="6" max="20">
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                            <span>Require Special Characters</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="requireSpecialChars" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                            <span>Two-Factor Authentication</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="twoFactorAuth">
+                                <span class="toggle-slider"></span>
+                            </label>
                         </div>
                     </div>
 
-                    <!-- Backup & Restore -->
-                    <div class="settings-card">
-                        <h3><i class="fas fa-database"></i> Data Management</h3>
-                        <div class="settings-group">
-                            <h4>Backup Settings</h4>
-                            <div class="form-group">
-                                <label>Auto Backup Frequency</label>
-                                <select class="form-control" id="backupFrequency">
-                                    <option value="daily">Daily</option>
-                                    <option value="weekly" selected>Weekly</option>
-                                    <option value="monthly">Monthly</option>
-                                </select>
-                            </div>
-                            <button class="btn btn-outline" onclick="createBackup()"
-                                style="width: 100%; margin-bottom: 10px;">
-                                <i class="fas fa-save"></i> Create Backup Now
-                            </button>
-                            <button class="btn btn-warning" onclick="restoreBackup()" style="width: 100%;">
-                                <i class="fas fa-undo"></i> Restore Backup
-                            </button>
+                    <div class="settings-group">
+                        <h4>Session Settings</h4>
+                        <div class="form-group">
+                            <label>Session Timeout (minutes)</label>
+                            <input type="number" class="form-control" id="sessionTimeout" value="30" min="5" max="120">
                         </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                            <span>Single Session Per User</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="singleSession">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
 
-                        <div class="settings-group">
-                            <h4>Data Export</h4>
-                            <button class="btn btn-success" onclick="exportAllData()"
-                                style="width: 100%; margin-bottom: 10px;">
-                                <i class="fas fa-download"></i> Export All Data
-                            </button>
-                            <button class="btn btn-danger" onclick="clearOldData()" style="width: 100%;">
-                                <i class="fas fa-trash"></i> Clear Old Data
-                            </button>
+                <!-- Backup & Restore -->
+                <div class="settings-card">
+                    <h3><i class="fas fa-database"></i> Data Management</h3>
+                    <div class="settings-group">
+                        <h4>Backup Settings</h4>
+                        <div class="form-group">
+                            <label>Auto Backup Frequency</label>
+                            <select class="form-control" id="backupFrequency">
+                                <option value="daily">Daily</option>
+                                <option value="weekly" selected>Weekly</option>
+                                <option value="monthly">Monthly</option>
+                            </select>
                         </div>
+                        <button class="btn btn-outline" id="createBackupBtn" style="width: 100%; margin-bottom: 10px;">
+                            <i class="fas fa-save"></i> Create Backup Now
+                        </button>
+                        <button class="btn btn-warning" id="restoreBackupBtn" style="width: 100%;">
+                            <i class="fas fa-undo"></i> Restore Backup
+                        </button>
+                    </div>
+
+                    <div class="settings-group">
+                        <h4>Data Export</h4>
+                        <button class="btn btn-success" id="exportAllDataBtn" style="width: 100%; margin-bottom: 10px;">
+                            <i class="fas fa-download"></i> Export All Data
+                        </button>
+                        <button class="btn btn-danger" id="clearOldDataBtn" style="width: 100%;">
+                            <i class="fas fa-trash"></i> Clear Old Data
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1290,7 +1606,7 @@
                 <h3 class="modal-title" id="modalTitle">
                     <i class="fas fa-user-plus"></i> Add New User
                 </h3>
-                <button class="close-modal" onclick="closeUserModal()">&times;</button>
+                <button class="close-modal" id="closeUserModal">&times;</button>
             </div>
             <div class="modal-body">
                 <form id="userForm">
@@ -1336,8 +1652,144 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-outline" onclick="closeUserModal()">Cancel</button>
-                <button class="btn" id="saveUserBtn" onclick="saveUser()">Save User</button>
+                <button class="btn btn-outline" id="cancelUserBtn">Cancel</button>
+                <button class="btn" id="saveUserBtn">Save User</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Ticket Modal -->
+    <div class="modal-overlay" id="ticketModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="ticketModalTitle">
+                    <i class="fas fa-ticket-alt"></i> Create New Ticket
+                </h3>
+                <button class="close-modal" id="closeTicketModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="ticketForm">
+                    <input type="hidden" id="ticketId">
+                    <div class="form-group">
+                        <label>Subject *</label>
+                        <input type="text" class="form-control" id="ticketSubject" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category *</label>
+                        <select class="form-control" id="ticketCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="technical">Technical Issue</option>
+                            <option value="billing">Billing Problem</option>
+                            <option value="account">Account Issue</option>
+                            <option value="feature">Feature Request</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Priority *</label>
+                        <select class="form-control" id="ticketPriority" required>
+                            <option value="">Select Priority</option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Description *</label>
+                        <textarea class="form-control" id="ticketDescription" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Assigned To</label>
+                        <select class="form-control" id="ticketAssigned">
+                            <option value="">Unassigned</option>
+                            <option value="admin1">Admin User 1</option>
+                            <option value="admin2">Admin User 2</option>
+                            <option value="support1">Support Agent 1</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancelTicketBtn">Cancel</button>
+                <button class="btn" id="saveTicketBtn">Create Ticket</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reply to Ticket Modal -->
+    <div class="modal-overlay" id="replyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-reply"></i> Reply to Ticket
+                </h3>
+                <button class="close-modal" id="closeReplyModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="replyForm">
+                    <input type="hidden" id="replyTicketId">
+                    <div class="form-group">
+                        <label>Your Response *</label>
+                        <textarea class="form-control" id="replyMessage" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Change Status</label>
+                        <select class="form-control" id="replyStatus">
+                            <option value="">Keep Current</option>
+                            <option value="open">Open</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="resolved">Resolved</option>
+                            <option value="closed">Closed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Internal Notes (Optional)</label>
+                        <textarea class="form-control" id="internalNotes"></textarea>
+                        <small style="color: #666;">Only visible to support team</small>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancelReplyBtn">Cancel</button>
+                <button class="btn btn-success" id="sendReplyBtn">Send Reply</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Modal -->
+    <div class="modal-overlay" id="faqModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="faqModalTitle">
+                    <i class="fas fa-question-circle"></i> Add FAQ
+                </h3>
+                <button class="close-modal" id="closeFaqModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="faqForm">
+                    <input type="hidden" id="faqId">
+                    <div class="form-group">
+                        <label>Question *</label>
+                        <input type="text" class="form-control" id="faqQuestion" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Answer *</label>
+                        <textarea class="form-control" id="faqAnswer" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select class="form-control" id="faqCategory">
+                            <option value="general">General</option>
+                            <option value="technical">Technical</option>
+                            <option value="billing">Billing</option>
+                            <option value="account">Account</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancelFaqBtn">Cancel</button>
+                <button class="btn" id="saveFaqBtn">Save FAQ</button>
             </div>
         </div>
     </div>
@@ -1349,7 +1801,7 @@
                 <h3 class="modal-title">
                     <i class="fas fa-exclamation-triangle"></i> Confirm Action
                 </h3>
-                <button class="close-modal" onclick="closeConfirmModal()">&times;</button>
+                <button class="close-modal" id="closeConfirmModal">&times;</button>
             </div>
             <div class="modal-body">
                 <p id="confirmMessage">Are you sure you want to delete this user?</p>
@@ -1357,8 +1809,8 @@
                 <input type="hidden" id="deleteType">
             </div>
             <div class="modal-footer">
-                <button class="btn btn-outline" onclick="closeConfirmModal()">Cancel</button>
-                <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+                <button class="btn btn-outline" id="cancelDeleteBtn">Cancel</button>
+                <button class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
             </div>
         </div>
     </div>
@@ -1370,7 +1822,7 @@
                 <h3 class="modal-title">
                     <i class="fas fa-file-alt"></i> Report Preview
                 </h3>
-                <button class="close-modal" onclick="closeReportModal()">&times;</button>
+                <button class="close-modal" id="closeReportModal">&times;</button>
             </div>
             <div class="modal-body">
                 <div id="reportContent">
@@ -1378,19 +1830,22 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-outline" onclick="closeReportModal()">Close</button>
-                <button class="btn btn-success" onclick="printReport()">
+                <button class="btn btn-outline" id="closeReportBtn">Close</button>
+                <button class="btn btn-success" id="printReportBtn">
                     <i class="fas fa-print"></i> Print
                 </button>
-                <button class="btn" onclick="downloadReport()">
+                <button class="btn" id="downloadReportBtn">
                     <i class="fas fa-download"></i> Download PDF
                 </button>
             </div>
         </div>
     </div>
 
+    <!-- Notification Container -->
+    <div class="notification" id="notification"></div>
+
     <!-- ==================== FOOTER ==================== -->
-    <footer id="footEndPage">
+    <footer>
         <div class="footerhead">
             <h4>Smart Medical Point</h4>
             <img src="media/logo.png" alt="Logo" style="height: 55px; width: 55px;">
@@ -1400,6 +1855,7 @@
                 <a href="#" data-page="dashboard">Dashboard</a>
                 <a href="#" data-page="user-management">User Management</a>
                 <a href="#" data-page="reports">Reports</a>
+                <a href="#" data-page="support">Support</a>
                 <a href="#" data-page="settings">Settings</a>
             </div>
             <div class="accounts">
@@ -1410,8 +1866,7 @@
             </div>
         </div>
         <div class="copyRight">
-            <p>&copy; 2025 SmartMediPoint. All Rights Reserved</p>
-            <p>Developed by Computer Engineering Students - The Islamic University of Gaza</p>
+            <p>&copy; 2025 SmartMediPoint. All Rights Reserved || Developed by Computer Engineering Students - IUG</p>
         </div>
     </footer>
 
@@ -1420,35 +1875,54 @@
         // ==================== GLOBAL VARIABLES ====================
         let users = [];
         let pendingRequests = [];
+        let tickets = [];
+        let faqs = [];
         let currentUserId = null;
+        let currentTicketId = null;
         let userChart = null;
         let monthlyChart = null;
+        let settings = {};
 
         // ==================== INITIALIZATION ====================
         document.addEventListener('DOMContentLoaded', function () {
-            // Load initial data
-            loadSampleData();
-
-            // Initialize charts
-            initializeCharts();
-
-            // Set up event listeners
-            setupEventListeners();
-
-            // Load initial views
-            loadDashboard();
-            loadUsersTable();
-            loadPendingRequests();
-            loadRecentReports();
-
-            // Update counts
-            updateDashboardCounts();
-
-            console.log('Admin System Loaded Successfully');
+            initializeApplication();
         });
 
+        async function initializeApplication() {
+            try {
+                // Load initial data
+                await loadSampleData();
+
+                // Initialize charts
+                initializeCharts();
+
+                // Set up event listeners
+                setupEventListeners();
+
+                // Load initial views
+                loadDashboard();
+                loadUsersTable();
+                loadPendingRequests();
+                loadRecentReports();
+                loadTickets();
+                loadFAQs();
+
+                // Update counts
+                updateDashboardCounts();
+                updateSupportCounts();
+
+                // Load settings
+                loadSettings();
+
+                console.log('Admin System Initialized Successfully');
+            } catch (error) {
+                console.error('Failed to initialize application:', error);
+                showNotification('Failed to initialize application', 'error');
+            }
+        }
+
         // ==================== DATA MANAGEMENT ====================
-        function loadSampleData() {
+        async function loadSampleData() {
             // Sample users data
             users = [
                 {
@@ -1486,7 +1960,7 @@
                     name: "Robert Williams",
                     email: "r.williams@clinic.com",
                     phone: "+1-555-0104",
-                    role: "nurse",
+                    role: "staff",
                     status: "active",
                     joinDate: "2024-12-20",
                     avatarColor: "#96CEB4"
@@ -1535,246 +2009,773 @@
                     id: 103,
                     name: "Thomas Moore",
                     email: "t.moore@clinic.com",
-                    requestedRole: "nurse",
-                    requestDate: "2025-01-16",
-                    notes: "Nurse application"
-                },
-                {
-                    id: 104,
-                    name: "Jessica Taylor",
-                    email: "j.taylor@email.com",
-                    requestedRole: "patient",
-                    requestDate: "2025-01-15",
-                    notes: "Emergency patient"
-                },
-                {
-                    id: 105,
-                    name: "Daniel Lee",
-                    email: "d.lee@email.com",
                     requestedRole: "staff",
-                    requestDate: "2025-01-14",
-                    notes: "Administrative staff"
+                    requestDate: "2025-01-16",
+                    notes: "Staff application"
+                }
+            ];
+
+            // Sample tickets
+            tickets = [
+                {
+                    id: 1001,
+                    subject: "System login issue",
+                    description: "Cannot login to the system using my credentials",
+                    category: "technical",
+                    priority: "high",
+                    status: "open",
+                    createdBy: "John Doe",
+                    createdAt: "2025-01-20 09:30",
+                    updatedAt: "2025-01-20 09:30",
+                    assignedTo: "admin1",
+                    replies: []
+                },
+                {
+                    id: 1002,
+                    subject: "Billing discrepancy",
+                    description: "Invoice amount doesn't match the services received",
+                    category: "billing",
+                    priority: "medium",
+                    status: "in-progress",
+                    createdBy: "Sarah Miller",
+                    createdAt: "2025-01-19 14:15",
+                    updatedAt: "2025-01-20 10:45",
+                    assignedTo: "support1",
+                    replies: [
+                        {
+                            id: 1,
+                            message: "We're looking into this issue",
+                            author: "Support Agent",
+                            timestamp: "2025-01-19 16:30",
+                            internal: false
+                        }
+                    ]
+                },
+                {
+                    id: 1003,
+                    subject: "Feature request: Export reports",
+                    description: "Would like to export reports in CSV format",
+                    category: "feature",
+                    priority: "low",
+                    status: "resolved",
+                    createdBy: "Dr. Robert Chen",
+                    createdAt: "2025-01-18 11:20",
+                    updatedAt: "2025-01-19 15:10",
+                    assignedTo: "admin2",
+                    replies: [
+                        {
+                            id: 1,
+                            message: "This feature is in development",
+                            author: "Admin",
+                            timestamp: "2025-01-18 14:45",
+                            internal: false
+                        },
+                        {
+                            id: 2,
+                            message: "Feature will be available next month",
+                            author: "Support",
+                            timestamp: "2025-01-19 15:10",
+                            internal: false
+                        }
+                    ]
+                },
+                {
+                    id: 1004,
+                    subject: "Account access issue",
+                    description: "Need access to additional modules",
+                    category: "account",
+                    priority: "medium",
+                    status: "open",
+                    createdBy: "Nurse Emily",
+                    createdAt: "2025-01-20 08:15",
+                    updatedAt: "2025-01-20 08:15",
+                    assignedTo: "",
+                    replies: []
+                }
+            ];
+
+            // Sample FAQs
+            faqs = [
+                {
+                    id: 1,
+                    question: "How do I reset my password?",
+                    answer: "Go to the login page and click 'Forgot Password'. Follow the instructions sent to your email.",
+                    category: "account",
+                    views: 125
+                },
+                {
+                    id: 2,
+                    question: "How to schedule an appointment?",
+                    answer: "Navigate to the Appointments section, click 'New Appointment', select the patient, doctor, and time slot.",
+                    category: "general",
+                    views: 89
+                },
+                {
+                    id: 3,
+                    question: "Exporting patient records",
+                    answer: "Go to Reports > Medical Reports, select the patient, choose export format (PDF/CSV), and download.",
+                    category: "technical",
+                    views: 67
                 }
             ];
         }
 
-        // ==================== PAGE NAVIGATION ====================
+        // ==================== EVENT LISTENERS SETUP ====================
         function setupEventListeners() {
             // Navigation links
-            document.querySelectorAll('nav a[data-page]').forEach(link => {
+            document.querySelectorAll('nav a[data-page], footer a[data-page]').forEach(link => {
                 link.addEventListener('click', function (e) {
                     e.preventDefault();
                     const page = this.getAttribute('data-page');
                     showPage(page);
 
-                    // Update active class
-                    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+                    // Update active class in navigation
+                    document.querySelectorAll('nav a[data-page]').forEach(a => {
+                        a.classList.remove('active');
+                    });
                     this.classList.add('active');
                 });
             });
 
-            // Search functionality
+            // Logout button
+            document.getElementById('logoutBtn').addEventListener('click', function (e) {
+                e.preventDefault();
+                logout();
+            });
+
+            // Dashboard buttons
+            document.getElementById('refreshDashboard').addEventListener('click', refreshDashboard);
+            document.getElementById('updateChartBtn').addEventListener('click', updateChart);
+            document.getElementById('exportChartBtn').addEventListener('click', exportChartData);
+            document.getElementById('clearActivity').addEventListener('click', clearActivity);
+
+            // User Management buttons
+            document.getElementById('addUserBtn').addEventListener('click', openAddUserModal);
+            document.getElementById('showPendingBtn').addEventListener('click', showPendingRequests);
+            document.getElementById('exportUsersBtn').addEventListener('click', exportUsers);
+            document.getElementById('backToUsersBtn').addEventListener('click', hidePendingRequests);
             document.getElementById('userSearch').addEventListener('input', filterUsers);
             document.getElementById('roleFilter').addEventListener('change', filterUsers);
             document.getElementById('statusFilter').addEventListener('change', filterUsers);
 
-            // Logout button
+            // Support buttons
+            document.getElementById('newTicketBtn').addEventListener('click', openNewTicketModal);
+            document.getElementById('addFaqBtn').addEventListener('click', openAddFaqModal);
+            document.getElementById('ticketSearch').addEventListener('input', filterTickets);
+            document.getElementById('statusFilterSupport').addEventListener('change', filterTickets);
+            document.getElementById('priorityFilter').addEventListener('change', filterTickets);
 
-            const authButton = document.querySelector('.auth-btn');
-
-            if (userIsLoggedIn) { // افترض أن لديك متغير يخزن حالة تسجيل الدخول
-                authButton.textContent = 'Logout';
-                authButton.classList.add('logout-btn');
-                authButton.href = '#';
-
-                authButton.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    if (confirm('Are you sure you want to logout?')) {
-                        // هنا يمكنك إضافة كود مسح الجلسة أو التوكن
-                        alert('Logged out successfully');
-                        window.location.href = 'login.html';
-                    }
+            // Ticket category buttons
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    filterTickets();
                 });
-            } else {
-                authButton.textContent = 'Login';
-                authButton.href = 'login.html';
-                authButton.classList.remove('logout-btn');
-            }
+            });
 
-            function showPage(pageId) {
-                // Hide all pages
-                document.querySelectorAll('.page-content').forEach(page => {
-                    page.classList.remove('active');
-                });
+            // Modal buttons
+            document.getElementById('closeUserModal').addEventListener('click', closeUserModal);
+            document.getElementById('cancelUserBtn').addEventListener('click', closeUserModal);
+            document.getElementById('saveUserBtn').addEventListener('click', saveUser);
 
-                // Show selected page
-                const page = document.getElementById(`${pageId}-page`);
-                if (page) {
-                    page.classList.add('active');
+            document.getElementById('closeTicketModal').addEventListener('click', closeTicketModal);
+            document.getElementById('cancelTicketBtn').addEventListener('click', closeTicketModal);
+            document.getElementById('saveTicketBtn').addEventListener('click', saveTicket);
 
-                    // Refresh data for the page
-                    switch (pageId) {
-                        case 'dashboard':
-                            loadDashboard();
-                            break;
-                        case 'user-management':
-                            loadUsersTable();
-                            break;
-                        case 'reports':
-                            loadRecentReports();
-                            break;
-                    }
+            document.getElementById('closeReplyModal').addEventListener('click', closeReplyModal);
+            document.getElementById('cancelReplyBtn').addEventListener('click', closeReplyModal);
+            document.getElementById('sendReplyBtn').addEventListener('click', sendReply);
+
+            document.getElementById('closeFaqModal').addEventListener('click', closeFaqModal);
+            document.getElementById('cancelFaqBtn').addEventListener('click', closeFaqModal);
+            document.getElementById('saveFaqBtn').addEventListener('click', saveFaq);
+
+            document.getElementById('closeConfirmModal').addEventListener('click', closeConfirmModal);
+            document.getElementById('cancelDeleteBtn').addEventListener('click', closeConfirmModal);
+            document.getElementById('confirmDeleteBtn').addEventListener('click', confirmDelete);
+
+            document.getElementById('closeReportModal').addEventListener('click', closeReportModal);
+            document.getElementById('closeReportBtn').addEventListener('click', closeReportModal);
+            document.getElementById('printReportBtn').addEventListener('click', printReport);
+            document.getElementById('downloadReportBtn').addEventListener('click', downloadReport);
+
+            // Reports buttons
+            document.getElementById('generateReportBtn').addEventListener('click', generateReport);
+            document.getElementById('userReportBtn').addEventListener('click', () => showUserReport());
+            document.getElementById('medicalReportBtn').addEventListener('click', () => showMedicalReport());
+            document.getElementById('financialReportBtn').addEventListener('click', () => showFinancialReport());
+            document.getElementById('generateCustomReportBtn').addEventListener('click', generateCustomReport);
+
+            // Settings buttons
+            document.getElementById('saveSettingsBtn').addEventListener('click', saveSettings);
+            document.getElementById('createBackupBtn').addEventListener('click', createBackup);
+            document.getElementById('restoreBackupBtn').addEventListener('click', restoreBackup);
+            document.getElementById('exportAllDataBtn').addEventListener('click', exportAllData);
+            document.getElementById('clearOldDataBtn').addEventListener('click', clearOldData);
+
+            // Form submissions
+            document.getElementById('userForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                saveUser();
+            });
+
+            document.getElementById('ticketForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                saveTicket();
+            });
+        }
+
+        // ==================== PAGE NAVIGATION ====================
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show selected page
+            const page = document.getElementById(`${pageId}-page`);
+            if (page) {
+                page.classList.add('active');
+
+                // Refresh data for the page
+                switch (pageId) {
+                    case 'dashboard':
+                        refreshDashboard();
+                        break;
+                    case 'user-management':
+                        loadUsersTable();
+                        break;
+                    case 'reports':
+                        loadRecentReports();
+                        break;
+                    case 'support':
+                        loadTickets();
+                        loadFAQs();
+                        updateSupportCounts();
+                        break;
                 }
             }
+        }
 
-            // ==================== DASHBOARD FUNCTIONS ====================
-            function loadDashboard() {
-                updateRecentActivity();
-                updateDashboardCounts();
-            }
+        // ==================== DASHBOARD FUNCTIONS ====================
+        function refreshDashboard() {
+            updateDashboardCounts();
+            updateRecentActivity();
+            showNotification('Dashboard refreshed successfully', 'success');
+        }
 
-            function updateDashboardCounts() {
-                const totalPatients = users.filter(u => u.role === 'patient').length;
-                const totalDoctors = users.filter(u => u.role === 'doctor').length;
-                const pendingCount = pendingRequests.length;
+        function loadDashboard() {
+            updateRecentActivity();
+            updateDashboardCounts();
+        }
 
-                document.getElementById('totalPatients').textContent = totalPatients;
-                document.getElementById('totalDoctors').textContent = totalDoctors;
-                document.getElementById('pendingRequests').textContent = pendingCount;
-                document.getElementById('pendingCount').textContent = pendingCount;
+        function updateDashboardCounts() {
+            const totalPatients = users.filter(u => u.role === 'patient').length;
+            const totalDoctors = users.filter(u => u.role === 'doctor').length;
+            const pendingCount = pendingRequests.length;
+            const openTickets = tickets.filter(t => t.status === 'open').length;
 
-                // Update appointments count (simulated)
-                const appointments = Math.floor(Math.random() * 20) + 20;
-                document.getElementById('totalAppointments').textContent = appointments;
-            }
+            document.getElementById('totalPatients').textContent = totalPatients;
+            document.getElementById('totalDoctors').textContent = totalDoctors;
+            document.getElementById('pendingRequests').textContent = pendingCount;
+            document.getElementById('pendingCount').textContent = pendingCount;
+            document.getElementById('supportCount').textContent = openTickets;
 
-            function updateRecentActivity() {
-                const activity = [
-                    { action: 'New user registered', user: 'James Brown', time: '2 minutes ago' },
-                    { action: 'Doctor appointment completed', user: 'Dr. Sarah', time: '15 minutes ago' },
-                    { action: 'System backup created', user: 'System', time: '1 hour ago' },
-                    { action: 'Report generated', user: 'Admin', time: '2 hours ago' },
-                    { action: 'User profile updated', user: 'Michael Chen', time: '3 hours ago' }
-                ];
+            // Update appointments count (simulated)
+            const appointments = Math.floor(Math.random() * 20) + 20;
+            document.getElementById('totalAppointments').textContent = appointments;
+        }
 
-                const container = document.getElementById('recentActivity');
-                container.innerHTML = activity.map(item => `
-                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.1);">
-                    <div>
-                        <strong>${item.action}</strong>
-                        <div style="font-size: 0.9rem; color: #666;">by ${item.user}</div>
+        function updateRecentActivity() {
+            const activity = [
+                { action: 'New user registered', user: 'James Brown', time: '2 minutes ago', type: 'user' },
+                { action: 'Doctor appointment completed', user: 'Dr. Sarah', time: '15 minutes ago', type: 'medical' },
+                { action: 'Support ticket created', user: 'John Doe', time: '30 minutes ago', type: 'support' },
+                { action: 'System backup created', user: 'System', time: '1 hour ago', type: 'system' },
+                { action: 'Report generated', user: 'Admin', time: '2 hours ago', type: 'report' }
+            ];
+
+            const container = document.getElementById('recentActivity');
+            container.innerHTML = activity.map(item => `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.1);">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 10px; height: 10px; border-radius: 50%; background-color: ${getActivityColor(item.type)}"></div>
+                        <div>
+                            <strong>${item.action}</strong>
+                            <div style="font-size: 0.9rem; color: #666;">by ${item.user}</div>
+                        </div>
                     </div>
                     <div style="font-size: 0.8rem; color: #999;">${item.time}</div>
                 </div>
             `).join('');
+        }
+
+        function clearActivity() {
+            if (confirm('Are you sure you want to clear all activity logs?')) {
+                document.getElementById('recentActivity').innerHTML = '';
+                showNotification('Activity logs cleared', 'success');
+            }
+        }
+
+        // ==================== SUPPORT FUNCTIONS ====================
+        function loadTickets() {
+            const search = document.getElementById('ticketSearch').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilterSupport').value;
+            const priorityFilter = document.getElementById('priorityFilter').value;
+            const categoryFilter = document.querySelector('.category-btn.active').dataset.category;
+
+            let filteredTickets = tickets.filter(ticket => {
+                // Search filter
+                if (search &&
+                    !ticket.subject.toLowerCase().includes(search) &&
+                    !ticket.description.toLowerCase().includes(search) &&
+                    !ticket.createdBy.toLowerCase().includes(search)) {
+                    return false;
+                }
+
+                // Status filter
+                if (statusFilter && ticket.status !== statusFilter) {
+                    return false;
+                }
+
+                // Priority filter
+                if (priorityFilter && ticket.priority !== priorityFilter) {
+                    return false;
+                }
+
+                // Category filter
+                if (categoryFilter !== 'all' && ticket.category !== categoryFilter) {
+                    return false;
+                }
+
+                return true;
+            });
+
+            const container = document.getElementById('ticketsList');
+            container.innerHTML = filteredTickets.map(ticket => `
+                <div class="ticket-item ${ticket.priority}" onclick="viewTicket(${ticket.id})">
+                    <div class="ticket-header">
+                        <div class="ticket-title">${ticket.subject}</div>
+                        <div class="ticket-meta">
+                            <span class="status-badge status-${ticket.status.replace('-', '')}">
+                                ${ticket.status.replace('-', ' ').toUpperCase()}
+                            </span>
+                            <span class="priority-${ticket.priority}">
+                                ${ticket.priority.toUpperCase()}
+                            </span>
+                            <span>${ticket.createdBy}</span>
+                            <span>${formatDateTime(ticket.createdAt)}</span>
+                        </div>
+                    </div>
+                    <div class="ticket-description">
+                        ${ticket.description.length > 150 ? ticket.description.substring(0, 150) + '...' : ticket.description}
+                    </div>
+                    <div class="ticket-actions">
+                        <button class="btn btn-small" onclick="replyToTicket(${ticket.id}, event)">
+                            <i class="fas fa-reply"></i> Reply
+                        </button>
+                        ${ticket.assignedTo ? `
+                            <button class="btn btn-small btn-outline">
+                                <i class="fas fa-user"></i> Assigned
+                            </button>
+                        ` : ''}
+                        <button class="btn btn-small btn-success" onclick="resolveTicket(${ticket.id}, event)">
+                            <i class="fas fa-check"></i> Resolve
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function loadFAQs() {
+            const container = document.getElementById('faqList');
+            container.innerHTML = faqs.map(faq => `
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(${faq.id})">
+                        <span>${faq.question}</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer hidden" id="faq-answer-${faq.id}">
+                        <p>${faq.answer}</p>
+                        <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                            <span style="font-size: 0.8rem; color: #666;">Category: ${faq.category}</span>
+                            <div>
+                                <button class="btn btn-small btn-outline" onclick="editFAQ(${faq.id}, event)">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-small btn-danger" onclick="deleteFAQ(${faq.id}, event)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateSupportCounts() {
+            const openTickets = tickets.filter(t => t.status === 'open').length;
+            const inProgressTickets = tickets.filter(t => t.status === 'in-progress').length;
+            const resolvedToday = tickets.filter(t => {
+                const today = new Date().toISOString().split('T')[0];
+                return t.status === 'resolved' && t.updatedAt.includes(today);
+            }).length;
+
+            document.getElementById('openTickets').textContent = openTickets;
+            document.getElementById('inProgressTickets').textContent = inProgressTickets;
+            document.getElementById('resolvedToday').textContent = resolvedToday;
+        }
+
+        function openNewTicketModal() {
+            document.getElementById('ticketModalTitle').innerHTML = '<i class="fas fa-ticket-alt"></i> Create New Ticket';
+            document.getElementById('ticketForm').reset();
+            document.getElementById('ticketId').value = '';
+            document.getElementById('ticketModal').style.display = 'flex';
+        }
+
+        function viewTicket(ticketId) {
+            const ticket = tickets.find(t => t.id === ticketId);
+            if (!ticket) return;
+
+            // For now, just open reply modal with ticket info
+            replyToTicket(ticketId);
+        }
+
+        function replyToTicket(ticketId, event = null) {
+            if (event) event.stopPropagation();
+
+            currentTicketId = ticketId;
+            document.getElementById('replyTicketId').value = ticketId;
+            document.getElementById('replyMessage').value = '';
+            document.getElementById('internalNotes').value = '';
+            document.getElementById('replyModal').style.display = 'flex';
+        }
+
+        function resolveTicket(ticketId, event) {
+            if (event) event.stopPropagation();
+
+            const index = tickets.findIndex(t => t.id === ticketId);
+            if (index !== -1) {
+                tickets[index].status = 'resolved';
+                tickets[index].updatedAt = new Date().toISOString().replace('T', ' ').substring(0, 16);
+                loadTickets();
+                updateSupportCounts();
+                showNotification('Ticket resolved successfully', 'success');
+            }
+        }
+
+        function saveTicket() {
+            const id = document.getElementById('ticketId').value;
+            const subject = document.getElementById('ticketSubject').value.trim();
+            const category = document.getElementById('ticketCategory').value;
+            const priority = document.getElementById('ticketPriority').value;
+            const description = document.getElementById('ticketDescription').value.trim();
+            const assignedTo = document.getElementById('ticketAssigned').value;
+
+            // Validation
+            if (!subject || !category || !priority || !description) {
+                showNotification('Please fill in all required fields', 'warning');
+                return;
             }
 
-            // ==================== CHART FUNCTIONS ====================
-            function initializeCharts() {
-                // Patient Age Distribution Chart
-                const patientCtx = document.getElementById('patientChart').getContext('2d');
-                userChart = new Chart(patientCtx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['0-18', '19-30', '31-45', '46-60', '61+'],
-                        datasets: [{
-                            label: 'Number of Patients',
-                            data: [180, 320, 420, 250, 130],
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.7)',
-                                'rgba(54, 162, 235, 0.7)',
-                                'rgba(255, 206, 86, 0.7)',
-                                'rgba(75, 192, 192, 0.7)',
-                                'rgba(153, 102, 255, 0.7)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            legend: { display: false },
-                            title: {
-                                display: true,
-                                text: 'Patient Age Distribution'
-                            }
-                        }
+            try {
+                if (id) {
+                    // Update existing ticket
+                    const index = tickets.findIndex(t => t.id === parseInt(id));
+                    if (index !== -1) {
+                        tickets[index] = {
+                            ...tickets[index],
+                            subject,
+                            category,
+                            priority,
+                            description,
+                            assignedTo,
+                            updatedAt: new Date().toISOString().replace('T', ' ').substring(0, 16)
+                        };
+                        showNotification('Ticket updated successfully', 'success');
                     }
+                } else {
+                    // Add new ticket
+                    const newTicket = {
+                        id: tickets.length > 0 ? Math.max(...tickets.map(t => t.id)) + 1 : 1001,
+                        subject,
+                        description,
+                        category,
+                        priority,
+                        status: 'open',
+                        createdBy: 'Admin User',
+                        createdAt: new Date().toISOString().replace('T', ' ').substring(0, 16),
+                        updatedAt: new Date().toISOString().replace('T', ' ').substring(0, 16),
+                        assignedTo,
+                        replies: []
+                    };
+                    tickets.unshift(newTicket);
+                    showNotification('Ticket created successfully', 'success');
+                }
+
+                closeTicketModal();
+                loadTickets();
+                updateSupportCounts();
+                updateDashboardCounts();
+            } catch (error) {
+                console.error('Error saving ticket:', error);
+                showNotification('Failed to save ticket', 'error');
+            }
+        }
+
+        function sendReply() {
+            const ticketId = parseInt(document.getElementById('replyTicketId').value);
+            const message = document.getElementById('replyMessage').value.trim();
+            const status = document.getElementById('replyStatus').value;
+            const internalNotes = document.getElementById('internalNotes').value.trim();
+
+            if (!message) {
+                showNotification('Please enter a reply message', 'warning');
+                return;
+            }
+
+            const index = tickets.findIndex(t => t.id === ticketId);
+            if (index !== -1) {
+                // Add reply
+                tickets[index].replies.push({
+                    id: tickets[index].replies.length + 1,
+                    message,
+                    author: 'Admin',
+                    timestamp: new Date().toISOString().replace('T', ' ').substring(0, 16),
+                    internal: false
                 });
 
-                // Monthly Registrations Chart
-                const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
-                monthlyChart = new Chart(monthlyCtx, {
-                    type: 'line',
-                    data: {
-                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                        datasets: [{
-                            label: 'Registrations',
-                            data: [85, 92, 105, 120, 135, 155, 180, 210, 195, 175, 160, 145],
-                            borderColor: 'rgba(54, 162, 235, 1)',
-                            backgroundColor: 'rgba(54, 162, 235, 0.1)',
-                            borderWidth: 3,
-                            fill: true,
-                            tension: 0.3
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: 'Monthly User Registrations'
-                            }
-                        }
-                    }
-                });
+                // Update status if changed
+                if (status) {
+                    tickets[index].status = status;
+                }
+
+                // Add internal notes if provided
+                if (internalNotes) {
+                    tickets[index].replies.push({
+                        id: tickets[index].replies.length + 1,
+                        message: internalNotes,
+                        author: 'Admin',
+                        timestamp: new Date().toISOString().replace('T', ' ').substring(0, 16),
+                        internal: true
+                    });
+                }
+
+                tickets[index].updatedAt = new Date().toISOString().replace('T', ' ').substring(0, 16);
+
+                closeReplyModal();
+                loadTickets();
+                updateSupportCounts();
+                showNotification('Reply sent successfully', 'success');
+            }
+        }
+
+        function openAddFaqModal() {
+            document.getElementById('faqModalTitle').innerHTML = '<i class="fas fa-question-circle"></i> Add FAQ';
+            document.getElementById('faqForm').reset();
+            document.getElementById('faqId').value = '';
+            document.getElementById('faqModal').style.display = 'flex';
+        }
+
+        function editFAQ(faqId, event) {
+            if (event) event.stopPropagation();
+
+            const faq = faqs.find(f => f.id === faqId);
+            if (!faq) return;
+
+            document.getElementById('faqModalTitle').innerHTML = '<i class="fas fa-edit"></i> Edit FAQ';
+            document.getElementById('faqId').value = faq.id;
+            document.getElementById('faqQuestion').value = faq.question;
+            document.getElementById('faqAnswer').value = faq.answer;
+            document.getElementById('faqCategory').value = faq.category;
+            document.getElementById('faqModal').style.display = 'flex';
+        }
+
+        function deleteFAQ(faqId, event) {
+            if (event) event.stopPropagation();
+
+            if (confirm('Are you sure you want to delete this FAQ?')) {
+                const index = faqs.findIndex(f => f.id === faqId);
+                if (index !== -1) {
+                    faqs.splice(index, 1);
+                    loadFAQs();
+                    showNotification('FAQ deleted successfully', 'success');
+                }
+            }
+        }
+
+        function saveFaq() {
+            const id = document.getElementById('faqId').value;
+            const question = document.getElementById('faqQuestion').value.trim();
+            const answer = document.getElementById('faqAnswer').value.trim();
+            const category = document.getElementById('faqCategory').value;
+
+            // Validation
+            if (!question || !answer) {
+                showNotification('Please fill in all required fields', 'warning');
+                return;
             }
 
-            function updateChart() {
-                const type = document.getElementById('ageChartType').value;
-                userChart.config.type = type;
-                userChart.update();
-                showNotification('Chart updated successfully', 'success');
+            try {
+                if (id) {
+                    // Update existing FAQ
+                    const index = faqs.findIndex(f => f.id === parseInt(id));
+                    if (index !== -1) {
+                        faqs[index] = {
+                            ...faqs[index],
+                            question,
+                            answer,
+                            category
+                        };
+                        showNotification('FAQ updated successfully', 'success');
+                    }
+                } else {
+                    // Add new FAQ
+                    const newFaq = {
+                        id: faqs.length > 0 ? Math.max(...faqs.map(f => f.id)) + 1 : 1,
+                        question,
+                        answer,
+                        category,
+                        views: 0
+                    };
+                    faqs.unshift(newFaq);
+                    showNotification('FAQ added successfully', 'success');
+                }
+
+                closeFaqModal();
+                loadFAQs();
+            } catch (error) {
+                console.error('Error saving FAQ:', error);
+                showNotification('Failed to save FAQ', 'error');
             }
+        }
 
-            function exportChartData() {
-                showNotification('Chart data exported successfully', 'success');
+        function toggleFAQ(faqId) {
+            const answer = document.getElementById(`faq-answer-${faqId}`);
+            answer.classList.toggle('hidden');
+
+            // Update views
+            const index = faqs.findIndex(f => f.id === faqId);
+            if (index !== -1) {
+                faqs[index].views++;
             }
+        }
 
-            // ==================== USER MANAGEMENT FUNCTIONS ====================
-            function loadUsersTable() {
-                const table = document.getElementById('usersTable');
-                const search = document.getElementById('userSearch').value.toLowerCase();
-                const roleFilter = document.getElementById('roleFilter').value;
-                const statusFilter = document.getElementById('statusFilter').value;
+        function filterTickets() {
+            loadTickets();
+        }
 
-                let filteredUsers = users.filter(user => {
-                    // Search filter
-                    if (search && !user.name.toLowerCase().includes(search) &&
-                        !user.email.toLowerCase().includes(search)) {
-                        return false;
+        // ==================== CHART FUNCTIONS ====================
+        function initializeCharts() {
+            // Patient Age Distribution Chart
+            const patientCtx = document.getElementById('patientChart').getContext('2d');
+            userChart = new Chart(patientCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['0-18', '19-30', '31-45', '46-60', '61+'],
+                    datasets: [{
+                        label: 'Number of Patients',
+                        data: [180, 320, 420, 250, 130],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(153, 102, 255, 0.7)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
                     }
+                }
+            });
 
-                    // Role filter
-                    if (roleFilter && user.role !== roleFilter) {
-                        return false;
-                    }
+            // Monthly Registrations Chart
+            const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
+            monthlyChart = new Chart(monthlyCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Registrations',
+                        data: [85, 92, 105, 120, 135, 155, 180, 210, 195, 175, 160, 145],
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
 
-                    // Status filter
-                    if (statusFilter && user.status !== statusFilter) {
-                        return false;
-                    }
+        function updateChart() {
+            const type = document.getElementById('ageChartType').value;
+            userChart.config.type = type;
+            userChart.update();
+            showNotification('Chart updated successfully', 'success');
+        }
 
-                    return true;
-                });
+        function exportChartData() {
+            const data = {
+                patientAgeData: userChart.data,
+                monthlyData: monthlyChart.data
+            };
 
-                table.innerHTML = filteredUsers.map(user => `
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+            const exportFileDefaultName = 'chart-data.json';
+
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+
+            showNotification('Chart data exported successfully', 'success');
+        }
+
+        // ==================== USER MANAGEMENT FUNCTIONS ====================
+        function loadUsersTable() {
+            const table = document.getElementById('usersTable');
+            const search = document.getElementById('userSearch').value.toLowerCase();
+            const roleFilter = document.getElementById('roleFilter').value;
+            const statusFilter = document.getElementById('statusFilter').value;
+
+            let filteredUsers = users.filter(user => {
+                // Search filter
+                if (search && !user.name.toLowerCase().includes(search) &&
+                    !user.email.toLowerCase().includes(search)) {
+                    return false;
+                }
+
+                // Role filter
+                if (roleFilter && user.role !== roleFilter) {
+                    return false;
+                }
+
+                // Status filter
+                if (statusFilter && user.status !== statusFilter) {
+                    return false;
+                }
+
+                return true;
+            });
+
+            table.innerHTML = filteredUsers.map(user => `
                 <tr>
                     <td>
                         <div style="display: flex; align-items: center; gap: 10px;">
-                            <div style="width: 40px; height: 40px; background-color: ${user.avatarColor}; 
-                                 border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-                                 color: white; font-weight: bold;">
+                            <div class="avatar" style="background-color: ${user.avatarColor}">
                                 ${user.name.split(' ').map(n => n[0]).join('')}
                             </div>
                             <div>
@@ -1785,28 +2786,27 @@
                     </td>
                     <td>${user.email}</td>
                     <td>
-                        <span style="padding: 4px 12px; border-radius: 15px; 
-                             background-color: ${getRoleColor(user.role)}; color: white; font-size: 0.8rem;">
+                        <span style="padding: 4px 12px; border-radius: 15px; background-color: ${getRoleColor(user.role)}; color: white; font-size: 0.8rem;">
                             ${user.role}
                         </span>
                     </td>
                     <td>
                         <span class="status-badge ${user.status === 'active' ? 'status-active' :
-                        user.status === 'pending' ? 'status-pending' : 'status-inactive'}">
+                    user.status === 'pending' ? 'status-pending' : 'status-inactive'}">
                             ${user.status}
                         </span>
                     </td>
                     <td>${formatDate(user.joinDate)}</td>
                     <td>
                         <div class="action-buttons">
-                            <button class="btn btn-small" onclick="editUser(${user.id})" title="Edit">
+                            <button class="btn btn-small edit-user-btn" data-id="${user.id}" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button class="btn btn-small btn-danger" onclick="deleteUser(${user.id})" title="Delete">
+                            <button class="btn btn-small btn-danger delete-user-btn" data-id="${user.id}" title="Delete">
                                 <i class="fas fa-trash"></i>
                             </button>
                             ${user.status === 'pending' ? `
-                                <button class="btn btn-small btn-success" onclick="approveUser(${user.id})" title="Approve">
+                                <button class="btn btn-small btn-success approve-user-btn" data-id="${user.id}" title="Approve">
                                     <i class="fas fa-check"></i>
                                 </button>
                             ` : ''}
@@ -1815,59 +2815,80 @@
                 </tr>
             `).join('');
 
-                document.getElementById('userCount').textContent = filteredUsers.length;
+            document.getElementById('userCount').textContent = filteredUsers.length;
+
+            // Add event listeners to action buttons
+            document.querySelectorAll('.edit-user-btn').forEach(btn => {
+                btn.addEventListener('click', () => editUser(parseInt(btn.dataset.id)));
+            });
+
+            document.querySelectorAll('.delete-user-btn').forEach(btn => {
+                btn.addEventListener('click', () => deleteUser(parseInt(btn.dataset.id)));
+            });
+
+            document.querySelectorAll('.approve-user-btn').forEach(btn => {
+                btn.addEventListener('click', () => approveUser(parseInt(btn.dataset.id)));
+            });
+        }
+
+        function filterUsers() {
+            loadUsersTable();
+        }
+
+        function openAddUserModal() {
+            document.getElementById('modalTitle').innerHTML = '<i class="fas fa-user-plus"></i> Add New User';
+            document.getElementById('userForm').reset();
+            document.getElementById('userId').value = '';
+            document.getElementById('userPassword').required = true;
+            document.getElementById('confirmPassword').required = true;
+            document.getElementById('userModal').style.display = 'flex';
+        }
+
+        function editUser(userId) {
+            const user = users.find(u => u.id === userId);
+            if (!user) return;
+
+            currentUserId = userId;
+            document.getElementById('modalTitle').innerHTML = '<i class="fas fa-edit"></i> Edit User';
+            document.getElementById('userId').value = user.id;
+            document.getElementById('userName').value = user.name;
+            document.getElementById('userEmail').value = user.email;
+            document.getElementById('userPhone').value = user.phone || '';
+            document.getElementById('userRole').value = user.role;
+            document.getElementById('userStatus').value = user.status;
+            document.getElementById('userPassword').required = false;
+            document.getElementById('confirmPassword').required = false;
+
+            document.getElementById('userModal').style.display = 'flex';
+        }
+
+        async function saveUser() {
+            const id = document.getElementById('userId').value;
+            const name = document.getElementById('userName').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
+            const phone = document.getElementById('userPhone').value.trim();
+            const role = document.getElementById('userRole').value;
+            const status = document.getElementById('userStatus').value;
+            const password = document.getElementById('userPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Validation
+            if (!name || !email || !role || !status) {
+                showNotification('Please fill in all required fields', 'warning');
+                return;
             }
 
-            function filterUsers() {
-                loadUsersTable();
+            if (!id && (!password || !confirmPassword)) {
+                showNotification('Password is required for new users', 'warning');
+                return;
             }
 
-            function openAddUserModal() {
-                document.getElementById('modalTitle').innerHTML = '<i class="fas fa-user-plus"></i> Add New User';
-                document.getElementById('userForm').reset();
-                document.getElementById('userId').value = '';
-                document.getElementById('userModal').style.display = 'flex';
+            if (!id && password !== confirmPassword) {
+                showNotification('Passwords do not match', 'warning');
+                return;
             }
 
-            function editUser(userId) {
-                const user = users.find(u => u.id === userId);
-                if (!user) return;
-
-                currentUserId = userId;
-                document.getElementById('modalTitle').innerHTML = '<i class="fas fa-edit"></i> Edit User';
-                document.getElementById('userId').value = user.id;
-                document.getElementById('userName').value = user.name;
-                document.getElementById('userEmail').value = user.email;
-                document.getElementById('userPhone').value = user.phone;
-                document.getElementById('userRole').value = user.role;
-                document.getElementById('userStatus').value = user.status;
-                document.getElementById('userPassword').required = false;
-                document.getElementById('confirmPassword').required = false;
-
-                document.getElementById('userModal').style.display = 'flex';
-            }
-
-            function saveUser() {
-                const id = document.getElementById('userId').value;
-                const name = document.getElementById('userName').value.trim();
-                const email = document.getElementById('userEmail').value.trim();
-                const phone = document.getElementById('userPhone').value.trim();
-                const role = document.getElementById('userRole').value;
-                const status = document.getElementById('userStatus').value;
-                const password = document.getElementById('userPassword').value;
-                const confirmPassword = document.getElementById('confirmPassword').value;
-
-                // Validation
-                if (!name || !email || !role || !status) {
-                    showNotification('Please fill in all required fields', 'warning');
-                    return;
-                }
-
-                if (!id && password !== confirmPassword) {
-                    showNotification('Passwords do not match', 'warning');
-                    return;
-                }
-
+            try {
                 if (id) {
                     // Update existing user
                     const index = users.findIndex(u => u.id === parseInt(id));
@@ -1901,61 +2922,38 @@
                 closeUserModal();
                 loadUsersTable();
                 updateDashboardCounts();
+            } catch (error) {
+                console.error('Error saving user:', error);
+                showNotification('Failed to save user', 'error');
             }
+        }
 
-            function deleteUser(userId) {
-                currentUserId = userId;
-                document.getElementById('confirmMessage').textContent = 'Are you sure you want to delete this user?';
-                document.getElementById('itemToDelete').value = userId;
-                document.getElementById('deleteType').value = 'user';
-                document.getElementById('confirmModal').style.display = 'flex';
+        function deleteUser(userId) {
+            currentUserId = userId;
+            document.getElementById('confirmMessage').textContent = 'Are you sure you want to delete this user?';
+            document.getElementById('itemToDelete').value = userId;
+            document.getElementById('deleteType').value = 'user';
+            document.getElementById('confirmModal').style.display = 'flex';
+        }
+
+        function approveUser(userId) {
+            const index = users.findIndex(u => u.id === userId);
+            if (index !== -1) {
+                users[index].status = 'active';
+                showNotification('User approved successfully', 'success');
+                loadUsersTable();
+                updateDashboardCounts();
             }
+        }
 
-            function approveUser(userId) {
-                const index = users.findIndex(u => u.id === userId);
-                if (index !== -1) {
-                    users[index].status = 'active';
-                    showNotification('User approved successfully', 'success');
-                    loadUsersTable();
-                    updateDashboardCounts();
-                }
-            }
-
-            function confirmDelete() {
-                const id = document.getElementById('itemToDelete').value;
-                const type = document.getElementById('deleteType').value;
-
-                if (type === 'user') {
-                    const index = users.findIndex(u => u.id === parseInt(id));
-                    if (index !== -1) {
-                        users.splice(index, 1);
-                        showNotification('User deleted successfully', 'success');
-                        loadUsersTable();
-                        updateDashboardCounts();
-                    }
-                } else if (type === 'request') {
-                    const index = pendingRequests.findIndex(r => r.id === parseInt(id));
-                    if (index !== -1) {
-                        pendingRequests.splice(index, 1);
-                        showNotification('Request deleted successfully', 'success');
-                        loadPendingRequests();
-                        updateDashboardCounts();
-                    }
-                }
-
-                closeConfirmModal();
-            }
-
-            // ==================== PENDING REQUESTS FUNCTIONS ====================
-            function loadPendingRequests() {
-                const table = document.getElementById('pendingRequestsTable');
-                table.innerHTML = pendingRequests.map(request => `
+        // ==================== PENDING REQUESTS FUNCTIONS ====================
+        function loadPendingRequests() {
+            const table = document.getElementById('pendingRequestsTable');
+            table.innerHTML = pendingRequests.map(request => `
                 <tr>
                     <td>
                         <div style="display: flex; align-items: center; gap: 10px;">
-                            <div style="width: 40px; height: 40px; background-color: ${getRandomColor()}; 
-                                 border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-                                 color: white; font-weight: bold;">
+                            <div class="avatar" style="background-color: ${getRandomColor()}">
                                 ${request.name.split(' ').map(n => n[0]).join('')}
                             </div>
                             <div style="font-weight: bold;">${request.name}</div>
@@ -1963,119 +2961,127 @@
                     </td>
                     <td>${request.email}</td>
                     <td>
-                        <span style="padding: 4px 12px; border-radius: 15px; 
-                             background-color: ${getRoleColor(request.requestedRole)}; color: white; font-size: 0.8rem;">
+                        <span style="padding: 4px 12px; border-radius: 15px; background-color: ${getRoleColor(request.requestedRole)}; color: white; font-size: 0.8rem;">
                             ${request.requestedRole}
                         </span>
                     </td>
                     <td>${formatDate(request.requestDate)}</td>
                     <td>
                         <div class="action-buttons">
-                            <button class="btn btn-small btn-success" onclick="approveRequest(${request.id})" title="Approve">
+                            <button class="btn btn-small btn-success approve-request-btn" data-id="${request.id}" title="Approve">
                                 <i class="fas fa-check"></i>
                             </button>
-                            <button class="btn btn-small btn-danger" onclick="rejectRequest(${request.id})" title="Reject">
+                            <button class="btn btn-small btn-danger reject-request-btn" data-id="${request.id}" title="Reject">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
                     </td>
                 </tr>
             `).join('');
+
+            // Add event listeners
+            document.querySelectorAll('.approve-request-btn').forEach(btn => {
+                btn.addEventListener('click', () => approveRequest(parseInt(btn.dataset.id)));
+            });
+
+            document.querySelectorAll('.reject-request-btn').forEach(btn => {
+                btn.addEventListener('click', () => rejectRequest(parseInt(btn.dataset.id)));
+            });
+        }
+
+        function showPendingRequests() {
+            document.getElementById('pendingRequestsSection').classList.remove('hidden');
+        }
+
+        function hidePendingRequests() {
+            document.getElementById('pendingRequestsSection').classList.add('hidden');
+        }
+
+        function approveRequest(requestId) {
+            const index = pendingRequests.findIndex(r => r.id === requestId);
+            if (index !== -1) {
+                const request = pendingRequests[index];
+
+                // Add to users
+                const newUser = {
+                    id: users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1,
+                    name: request.name,
+                    email: request.email,
+                    role: request.requestedRole,
+                    status: 'active',
+                    joinDate: new Date().toISOString().split('T')[0],
+                    avatarColor: getRandomColor()
+                };
+                users.unshift(newUser);
+
+                // Remove from pending
+                pendingRequests.splice(index, 1);
+
+                showNotification('Request approved and user added', 'success');
+                loadPendingRequests();
+                loadUsersTable();
+                updateDashboardCounts();
+            }
+        }
+
+        function rejectRequest(requestId) {
+            currentUserId = requestId;
+            document.getElementById('confirmMessage').textContent = 'Are you sure you want to reject this request?';
+            document.getElementById('itemToDelete').value = requestId;
+            document.getElementById('deleteType').value = 'request';
+            document.getElementById('confirmModal').style.display = 'flex';
+        }
+
+        // ==================== REPORTS FUNCTIONS ====================
+        function showUserReport() {
+            generateCustomReport('user');
+        }
+
+        function showMedicalReport() {
+            generateCustomReport('medical');
+        }
+
+        function showFinancialReport() {
+            generateCustomReport('financial');
+        }
+
+        function generateReport() {
+            showNotification('Report generation started...', 'info');
+            setTimeout(() => {
+                showNotification('Report generated successfully', 'success');
+                loadRecentReports();
+            }, 2000);
+        }
+
+        function generateCustomReport(type = null) {
+            const reportType = type || document.getElementById('reportType').value;
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+
+            // Generate report content based on type
+            let reportContent = '';
+            let reportTitle = '';
+
+            switch (reportType) {
+                case 'user':
+                    reportTitle = 'User Activity Report';
+                    reportContent = generateUserReportContent();
+                    break;
+                case 'medical':
+                    reportTitle = 'Medical Statistics Report';
+                    reportContent = generateMedicalReportContent();
+                    break;
+                case 'financial':
+                    reportTitle = 'Financial Summary Report';
+                    reportContent = generateFinancialReportContent();
+                    break;
+                default:
+                    reportTitle = 'System Usage Report';
+                    reportContent = generateSystemReportContent();
             }
 
-            function showPendingRequests() {
-                document.getElementById('pendingRequestsSection').classList.remove('hidden');
-            }
-
-            function hidePendingRequests() {
-                document.getElementById('pendingRequestsSection').classList.add('hidden');
-            }
-
-            function approveRequest(requestId) {
-                const index = pendingRequests.findIndex(r => r.id === requestId);
-                if (index !== -1) {
-                    const request = pendingRequests[index];
-
-                    // Add to users
-                    const newUser = {
-                        id: users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1,
-                        name: request.name,
-                        email: request.email,
-                        role: request.requestedRole,
-                        status: 'active',
-                        joinDate: new Date().toISOString().split('T')[0],
-                        avatarColor: getRandomColor()
-                    };
-                    users.unshift(newUser);
-
-                    // Remove from pending
-                    pendingRequests.splice(index, 1);
-
-                    showNotification('Request approved and user added', 'success');
-                    loadPendingRequests();
-                    loadUsersTable();
-                    updateDashboardCounts();
-                }
-            }
-
-            function rejectRequest(requestId) {
-                currentUserId = requestId;
-                document.getElementById('confirmMessage').textContent = 'Are you sure you want to reject this request?';
-                document.getElementById('itemToDelete').value = requestId;
-                document.getElementById('deleteType').value = 'request';
-                document.getElementById('confirmModal').style.display = 'flex';
-            }
-
-            // ==================== REPORTS FUNCTIONS ====================
-            function showUserReport() {
-                generateCustomReport('user');
-            }
-
-            function showMedicalReport() {
-                generateCustomReport('medical');
-            }
-
-            function showFinancialReport() {
-                generateCustomReport('financial');
-            }
-
-            function generateReport() {
-                showNotification('Report generation started...', 'info');
-                setTimeout(() => {
-                    showNotification('Report generated successfully', 'success');
-                    loadRecentReports();
-                }, 2000);
-            }
-
-            function generateCustomReport(type = null) {
-                const reportType = type || document.getElementById('reportType').value;
-                const startDate = document.getElementById('startDate').value;
-                const endDate = document.getElementById('endDate').value;
-
-                // Generate report content based on type
-                let reportContent = '';
-                let reportTitle = '';
-
-                switch (reportType) {
-                    case 'user':
-                        reportTitle = 'User Activity Report';
-                        reportContent = generateUserReport();
-                        break;
-                    case 'medical':
-                        reportTitle = 'Medical Statistics Report';
-                        reportContent = generateMedicalReport();
-                        break;
-                    case 'financial':
-                        reportTitle = 'Financial Summary Report';
-                        reportContent = generateFinancialReport();
-                        break;
-                    default:
-                        reportTitle = 'System Usage Report';
-                        reportContent = generateSystemReport();
-                }
-
-                // Show report in modal
-                document.getElementById('reportContent').innerHTML = `
+            // Show report in modal
+            document.getElementById('reportContent').innerHTML = `
                 <h3 style="color: var(--navcolor); margin-bottom: 20px;">${reportTitle}</h3>
                 <div style="margin-bottom: 15px;">
                     <strong>Date Range:</strong> ${startDate || 'N/A'} to ${endDate || 'N/A'}
@@ -2085,17 +3091,17 @@
                 </div>
             `;
 
-                document.getElementById('reportModal').style.display = 'flex';
-            }
+            document.getElementById('reportModal').style.display = 'flex';
+        }
 
-            function generateUserReport() {
-                const totalUsers = users.length;
-                const activeUsers = users.filter(u => u.status === 'active').length;
-                const pendingUsers = users.filter(u => u.status === 'pending').length;
-                const doctors = users.filter(u => u.role === 'doctor').length;
-                const patients = users.filter(u => u.role === 'patient').length;
+        function generateUserReportContent() {
+            const totalUsers = users.length;
+            const activeUsers = users.filter(u => u.status === 'active').length;
+            const pendingUsers = users.filter(u => u.status === 'pending').length;
+            const doctors = users.filter(u => u.role === 'doctor').length;
+            const patients = users.filter(u => u.role === 'patient').length;
 
-                return `
+            return `
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px;">
                     <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                         <div style="font-size: 2rem; font-weight: bold; color: var(--navcolor);">${totalUsers}</div>
@@ -2117,17 +3123,17 @@
                 <div style="margin-top: 20px;">
                     <h4>User Distribution by Role</h4>
                     <ul>
-                        <li>Doctors: ${doctors} (${Math.round(doctors / totalUsers * 100)}%)</li>
-                        <li>Patients: ${patients} (${Math.round(patients / totalUsers * 100)}%)</li>
+                        <li>Doctors: ${doctors} (${totalUsers > 0 ? Math.round(doctors / totalUsers * 100) : 0}%)</li>
+                        <li>Patients: ${patients} (${totalUsers > 0 ? Math.round(patients / totalUsers * 100) : 0}%)</li>
                         <li>Staff: ${users.filter(u => u.role === 'staff').length}</li>
                         <li>Admins: ${users.filter(u => u.role === 'admin').length}</li>
                     </ul>
                 </div>
             `;
-            }
+        }
 
-            function generateMedicalReport() {
-                return `
+        function generateMedicalReportContent() {
+            return `
                 <p>Medical statistics report would include:</p>
                 <ul>
                     <li>Patient visits per day</li>
@@ -2138,10 +3144,10 @@
                 </ul>
                 <p><em>Note: This is a sample report. Real data would come from your database.</em></p>
             `;
-            }
+        }
 
-            function generateFinancialReport() {
-                return `
+        function generateFinancialReportContent() {
+            return `
                 <p>Financial summary report would include:</p>
                 <ul>
                     <li>Revenue by department</li>
@@ -2152,10 +3158,10 @@
                 </ul>
                 <p><em>Note: This is a sample report. Real data would come from your database.</em></p>
             `;
-            }
+        }
 
-            function generateSystemReport() {
-                return `
+        function generateSystemReportContent() {
+            return `
                 <p>System usage report would include:</p>
                 <ul>
                     <li>Active sessions</li>
@@ -2166,214 +3172,336 @@
                 </ul>
                 <p><em>Note: This is a sample report. Real data would come from your database.</em></p>
             `;
-            }
+        }
 
-            function loadRecentReports() {
-                const recentReports = [
-                    { name: 'Monthly User Report', generated: '2025-01-20', type: 'User' },
-                    { name: 'Financial Q4 2024', generated: '2024-12-31', type: 'Financial' },
-                    { name: 'Medical Statistics', generated: '2024-12-15', type: 'Medical' },
-                    { name: 'System Audit', generated: '2024-12-01', type: 'System' }
-                ];
+        function loadRecentReports() {
+            const recentReports = [
+                { name: 'Monthly User Report', generated: '2025-01-20', type: 'User' },
+                { name: 'Financial Q4 2024', generated: '2024-12-31', type: 'Financial' },
+                { name: 'Medical Statistics', generated: '2024-12-15', type: 'Medical' },
+                { name: 'System Audit', generated: '2024-12-01', type: 'System' }
+            ];
 
-                const container = document.getElementById('recentReports');
-                container.innerHTML = recentReports.map(report => `
+            const container = document.getElementById('recentReports');
+            container.innerHTML = recentReports.map(report => `
                 <tr>
                     <td>${report.name}</td>
                     <td>${formatDate(report.generated)}</td>
                     <td>${report.type}</td>
                     <td>
-                        <button class="btn btn-small" onclick="viewReport('${report.name}')">
+                        <button class="btn btn-small view-report-btn" data-name="${report.name}">
                             <i class="fas fa-eye"></i>
                         </button>
-                        <button class="btn btn-small btn-outline" onclick="downloadReportFile('${report.name}')">
+                        <button class="btn btn-small btn-outline download-report-btn" data-name="${report.name}">
                             <i class="fas fa-download"></i>
                         </button>
                     </td>
                 </tr>
             `).join('');
+
+            // Add event listeners
+            document.querySelectorAll('.view-report-btn').forEach(btn => {
+                btn.addEventListener('click', () => viewReport(btn.dataset.name));
+            });
+
+            document.querySelectorAll('.download-report-btn').forEach(btn => {
+                btn.addEventListener('click', () => downloadReportFile(btn.dataset.name));
+            });
+        }
+
+        function viewReport(name) {
+            showNotification(`Opening report: ${name}`, 'info');
+        }
+
+        function downloadReportFile(name) {
+            showNotification(`Downloading: ${name}`, 'success');
+        }
+
+        function printReport() {
+            window.print();
+        }
+
+        function downloadReport() {
+            showNotification('Report downloaded as PDF', 'success');
+        }
+
+        // ==================== SETTINGS FUNCTIONS ====================
+        function saveSettings() {
+            const settings = {
+                emailNotifications: document.getElementById('emailNotifications').checked,
+                autoApproveDoctors: document.getElementById('autoApproveDoctors').checked,
+                maintenanceMode: document.getElementById('maintenanceMode').checked,
+                themeColor: document.getElementById('themeColor').value,
+                itemsPerPage: document.getElementById('itemsPerPage').value,
+                minPasswordLength: document.getElementById('minPasswordLength').value,
+                requireSpecialChars: document.getElementById('requireSpecialChars').checked,
+                twoFactorAuth: document.getElementById('twoFactorAuth').checked,
+                sessionTimeout: document.getElementById('sessionTimeout').value,
+                singleSession: document.getElementById('singleSession').checked,
+                backupFrequency: document.getElementById('backupFrequency').value
+            };
+
+            // Save to localStorage (in real app, send to server)
+            localStorage.setItem('adminSettings', JSON.stringify(settings));
+            showNotification('Settings saved successfully', 'success');
+        }
+
+        function loadSettings() {
+            const saved = localStorage.getItem('adminSettings');
+            if (saved) {
+                const settings = JSON.parse(saved);
+                // Apply settings to form elements
+                document.getElementById('emailNotifications').checked = settings.emailNotifications || false;
+                document.getElementById('autoApproveDoctors').checked = settings.autoApproveDoctors || false;
+                document.getElementById('maintenanceMode').checked = settings.maintenanceMode || false;
+                document.getElementById('themeColor').value = settings.themeColor || '#1D7874';
+                document.getElementById('itemsPerPage').value = settings.itemsPerPage || '25';
+                document.getElementById('minPasswordLength').value = settings.minPasswordLength || '8';
+                document.getElementById('requireSpecialChars').checked = settings.requireSpecialChars || false;
+                document.getElementById('twoFactorAuth').checked = settings.twoFactorAuth || false;
+                document.getElementById('sessionTimeout').value = settings.sessionTimeout || '30';
+                document.getElementById('singleSession').checked = settings.singleSession || false;
+                document.getElementById('backupFrequency').value = settings.backupFrequency || 'weekly';
             }
+        }
 
-            function viewReport(name) {
-                showNotification(`Opening report: ${name}`, 'info');
-            }
+        function createBackup() {
+            showNotification('Creating system backup...', 'info');
+            setTimeout(() => {
+                showNotification('Backup created successfully', 'success');
+            }, 2000);
+        }
 
-            function downloadReportFile(name) {
-                showNotification(`Downloading: ${name}`, 'success');
-            }
-
-            function printReport() {
-                window.print();
-            }
-
-            function downloadReport() {
-                showNotification('Report downloaded as PDF', 'success');
-            }
-
-            // ==================== SETTINGS FUNCTIONS ====================
-            function saveSettings() {
-                const settings = {
-                    emailNotifications: document.getElementById('emailNotifications').checked,
-                    autoApproveDoctors: document.getElementById('autoApproveDoctors').checked,
-                    maintenanceMode: document.getElementById('maintenanceMode').checked,
-                    themeColor: document.getElementById('themeColor').value,
-                    itemsPerPage: document.getElementById('itemsPerPage').value,
-                    minPasswordLength: document.getElementById('minPasswordLength').value,
-                    requireSpecialChars: document.getElementById('requireSpecialChars').checked,
-                    twoFactorAuth: document.getElementById('twoFactorAuth').checked,
-                    sessionTimeout: document.getElementById('sessionTimeout').value,
-                    singleSession: document.getElementById('singleSession').checked,
-                    backupFrequency: document.getElementById('backupFrequency').value
-                };
-
-                // Save to localStorage (in real app, send to server)
-                localStorage.setItem('adminSettings', JSON.stringify(settings));
-                showNotification('Settings saved successfully', 'success');
-            }
-
-            function loadSettings() {
-                const saved = localStorage.getItem('adminSettings');
-                if (saved) {
-                    const settings = JSON.parse(saved);
-                    // Apply settings to form elements
-                    // Implementation depends on your form structure
-                }
-            }
-
-            function createBackup() {
-                showNotification('Creating system backup...', 'info');
+        function restoreBackup() {
+            if (confirm('Are you sure you want to restore from backup? This will overwrite current data.')) {
+                showNotification('Restoring from backup...', 'info');
                 setTimeout(() => {
-                    showNotification('Backup created successfully', 'success');
+                    showNotification('System restored successfully', 'success');
                 }, 2000);
             }
+        }
 
-            function restoreBackup() {
-                if (confirm('Are you sure you want to restore from backup? This will overwrite current data.')) {
-                    showNotification('Restoring from backup...', 'info');
-                    setTimeout(() => {
-                        showNotification('System restored successfully', 'success');
-                    }, 2000);
-                }
-            }
+        function exportAllData() {
+            showNotification('Exporting all data...', 'info');
+            setTimeout(() => {
+                showNotification('Data exported successfully', 'success');
+            }, 1500);
+        }
 
-            function exportAllData() {
-                showNotification('Exporting all data...', 'info');
+        function clearOldData() {
+            if (confirm('Are you sure you want to clear old data? This action cannot be undone.')) {
+                showNotification('Clearing old data...', 'info');
                 setTimeout(() => {
-                    showNotification('Data exported successfully', 'success');
-                }, 1500);
+                    showNotification('Old data cleared successfully', 'success');
+                }, 2000);
             }
+        }
 
-            function clearOldData() {
-                if (confirm('Are you sure you want to clear old data? This action cannot be undone.')) {
-                    showNotification('Clearing old data...', 'info');
-                    setTimeout(() => {
-                        showNotification('Old data cleared successfully', 'success');
-                    }, 2000);
-                }
-            }
+        // ==================== MODAL FUNCTIONS ====================
+        function closeUserModal() {
+            document.getElementById('userModal').style.display = 'none';
+            document.getElementById('userForm').reset();
+            currentUserId = null;
+        }
 
-            // ==================== MODAL FUNCTIONS ====================
-            function closeUserModal() {
-                document.getElementById('userModal').style.display = 'none';
-                document.getElementById('userForm').reset();
-                currentUserId = null;
-            }
+        function closeTicketModal() {
+            document.getElementById('ticketModal').style.display = 'none';
+            document.getElementById('ticketForm').reset();
+            currentTicketId = null;
+        }
 
-            function closeConfirmModal() {
-                document.getElementById('confirmModal').style.display = 'none';
-                document.getElementById('itemToDelete').value = '';
-                document.getElementById('deleteType').value = '';
-            }
+        function closeReplyModal() {
+            document.getElementById('replyModal').style.display = 'none';
+            document.getElementById('replyForm').reset();
+        }
 
-            function closeReportModal() {
-                document.getElementById('reportModal').style.display = 'none';
-            }
+        function closeFaqModal() {
+            document.getElementById('faqModal').style.display = 'none';
+            document.getElementById('faqForm').reset();
+        }
 
-            // ==================== UTILITY FUNCTIONS ====================
-            function showNotification(message, type = 'info') {
-                const notification = document.createElement('div');
-                notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 15px 25px;
-                background-color: ${type === 'success' ? 'var(--success-green)' :
-                        type === 'warning' ? 'var(--warning-yellow)' :
-                            type === 'danger' ? 'var(--urgent-red)' : 'var(--info-blue)'};
-                color: white;
-                border-radius: 10px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-                z-index: 1000;
-                font-weight: bold;
-                animation: slideIn 0.3s ease-out;
-            `;
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').style.display = 'none';
+            document.getElementById('itemToDelete').value = '';
+            document.getElementById('deleteType').value = '';
+        }
 
-                notification.textContent = message;
-                document.body.appendChild(notification);
+        function closeReportModal() {
+            document.getElementById('reportModal').style.display = 'none';
+        }
 
-                setTimeout(() => {
-                    notification.style.animation = 'slideOut 0.3s ease-out';
-                    setTimeout(() => notification.remove(), 300);
-                }, 3000);
+        function confirmDelete() {
+            const id = document.getElementById('itemToDelete').value;
+            const type = document.getElementById('deleteType').value;
 
-                // Add CSS for animation if not exists
-                if (!document.querySelector('#notification-animations')) {
-                    const style = document.createElement('style');
-                    style.id = 'notification-animations';
-                    style.textContent = `
-                    @keyframes slideIn {
-                        from { transform: translateX(100%); opacity: 0; }
-                        to { transform: translateX(0); opacity: 1; }
+            try {
+                if (type === 'user') {
+                    const index = users.findIndex(u => u.id === parseInt(id));
+                    if (index !== -1) {
+                        users.splice(index, 1);
+                        showNotification('User deleted successfully', 'success');
+                        loadUsersTable();
+                        updateDashboardCounts();
                     }
-                    @keyframes slideOut {
-                        from { transform: translateX(0); opacity: 1; }
-                        to { transform: translateX(100%); opacity: 0; }
+                } else if (type === 'request') {
+                    const index = pendingRequests.findIndex(r => r.id === parseInt(id));
+                    if (index !== -1) {
+                        pendingRequests.splice(index, 1);
+                        showNotification('Request deleted successfully', 'success');
+                        loadPendingRequests();
+                        updateDashboardCounts();
                     }
-                `;
-                    document.head.appendChild(style);
                 }
+
+                closeConfirmModal();
+            } catch (error) {
+                console.error('Error deleting item:', error);
+                showNotification('Failed to delete item', 'error');
             }
+        }
 
-            function getRoleColor(role) {
-                switch (role) {
-                    case 'admin': return '#dc3545';
-                    case 'doctor': return '#28a745';
-                    case 'nurse': return '#17a2b8';
-                    case 'patient': return '#007bff';
-                    case 'staff': return '#6c757d';
-                    default: return '#999';
-                }
+        // ==================== UTILITY FUNCTIONS ====================
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.style.display = 'block';
+
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+
+        function getRoleColor(role) {
+            switch (role) {
+                case 'admin': return '#dc3545';
+                case 'doctor': return '#28a745';
+                case 'patient': return '#007bff';
+                case 'staff': return '#6c757d';
+                default: return '#999';
             }
+        }
 
-            function getRandomColor() {
-                const colors = [
-                    '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7',
-                    '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9'
-                ];
-                return colors[Math.floor(Math.random() * colors.length)];
+        function getActivityColor(type) {
+            switch (type) {
+                case 'user': return '#007bff';
+                case 'medical': return '#28a745';
+                case 'support': return '#ffc107';
+                case 'system': return '#6c757d';
+                case 'report': return '#17a2b8';
+                default: return '#999';
             }
+        }
 
-            function formatDate(dateString) {
-                const date = new Date(dateString);
-                return date.toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric'
-                });
+        function getRandomColor() {
+            const colors = [
+                '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7',
+                '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        function formatDateTime(dateTimeString) {
+            const date = new Date(dateTimeString.replace(' ', 'T'));
+            return date.toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function exportUsers() {
+            const dataStr = JSON.stringify(users, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+            const exportFileDefaultName = 'users-export.json';
+
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+
+            showNotification('Users exported successfully', 'success');
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                // In production, you would call your logout API here
+                // For now, just redirect to login page
+                window.location.href = 'login.html';
             }
+        }
 
-            function exportUsers() {
-                const dataStr = JSON.stringify(users, null, 2);
-                const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
-                const exportFileDefaultName = 'users-export.json';
+        // ==================== API READY FUNCTIONS ====================
+        // These functions are ready to be replaced with actual API calls
 
-                const linkElement = document.createElement('a');
-                linkElement.setAttribute('href', dataUri);
-                linkElement.setAttribute('download', exportFileDefaultName);
-                linkElement.click();
+        async function apiFetchUsers() {
+            // Replace with: return await fetch('/api/users').then(res => res.json());
+            return users;
+        }
 
-                showNotification('Users exported successfully', 'success');
-            }}
+        async function apiCreateUser(userData) {
+            // Replace with: return await fetch('/api/users', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(userData)
+            // }).then(res => res.json());
+            return { success: true, data: userData };
+        }
+
+        async function apiUpdateUser(id, userData) {
+            // Replace with: return await fetch(`/api/users/${id}`, {
+            //     method: 'PUT',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(userData)
+            // }).then(res => res.json());
+            return { success: true, data: userData };
+        }
+
+        async function apiDeleteUser(id) {
+            // Replace with: return await fetch(`/api/users/${id}`, {
+            //     method: 'DELETE'
+            // }).then(res => res.json());
+            return { success: true };
+        }
+
+        async function apiGetPendingRequests() {
+            // Replace with: return await fetch('/api/requests/pending').then(res => res.json());
+            return pendingRequests;
+        }
+
+        async function apiApproveRequest(id) {
+            // Replace with: return await fetch(`/api/requests/${id}/approve`, {
+            //     method: 'POST'
+            // }).then(res => res.json());
+            return { success: true };
+        }
+
+        async function apiRejectRequest(id) {
+            // Replace with: return await fetch(`/api/requests/${id}/reject`, {
+            //     method: 'POST'
+            // }).then(res => res.json());
+            return { success: true };
+        }
+
+        async function apiGetDashboardStats() {
+            // Replace with: return await fetch('/api/dashboard/stats').then(res => res.json());
+            return {
+                totalPatients: users.filter(u => u.role === 'patient').length,
+                totalDoctors: users.filter(u => u.role === 'doctor').length,
+                totalAppointments: Math.floor(Math.random() * 20) + 20,
+                pendingRequests: pendingRequests.length
+            };
+        }
     </script>
 </body>
 
