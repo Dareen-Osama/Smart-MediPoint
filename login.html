@@ -53,7 +53,6 @@
             flex: 1;
         }
 
-        /* الجزء الأيسر - النص الترحيبي */
         .welcome-section {
             flex: 1;
             display: flex;
@@ -84,7 +83,6 @@
             font-weight: 700;
             margin-bottom: 20px;
             line-height: 1.2;
-            text-shadow: #e0e0e0 1px 1px px;
         }
 
         .welcome-section p {
@@ -94,7 +92,6 @@
             max-width: 400px;
         }
 
-        /* الجزء الأيمن - النماذج */
         .form-section-container {
             flex: 1;
             display: flex;
@@ -104,7 +101,6 @@
             max-width: 50%;
         }
 
-        /* شعار MediPoint في الزاوية اليسرى السفلية */
         .logo-container {
             position: fixed;
             bottom: 20px;
@@ -132,7 +128,6 @@
             height: 100px;
         }
 
-        /* بطاقات النماذج */
         .form-card {
             background-color: #F5F5F5;
             width: 500px;
@@ -204,7 +199,6 @@
             display: none;
         }
 
-
         .checkbox {
             display: flex;
             align-items: center;
@@ -243,8 +237,13 @@
             transition: background 0.3s;
         }
 
-        .btn:hover {
+        .btn:hover:not(:disabled) {
             background-color: #144a47;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
         .form-links {
@@ -278,7 +277,6 @@
             color: #1a5855;
         }
 
-        /* إخفاء النماذج غير النشطة */
         .form-section {
             display: none;
         }
@@ -287,7 +285,6 @@
             display: block;
         }
 
-        /* تذييل الصفحة */
         .footer {
             text-align: center;
             color: #666;
@@ -298,7 +295,6 @@
             margin-top: auto;
         }
 
-        /* تحديد نوع المستخدم */
         .user-type-selector {
             display: flex;
             justify-content: center;
@@ -320,7 +316,7 @@
             transition: all 0.3s ease;
         }
 
-        .user-type-btn:hover {
+        .user-type-btn:hover:not(.active) {
             border-color: #1a5855;
             color: #1a5855;
         }
@@ -336,12 +332,10 @@
             font-size: 18px;
         }
 
-        /* حقل معرف الطبيب */
         .doctor-id-field {
             display: none;
         }
 
-        /* رابط التسجيل بناءً على النوع */
         .signup-type-link {
             font-weight: 600;
             margin-left: 5px;
@@ -356,16 +350,76 @@
             text-decoration: underline;
         }
 
-        /* تصميم متجاوب */
-        @media (max-width: 1200px) {
-            .page::after {
-                width: 40%;
-            }
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
 
-            .welcome-section,
-            .form-section-container {
-                max-width: 50%;
-            }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .toast {
+            background: white;
+            border-left: 4px solid;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            min-width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            border-left-color: #4CAF50;
+        }
+
+        .toast.error {
+            border-left-color: #f44336;
+        }
+
+        .toast.info {
+            border-left-color: #2196F3;
+        }
+
+        .toast-content {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            font-size: 18px;
+            margin-left: 15px;
         }
 
         @media (max-width: 992px) {
@@ -388,10 +442,6 @@
                 padding-top: 60px;
             }
 
-            .welcome-content {
-                max-width: 100%;
-            }
-
             .form-section-container {
                 max-width: 100%;
                 padding: 20px;
@@ -401,31 +451,14 @@
             .form-card {
                 width: 100%;
                 max-width: 500px;
-                margin: 0 auto;
             }
 
             .welcome-section h1 {
                 font-size: 36px;
             }
-
-            .welcome-section span {
-                font-size: 24px;
-            }
         }
 
         @media (max-width: 768px) {
-            .welcome-section h1 {
-                font-size: 32px;
-            }
-
-            .welcome-section span {
-                font-size: 22px;
-            }
-
-            .form-card {
-                padding: 30px 20px;
-            }
-
             .logo-container {
                 left: 50%;
                 transform: translateX(-50%);
@@ -435,59 +468,29 @@
                 border-radius: 30px;
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             }
-
-            .logo img {
-                width: 80px;
-                height: 80px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .welcome-section h1 {
-                font-size: 28px;
-            }
-
-            .welcome-section span {
-                font-size: 20px;
-            }
-
-            .welcome-section p {
-                font-size: 16px;
-            }
-
-            .form-card h2 {
-                font-size: 28px;
-            }
-
-            .user-type-btn {
-                font-size: 14px;
-                padding: 10px;
-            }
         }
     </style>
 </head>
 
 <body>
+    <div class="toast-container"></div>
+
     <div class="page">
         <div class="container">
-            <!-- الجزء الأيسر - النص الترحيبي -->
             <div class="welcome-section">
                 <div class="welcome-content">
                     <span>HELLO</span>
                     <h1>WELCOME TO MEDIPOINT</h1>
-                    <p>Your all-in-one platform for patient care and nutrition monitoring. Access medical services from
-                        anywhere.</p>
+                    <p>Your all-in-one platform for patient care and nutrition monitoring. Access medical services from anywhere.</p>
                 </div>
             </div>
 
-            <!-- الجزء الأيمن - النماذج -->
             <div class="form-section-container">
                 <div class="form-card">
-                    <!-- نموذج تسجيل الدخول -->
+                    <!-- Login Form -->
                     <div id="login-section" class="form-section active">
                         <h2>Login Account</h2>
 
-                        <!-- تحديد نوع المستخدم -->
                         <div class="user-type-selector">
                             <button type="button" class="user-type-btn active" id="patient-btn">
                                 <i class="fas fa-user-injured user-type-icon"></i> Patient
@@ -498,26 +501,23 @@
                         </div>
 
                         <form id="login-form">
-                            <!-- حقل معرف الطبيب (يظهر فقط عند اختيار Doctor) -->
                             <div class="form-group doctor-id-field" id="doctor-id-field">
                                 <label for="doctor-id">Doctor ID</label>
                                 <div class="input-box">
                                     <input type="text" id="doctor-id" placeholder="Enter your doctor ID">
                                     <i class="fas fa-id-card"></i>
                                 </div>
-
-
                             </div>
 
-                            <label for="email">Email Address</label>
+                            <label for="login-email">Email Address</label>
                             <div class="input-box">
-                                <input type="email" id="email" placeholder="Enter your email" required>
+                                <input type="email" id="login-email" placeholder="Enter your email" required>
                                 <i class="fa-regular fa-message"></i>
                             </div>
 
-                            <label for="password">Password</label>
+                            <label for="login-password">Password</label>
                             <div class="input-box">
-                                <input type="password" id="password" placeholder="**********" required>
+                                <input type="password" id="login-password" placeholder="**********" required>
                                 <i class="fa-solid fa-lock"></i>
                             </div>
 
@@ -528,7 +528,9 @@
                                 <a id="show-forgot-password">Forgot password?</a>
                             </div>
 
-                            <button type="submit" class="btn" id="login-button">Login as Patient</button>
+                            <button type="submit" class="btn" id="login-button">
+                                <span id="login-button-text">Login as Patient</span>
+                            </button>
                         </form>
 
                         <div class="form-links">
@@ -537,7 +539,7 @@
                         </div>
                     </div>
 
-                    <!-- نموذج نسيت كلمة المرور -->
+                    <!-- Forgot Password Form -->
                     <div id="forgot-section" class="form-section">
                         <div class="back-btn" id="back-to-login-from-forgot">
                             <i class="fa-solid fa-arrow-left"></i> Back to Login
@@ -548,11 +550,13 @@
                         <form id="forgot-form">
                             <label>Email Address</label>
                             <div class="input-box">
-                                <input type="email" placeholder="Enter your email" required>
+                                <input type="email" id="forgot-email" placeholder="Enter your email" required>
                                 <i class="fa-regular fa-message"></i>
                             </div>
 
-                            <button type="submit" class="btn">Send Reset Link</button>
+                            <button type="submit" class="btn" id="forgot-button">
+                                <span id="forgot-button-text">Send Reset Link</span>
+                            </button>
                         </form>
 
                         <div class="form-links">
@@ -560,7 +564,7 @@
                         </div>
                     </div>
 
-                    <!-- نموذج إنشاء حساب جديد -->
+                    <!-- Signup Form -->
                     <div id="signup-section" class="form-section">
                         <div class="back-btn" id="back-to-login-from-signup">
                             <i class="fa-solid fa-arrow-left"></i> Back to Login
@@ -568,7 +572,6 @@
 
                         <h2>Create Account</h2>
 
-                        <!-- تحديد نوع المستخدم للتسجيل -->
                         <div class="user-type-selector">
                             <button type="button" class="user-type-btn active" id="signup-patient-btn">
                                 <i class="fas fa-user-injured user-type-icon"></i> Patient
@@ -579,27 +582,26 @@
                         </div>
 
                         <form id="signup-form">
-                            <!-- حقل معرف الطبيب للتسجيل -->
                             <div class="form-group doctor-id-field" id="signup-doctor-id-field">
                                 <label for="signup-doctor-id">Doctor ID</label>
                                 <div class="input-box">
-                                    <input type="text" id="signup-doctor-id" required
-                                        placeholder="Enter your doctor ID if available">
+                                    <input type="text" id="signup-doctor-id" placeholder="Enter your doctor ID if available">
                                     <i class="fas fa-id-card"></i>
                                 </div>
                             </div>
 
                             <label>Full Name</label>
                             <div class="input-box">
-                                <input type="text" placeholder="Enter your full name" required>
+                                <input type="text" id="signup-name" placeholder="Enter your full name" required>
                                 <i class="fa-solid fa-user"></i>
                             </div>
 
                             <label>Email Address</label>
                             <div class="input-box">
-                                <input type="email" placeholder="Enter your email" required>
+                                <input type="email" id="signup-email" placeholder="Enter your email" required>
                                 <i class="fa-regular fa-message"></i>
                             </div>
+
                             <div class="form-group" id="doctorSpecialty">
                                 <label for="specialty">Medical Specialty</label>
                                 <div class="input-box">
@@ -616,31 +618,34 @@
                                     <i class="fa-solid fa-stethoscope"></i>
                                 </div>
                             </div>
+
                             <label>Date of Birth</label>
                             <div class="input-box">
-                                <input type="date" id="dob" required lang="en">
+                                <input type="date" id="dob" required>
                                 <p id="age-display" style="margin-top:5px; font-size:14px; color:#1a5855;"></p>
                             </div>
 
                             <label>Password</label>
                             <div class="input-box">
-                                <input type="password" placeholder="**********" required>
+                                <input type="password" id="signup-password" placeholder="**********" required minlength="6">
                                 <i class="fa-solid fa-lock"></i>
                             </div>
 
                             <label>Confirm Password</label>
                             <div class="input-box">
-                                <input type="password" placeholder="Re-enter your password" required>
+                                <input type="password" id="signup-confirm-password" placeholder="Re-enter your password" required>
                                 <i class="fa-solid fa-lock"></i>
                             </div>
 
                             <div class="checkbox" style="justify-content: flex-start; font-size: 15px;">
                                 <label>
-                                    <input type="checkbox" required> I accept all terms and conditions
+                                    <input type="checkbox" id="terms" required> I accept all terms and conditions
                                 </label>
                             </div>
 
-                            <button type="submit" class="btn" id="signup-button">Create Patient Account</button>
+                            <button type="submit" class="btn" id="signup-button">
+                                <span id="signup-button-text">Create Patient Account</span>
+                            </button>
                         </form>
 
                         <div class="form-links">
@@ -652,217 +657,490 @@
             </div>
         </div>
 
-        <!-- شعار MediPoint في الزاوية اليسرى السفلية -->
         <div class="logo-container">
             <div class="logo"><img src="media/logo.png" alt="MediPoint Logo"></div>
         </div>
 
-        <!-- تذييل الصفحة -->
         <div class="footer">
-            <p style="font-size: smaller;">&copy; 2025 SmartMediPoint. All Rights Reserved || Developed by Computer
-                Engineering Students - IUG</p>
+            <p style="font-size: smaller;">&copy; 2025 SmartMediPoint. All Rights Reserved || Developed by Computer Engineering Students - IUG</p>
         </div>
     </div>
 
     <script>
-        // تحديد العناصر
-        const loginSection = document.getElementById('login-section');
-        const forgotSection = document.getElementById('forgot-section');
-        const signupSection = document.getElementById('signup-section');
+        // API Configuration
+        const API_BASE_URL = 'https://api.example.com'; // Replace with your actual API base URL
+        const API_ENDPOINTS = {
+            LOGIN: `${API_BASE_URL}/auth/login`,
+            REGISTER: `${API_BASE_URL}/auth/register`,
+            FORGOT_PASSWORD: `${API_BASE_URL}/auth/forgot-password`,
+            RESET_PASSWORD: `${API_BASE_URL}/auth/reset-password`,
+            VALIDATE_DOCTOR_ID: `${API_BASE_URL}/doctors/validate`
+        };
 
-        // أزرار التبديل
-        const showForgotPassword = document.getElementById('show-forgot-password');
-        const showSignup = document.getElementById('show-signup');
-        const showLoginFromForgot = document.getElementById('show-login-from-forgot');
-        const showLoginFromSignup = document.getElementById('show-login-from-signup');
-        const backToLoginFromForgot = document.getElementById('back-to-login-from-forgot');
-        const backToLoginFromSignup = document.getElementById('back-to-login-from-signup');
-
-        // أزرار اختيار نوع المستخدم (تسجيل الدخول)
-        const patientBtn = document.getElementById('patient-btn');
-        const doctorBtn = document.getElementById('doctor-btn');
-        const doctorIdField = document.getElementById('doctor-id-field');
-        const loginButton = document.getElementById('login-button');
-
-        // أزرار اختيار نوع المستخدم (التسجيل)
-        const signupPatientBtn = document.getElementById('signup-patient-btn');
-        const signupDoctorBtn = document.getElementById('signup-doctor-btn');
-        const signupDoctorIdField = document.getElementById('signup-doctor-id-field');
-        const signupButton = document.getElementById('signup-button');
-
-        // المتغيرات لتحديد نوع المستخدم
-        let userType = 'patient'; // القيمة الافتراضية
-        let signupUserType = 'patient'; // القيمة الافتراضية للتسجيل
-
-        // دوال التبديل بين النماذج
-        function showLogin() {
-            loginSection.classList.add('active');
-            forgotSection.classList.remove('active');
-            signupSection.classList.remove('active');
-        }
-
-        function showForgot() {
-            loginSection.classList.remove('active');
-            forgotSection.classList.add('active');
-            signupSection.classList.remove('active');
-        }
-
-        function showSignupForm() {
-            loginSection.classList.remove('active');
-            forgotSection.classList.remove('active');
-            signupSection.classList.add('active');
-        }
-
-        // تبديل نوع المستخدم (تسجيل الدخول)
-        function setUserType(type) {
-            userType = type;
-
-            if (type === 'doctor') {
-                patientBtn.classList.remove('active');
-                doctorBtn.classList.add('active');
-                doctorIdField.style.display = 'block';
-                loginButton.textContent = 'Login as Doctor';
-
-                // جعل حقل معرف الطبيب إلزامي
-                document.getElementById('doctor-id').required = true;
-            } else {
-                patientBtn.classList.add('active');
-                doctorBtn.classList.remove('active');
-                doctorIdField.style.display = 'none';
-                loginButton.textContent = 'Login as Patient';
-
-                // جعل حقل معرف الطبيب غير إلزامي
-                document.getElementById('doctor-id').required = false;
+        // Toast Notification System
+        class Toast {
+            static show(message, type = 'info', duration = 5000) {
+                const container = document.querySelector('.toast-container');
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                
+                const icons = {
+                    success: 'fa-check-circle',
+                    error: 'fa-times-circle',
+                    info: 'fa-info-circle'
+                };
+                
+                toast.innerHTML = `
+                    <div class="toast-content">
+                        <div class="toast-title">
+                            <i class="fas ${icons[type]}"></i> ${type.charAt(0).toUpperCase() + type.slice(1)}
+                        </div>
+                        <div class="toast-message">${message}</div>
+                    </div>
+                    <button class="toast-close"><i class="fas fa-times"></i></button>
+                `;
+                
+                container.appendChild(toast);
+                
+                // Trigger animation
+                setTimeout(() => toast.classList.add('show'), 100);
+                
+                // Auto remove
+                const removeToast = () => {
+                    toast.classList.remove('show');
+                    setTimeout(() => toast.remove(), 300);
+                };
+                
+                // Close button
+                toast.querySelector('.toast-close').addEventListener('click', removeToast);
+                
+                // Auto remove after duration
+                setTimeout(removeToast, duration);
             }
         }
 
-        // تبديل نوع المستخدم (التسجيل)
-        function setSignupUserType(type) {
-            signupUserType = type;
+        // API Service
+        class ApiService {
+            static async request(endpoint, method = 'GET', data = null) {
+                const headers = {
+                    'Content-Type': 'application/json',
+                };
 
-            const specialtyBox = document.getElementById('doctorSpecialty');
-            const specialtySelect = document.getElementById('specialty');
-            const doctorIdInput = document.getElementById('signup-doctor-id');
+                // Add authorization header if token exists
+                const token = localStorage.getItem('token');
+                if (token) {
+                    headers['Authorization'] = `Bearer ${token}`;
+                }
 
-            if (type === 'doctor') {
-                signupPatientBtn.classList.remove('active');
-                signupDoctorBtn.classList.add('active');
+                const config = {
+                    method,
+                    headers,
+                };
 
-                signupDoctorIdField.style.display = 'block';
-                specialtyBox.style.display = 'block';
+                if (data) {
+                    config.body = JSON.stringify(data);
+                }
 
-                doctorIdInput.required = true;
-                specialtySelect.required = true;
+                try {
+                    const response = await fetch(endpoint, config);
+                    const result = await response.json();
 
-                signupButton.textContent = 'Create Doctor Account';
-            } else {
-                signupPatientBtn.classList.add('active');
-                signupDoctorBtn.classList.remove('active');
+                    if (!response.ok) {
+                        throw new Error(result.message || 'Something went wrong');
+                    }
 
-                signupDoctorIdField.style.display = 'none';
-                specialtyBox.style.display = 'none';
+                    return result;
+                } catch (error) {
+                    console.error('API Error:', error);
+                    throw error;
+                }
+            }
 
-                doctorIdInput.required = false;
-                specialtySelect.required = false;
+            static async login(email, password, userType, doctorId = null) {
+                const data = {
+                    email,
+                    password,
+                    userType,
+                    ...(userType === 'doctor' && { doctorId })
+                };
+                
+                return this.request(API_ENDPOINTS.LOGIN, 'POST', data);
+            }
 
-                doctorIdInput.value = '';
-                specialtySelect.value = '';
+            static async register(userData) {
+                return this.request(API_ENDPOINTS.REGISTER, 'POST', userData);
+            }
 
-                signupButton.textContent = 'Create Patient Account';
+            static async forgotPassword(email) {
+                return this.request(API_ENDPOINTS.FORGOT_PASSWORD, 'POST', { email });
+            }
+
+            static async validateDoctorId(doctorId) {
+                return this.request(`${API_ENDPOINTS.VALIDATE_DOCTOR_ID}/${doctorId}`, 'GET');
             }
         }
 
-
-        // إضافة معالجي الأحداث
-        showForgotPassword.addEventListener('click', showForgot);
-        showSignup.addEventListener('click', showSignupForm);
-        showLoginFromForgot.addEventListener('click', showLogin);
-        showLoginFromSignup.addEventListener('click', showLogin);
-        backToLoginFromForgot.addEventListener('click', showLogin);
-        backToLoginFromSignup.addEventListener('click', showLogin);
-
-        // أحداث أزرار اختيار نوع المستخدم (تسجيل الدخول)
-        patientBtn.addEventListener('click', () => setUserType('patient'));
-        doctorBtn.addEventListener('click', () => setUserType('doctor'));
-
-        // أحداث أزرار اختيار نوع المستخدم (التسجيل)
-        signupPatientBtn.addEventListener('click', () => setSignupUserType('patient'));
-        signupDoctorBtn.addEventListener('click', () => setSignupUserType('doctor'));
-
-        // معالجة إرسال نموذج تسجيل الدخول
-        document.getElementById('login-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const doctorId = userType === 'doctor' ? document.getElementById('doctor-id').value : null;
-
-            if (userType === 'doctor' && (!doctorId || doctorId.trim() === '')) {
-                alert('Please enter your Doctor ID');
-                return;
+        // Auth Service
+        class AuthService {
+            static async handleLogin(email, password, userType, doctorId = null) {
+                try {
+                    const response = await ApiService.login(email, password, userType, doctorId);
+                    
+                    // Store token and user data
+                    localStorage.setItem('token', response.token);
+                    localStorage.setItem('user', JSON.stringify(response.user));
+                    localStorage.setItem('userType', userType);
+                    
+                    // Set remember me if checked
+                    const rememberMe = document.getElementById('remember-password').checked;
+                    if (rememberMe) {
+                        localStorage.setItem('rememberedEmail', email);
+                    } else {
+                        localStorage.removeItem('rememberedEmail');
+                    }
+                    
+                    Toast.show('Login successful! Redirecting...', 'success');
+                    
+                    // Redirect based on user type
+                    setTimeout(() => {
+                        window.location.href = userType === 'doctor' ? 
+                            '/doctor-dashboard.html' : 
+                            '/patient-dashboard.html';
+                    }, 1500);
+                    
+                    return response;
+                } catch (error) {
+                    Toast.show(error.message || 'Login failed. Please check your credentials.', 'error');
+                    throw error;
+                }
             }
 
-            // رسالة نجاح بناءً على نوع المستخدم
-            if (userType === 'doctor') {
-                alert(`Doctor login successful!\nEmail: ${email}\nDoctor ID: ${doctorId}`);
-                // هنا يمكنك إعادة التوجيه إلى لوحة تحكم الطبيب
-                // window.location.href = 'doctor-dashboard.html';
-            } else {
-                alert(`Patient login successful!\nEmail: ${email}`);
-                // هنا يمكنك إعادة التوجيه إلى لوحة تحكم المريض
-                // window.location.href = 'patient-dashboard.html';
-            }
-        });
+            static async handleRegister(formData) {
+                try {
+                    // Validate passwords match
+                    if (formData.password !== formData.confirmPassword) {
+                        throw new Error('Passwords do not match');
+                    }
 
-        // معالجة إرسال نموذج نسيت كلمة المرور
-        document.getElementById('forgot-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-            alert('Password reset link has been sent to your email!');
-            showLogin();
-        });
-
-        // معالجة إرسال نموذج إنشاء حساب جديد
-        document.getElementById('signup-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // التحقق من تطابق كلمتي المرور
-            const password = document.querySelector('#signup-form input[type="password"]').value;
-            const confirmPassword = document.querySelectorAll('#signup-form input[type="password"]')[1].value;
-
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
+                    const response = await ApiService.register(formData);
+                    
+                    Toast.show('Registration successful! You can now login.', 'success');
+                    
+                    // Clear form
+                    document.getElementById('signup-form').reset();
+                    
+                    return response;
+                } catch (error) {
+                    Toast.show(error.message || 'Registration failed. Please try again.', 'error');
+                    throw error;
+                }
             }
 
-            const doctorId = signupUserType === 'doctor' ? document.getElementById('signup-doctor-id').value : null;
-
-            if (signupUserType === 'doctor') {
-                alert(`Doctor account created successfully!\nYou can now login with your credentials.`);
-            } else {
-                alert(`Patient account created successfully!\nPlease login with your credentials.`);
+            static async handleForgotPassword(email) {
+                try {
+                    await ApiService.forgotPassword(email);
+                    Toast.show('Password reset link has been sent to your email.', 'success');
+                } catch (error) {
+                    Toast.show(error.message || 'Failed to send reset link. Please try again.', 'error');
+                    throw error;
+                }
             }
 
-            showLogin();
-        });
+            static checkAuth() {
+            const token = localStorage.getItem('token');
+            const userType = localStorage.getItem('userType');
+            
+            if (token) {
+                // Redirect to appropriate dashboard
+                setTimeout(() => {
+                    window.location.href = userType === 'doctor' ? 
+                        '/doctor-dashboard.html' : 
+                        '/patient-dashboard.html';
+                }, 100);
+            }
+        }
+        }
 
-        // تأثيرات تفاعلية بسيطة
-        const inputs = document.querySelectorAll('.input-box input, .input-box select');
+        // UI Controller
+        class UIController {
+            constructor() {
+                this.currentUserType = 'patient';
+                this.currentSignupType = 'patient';
+                this.initializeElements();
+                this.setupEventListeners();
+                this.loadRememberedEmail();
+                AuthService.checkAuth();
+            }
 
-        inputs.forEach(input => {
-            // تأثير عند التركيز على الحقل
-            input.addEventListener('focus', function () {
-                this.parentElement.style.borderColor = '#1a5855';
-                this.parentElement.style.boxShadow = '0 0 0 2px rgba(26, 88, 85, 0.2)';
+            initializeElements() {
+                // Form sections
+                this.loginSection = document.getElementById('login-section');
+                this.forgotSection = document.getElementById('forgot-section');
+                this.signupSection = document.getElementById('signup-section');
+
+                // Buttons
+                this.showForgotPassword = document.getElementById('show-forgot-password');
+                this.showSignup = document.getElementById('show-signup');
+                this.showLoginFromForgot = document.getElementById('show-login-from-forgot');
+                this.showLoginFromSignup = document.getElementById('show-login-from-signup');
+                this.backToLoginFromForgot = document.getElementById('back-to-login-from-forgot');
+                this.backToLoginFromSignup = document.getElementById('back-to-login-from-signup');
+
+                // User type buttons
+                this.patientBtn = document.getElementById('patient-btn');
+                this.doctorBtn = document.getElementById('doctor-btn');
+                this.doctorIdField = document.getElementById('doctor-id-field');
+                this.loginButton = document.getElementById('login-button');
+                this.loginButtonText = document.getElementById('login-button-text');
+
+                // Signup elements
+                this.signupPatientBtn = document.getElementById('signup-patient-btn');
+                this.signupDoctorBtn = document.getElementById('signup-doctor-btn');
+                this.signupDoctorIdField = document.getElementById('signup-doctor-id-field');
+                this.signupButton = document.getElementById('signup-button');
+                this.signupButtonText = document.getElementById('signup-button-text');
+                this.doctorSpecialty = document.getElementById('doctorSpecialty');
+
+                // Form buttons text
+                this.forgotButtonText = document.getElementById('forgot-button-text');
+            }
+
+            setupEventListeners() {
+                // Form navigation
+                this.showForgotPassword.addEventListener('click', () => this.showForgot());
+                this.showSignup.addEventListener('click', () => this.showSignupForm());
+                this.showLoginFromForgot.addEventListener('click', () => this.showLogin());
+                this.showLoginFromSignup.addEventListener('click', () => this.showLogin());
+                this.backToLoginFromForgot.addEventListener('click', () => this.showLogin());
+                this.backToLoginFromSignup.addEventListener('click', () => this.showLogin());
+
+                // User type selection
+                this.patientBtn.addEventListener('click', () => this.setUserType('patient'));
+                this.doctorBtn.addEventListener('click', () => this.setUserType('doctor'));
+                this.signupPatientBtn.addEventListener('click', () => this.setSignupUserType('patient'));
+                this.signupDoctorBtn.addEventListener('click', () => this.setSignupUserType('doctor'));
+
+                // Form submissions
+                document.getElementById('login-form').addEventListener('submit', (e) => this.handleLoginSubmit(e));
+                document.getElementById('forgot-form').addEventListener('submit', (e) => this.handleForgotSubmit(e));
+                document.getElementById('signup-form').addEventListener('submit', (e) => this.handleSignupSubmit(e));
+
+                // Date of birth validation
+                document.getElementById('dob').addEventListener('change', (e) => this.calculateAge(e.target.value));
+            }
+
+            showLogin() {
+                this.loginSection.classList.add('active');
+                this.forgotSection.classList.remove('active');
+                this.signupSection.classList.remove('active');
+            }
+
+            showForgot() {
+                this.loginSection.classList.remove('active');
+                this.forgotSection.classList.add('active');
+                this.signupSection.classList.remove('active');
+            }
+
+            showSignupForm() {
+                this.loginSection.classList.remove('active');
+                this.forgotSection.classList.remove('active');
+                this.signupSection.classList.add('active');
+            }
+
+            setUserType(type) {
+                this.currentUserType = type;
+                
+                if (type === 'doctor') {
+                    this.patientBtn.classList.remove('active');
+                    this.doctorBtn.classList.add('active');
+                    this.doctorIdField.style.display = 'block';
+                    this.loginButtonText.textContent = 'Login as Doctor';
+                    document.getElementById('doctor-id').required = true;
+                } else {
+                    this.patientBtn.classList.add('active');
+                    this.doctorBtn.classList.remove('active');
+                    this.doctorIdField.style.display = 'none';
+                    this.loginButtonText.textContent = 'Login as Patient';
+                    document.getElementById('doctor-id').required = false;
+                }
+            }
+
+            setSignupUserType(type) {
+                this.currentSignupType = type;
+                const specialtySelect = document.getElementById('specialty');
+                const doctorIdInput = document.getElementById('signup-doctor-id');
+
+                if (type === 'doctor') {
+                    this.signupPatientBtn.classList.remove('active');
+                    this.signupDoctorBtn.classList.add('active');
+                    this.signupDoctorIdField.style.display = 'block';
+                    this.doctorSpecialty.style.display = 'block';
+                    this.signupButtonText.textContent = 'Create Doctor Account';
+                    
+                    doctorIdInput.required = true;
+                    specialtySelect.required = true;
+                } else {
+                    this.signupPatientBtn.classList.add('active');
+                    this.signupDoctorBtn.classList.remove('active');
+                    this.signupDoctorIdField.style.display = 'none';
+                    this.doctorSpecialty.style.display = 'none';
+                    this.signupButtonText.textContent = 'Create Patient Account';
+                    
+                    doctorIdInput.required = false;
+                    specialtySelect.required = false;
+                    doctorIdInput.value = '';
+                    specialtySelect.value = '';
+                }
+            }
+
+            async handleLoginSubmit(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                const doctorId = this.currentUserType === 'doctor' ? 
+                    document.getElementById('doctor-id').value : null;
+
+                // Validate required fields
+                if (this.currentUserType === 'doctor' && (!doctorId || doctorId.trim() === '')) {
+                    Toast.show('Please enter your Doctor ID', 'error');
+                    return;
+                }
+
+                // Disable button and show loading
+                this.loginButton.disabled = true;
+                this.loginButtonText.innerHTML = '<div class="spinner"></div> Logging in...';
+
+                try {
+                    await AuthService.handleLogin(email, password, this.currentUserType, doctorId);
+                } catch (error) {
+                    // Re-enable button on error
+                    this.loginButton.disabled = false;
+                    this.loginButtonText.textContent = this.currentUserType === 'doctor' ? 
+                        'Login as Doctor' : 'Login as Patient';
+                }
+            }
+
+            async handleForgotSubmit(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('forgot-email').value;
+                const button = document.getElementById('forgot-button');
+                const buttonText = this.forgotButtonText;
+
+                // Disable button and show loading
+                button.disabled = true;
+                buttonText.innerHTML = '<div class="spinner"></div> Sending...';
+
+                try {
+                    await AuthService.handleForgotPassword(email);
+                    this.showLogin();
+                } catch (error) {
+                    // Re-enable button on error
+                    button.disabled = false;
+                    buttonText.textContent = 'Send Reset Link';
+                }
+            }
+
+            async handleSignupSubmit(e) {
+                e.preventDefault();
+                
+                // Collect form data
+                const formData = {
+                    name: document.getElementById('signup-name').value,
+                    email: document.getElementById('signup-email').value,
+                    password: document.getElementById('signup-password').value,
+                    confirmPassword: document.getElementById('signup-confirm-password').value,
+                    dateOfBirth: document.getElementById('dob').value,
+                    userType: this.currentSignupType,
+                    ...(this.currentSignupType === 'doctor' && {
+                        doctorId: document.getElementById('signup-doctor-id').value,
+                        specialty: document.getElementById('specialty').value
+                    })
+                };
+
+                // Validate date of birth
+                const age = this.calculateAge(formData.dateOfBirth);
+                if (age < 18) {
+                    Toast.show('You must be at least 18 years old to register', 'error');
+                    return;
+                }
+
+                // Disable button and show loading
+                this.signupButton.disabled = true;
+                this.signupButtonText.innerHTML = '<div class="spinner"></div> Creating Account...';
+
+                try {
+                    await AuthService.handleRegister(formData);
+                    this.showLogin();
+                } catch (error) {
+                    // Re-enable button on error
+                    this.signupButton.disabled = false;
+                    this.signupButtonText.textContent = this.currentSignupType === 'doctor' ? 
+                        'Create Doctor Account' : 'Create Patient Account';
+                }
+            }
+
+            calculateAge(birthDate) {
+                if (!birthDate) return 0;
+                
+                const today = new Date();
+                const birth = new Date(birthDate);
+                let age = today.getFullYear() - birth.getFullYear();
+                const monthDiff = today.getMonth() - birth.getMonth();
+                
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+                    age--;
+                }
+                
+                // Update age display
+                const ageDisplay = document.getElementById('age-display');
+                ageDisplay.textContent = age > 0 ? `Age: ${age} years` : '';
+                
+                return age;
+            }
+
+            loadRememberedEmail() {
+                const rememberedEmail = localStorage.getItem('rememberedEmail');
+                if (rememberedEmail) {
+                    document.getElementById('login-email').value = rememberedEmail;
+                    document.getElementById('remember-password').checked = true;
+                }
+            }
+        }
+
+        // Initialize the application when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const uiController = new UIController();
+            
+            // Add input focus effects
+            const inputs = document.querySelectorAll('.input-box input, .input-box select');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.borderColor = '#1a5855';
+                    this.parentElement.style.boxShadow = '0 0 0 2px rgba(26, 88, 85, 0.2)';
+                });
+
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.borderColor = '#ccc';
+                    this.parentElement.style.boxShadow = 'none';
+                });
             });
-
-            // تأثير عند إزالة التركيز من الحقل
-            input.addEventListener('blur', function () {
-                this.parentElement.style.borderColor = '#ccc';
-                this.parentElement.style.boxShadow = 'none';
-            });
         });
-
     </script>
 </body>
 
 </html>
+<!-- // Example API structure
+POST /auth/login
+Body: { email, password, userType, doctorId? }
+
+POST /auth/register
+Body: { name, email, password, dateOfBirth, userType, doctorId?, specialty? }
+
+POST /auth/forgot-password
+Body: { email }
+
+GET /doctors/validate/:doctorId -->
+<!--//////////////////////////////////////////Replace API Base URL//////////////////////-->
+<!-- const API_BASE_URL = 'https://api.example.com'; // Change to your actual API URL -->
